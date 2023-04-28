@@ -113,8 +113,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpVel: 2
-  velHorizontal: 0
-  gravity: -3
+  velHorizontal: 2
+  gravity: -5
   maxJumps: 2
 --- !u!54 &1679537499600840942
 Rigidbody:

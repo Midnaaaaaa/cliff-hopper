@@ -41,11 +41,12 @@ public class Player : MonoBehaviour
         transform.position += new Vector3(1 - direction, 0, direction) * velHorizontal * Time.fixedDeltaTime;
     }
 
-    private void OnTriggerEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         bJumping = false;
         jumps = maxJumps;
         velY = 0;
     }
+
 
 }
