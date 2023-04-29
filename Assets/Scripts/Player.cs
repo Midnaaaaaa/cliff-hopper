@@ -36,9 +36,7 @@ public class Player : MonoBehaviour
             }
             else if (jumps > 0)
             {
-                velY = jumpVel;
-                jumps--;
-                bJumping = true;
+                Salto();
             }
         }
     }
@@ -66,13 +64,33 @@ public class Player : MonoBehaviour
         {
             inCorner = true;
         }
+
+        if (other.tag == "Trap")
+        {
+            Muelto();
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Corner")
+        if (other.tag == "Corner" && inCorner)
         {
             inCorner = false;
+            bJumping = true;
         }
+    }
+
+    private void Salto()
+    {
+        velY = jumpVel;
+        jumps--;
+        bJumping = true;
+    }
+
+    private void Muelto()
+    {
+        Debug.Log("Muelto");
+        Salto();
+        direction = 1 - direction;
     }
 }
