@@ -10,15 +10,26 @@ public class LevelGenerator : MonoBehaviour
     public int minPlatformsUntilTurn;
     public int maxPlatformsUntilTurn;
     public int totalNumPlatforms; //Controlar el tamaño del nivel
-    public GameObject platformPrefab;
+
     private int direction = 1; //1 derecha 0 izquierda
     private Vector3 lastPlatform;
-    public GameObject playerPrefab;
 
-    void Start()
+    public float velHorizontal;
+
+    public GameObject playerPrefab;
+    public GameObject platformPrefab;
+    public GameObject cornerPrefab;
+    public GameObject guidePrefab;
+
+
+    void Awake()
     {
         int numPlatform = 0;
         GameObject player = Instantiate(playerPrefab, spawnPoint + Vector3.up, Quaternion.identity);
+        player.GetComponent<Player>().velHorizontal = velHorizontal;
+
+        GameObject guide = Instantiate(guidePrefab, spawnPoint + Vector3.up, Quaternion.identity);
+        guide.GetComponent<Boula>().velHorizontal = velHorizontal;
 
         //Plataforma inicial
         GameObject platform = Instantiate(platformPrefab); //TODO: añadir script a plataforma
@@ -40,6 +51,11 @@ public class LevelGenerator : MonoBehaviour
                 platform.transform.position = lastPlatform + new Vector3(1 - direction, 0, direction);
                 lastPlatform = lastPlatform + new Vector3(1 - direction, 0, direction);
                 numPlatform++;
+
+                if (i == numeroPlataformasSeguidas - 1)
+                {
+                    Instantiate(cornerPrefab, lastPlatform + Vector3.up, Quaternion.identity, platform.transform);
+                }
             }
             direction = 1 - direction;
         }

@@ -9,12 +9,16 @@ public class Player : MonoBehaviour
     private int direction = 1;
     public float jumpVel;
     private float velY;
+
+    [System.NonSerialized]
     public float velHorizontal;
+
     public float gravity;
     public int maxJumps;
     private int jumps;
     private bool bJumping = false;
-    
+
+    private bool inCorner = false;
 
     void Start()
     {
@@ -23,11 +27,19 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (jumps > 0 && Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {
-            velY = jumpVel;
-            jumps--;
-            bJumping = true;
+            if (inCorner)
+            {
+                direction = 1 - direction;
+                inCorner = false;
+            }
+            else if (jumps > 0)
+            {
+                velY = jumpVel;
+                jumps--;
+                bJumping = true;
+            }
         }
     }
 
@@ -43,10 +55,24 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        bJumping = false;
-        jumps = maxJumps;
-        velY = 0;
+        if (other.tag == "Platform")
+        {
+            bJumping = false;
+            jumps = maxJumps;
+            velY = 0;
+        }
+
+        if (other.tag == "Corner")
+        {
+            inCorner = true;
+        }
     }
 
-
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Corner")
+        {
+            inCorner = false;
+        }
+    }
 }

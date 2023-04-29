@@ -156,8 +156,11 @@ MonoBehaviour:
   minPlatformsUntilTurn: 2
   maxPlatformsUntilTurn: 6
   totalNumPlatforms: 50
-  platformPrefab: {fileID: 4503955273137113923, guid: e1d6abf296b888c4181e15dc610f13af, type: 3}
+  velHorizontal: 5
   playerPrefab: {fileID: 5666608992400065888, guid: b5788f803d5dbcc47a8e214181e8b927, type: 3}
+  platformPrefab: {fileID: 4503955273137113923, guid: e1d6abf296b888c4181e15dc610f13af, type: 3}
+  cornerPrefab: {fileID: 1960998830750327700, guid: 163d8f56f1115d644b0481f870ffd3b0, type: 3}
+  guidePrefab: {fileID: 6118598055070213501, guid: 236251adcf4534a49b3faed0f18d6c20, type: 3}
 --- !u!4 &589546586
 Transform:
   m_ObjectHideFlags: 0
@@ -278,6 +281,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -344,10 +348,22 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.09904577, y: -0.89239913, z: 0.23911765, w: 0.3696438}
-  m_LocalPosition: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: 10, y: 17, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 30, y: -135, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec1a61acae4c4894cbb5b3da372add68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
