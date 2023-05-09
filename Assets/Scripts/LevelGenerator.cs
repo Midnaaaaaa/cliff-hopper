@@ -20,6 +20,7 @@ public class LevelGenerator : MonoBehaviour
     private Vector3 lastPlatform;
 
     private float[] probPlatformLength = { 0.05f, 0.20f, 0.20f, 0.3f, 0.25f }; // Tiene que sumar 1
+    private float[] probTrap = { 0.6f, 0.4f };
 
 
     public float velHorizontal;
@@ -33,7 +34,7 @@ public class LevelGenerator : MonoBehaviour
     
 
     public float trapDensity = 0.5f;
-    public int trapMaxLength = 3;
+    public int[] trapMaxLength = { 3, 2 };
 
 
     void Awake()
@@ -46,7 +47,7 @@ public class LevelGenerator : MonoBehaviour
         guide.GetComponent<Boula>().velHorizontal = velHorizontal;
 
         //Plataforma inicial
-        GameObject platform = Instantiate(platformPrefab); //TODO: a�adir script a plataforma
+        GameObject platform = Instantiate(platformPrefab); //TODO: añadir script a plataforma
         platform.transform.parent = transform;
         platform.transform.position = spawnPoint;
         lastPlatform = spawnPoint;
@@ -65,39 +66,51 @@ public class LevelGenerator : MonoBehaviour
 
             int numeroPlataformasSeguidas = calculateNumPlataformesSeguides();//Random.Range(minPlatformsUntilTurn, maxPlatformsUntilTurn);
 
-            int numObstaclesRestants = 0;
+            int numObstaclesRestants = 0; //En la primera iteracion no genera trampa!
             int obstacle = -1;
 
             for (int i = 0; i < numeroPlataformasSeguidas; i++)
             {
                 //TODO: RANDOM NUM PARA SABER QUE TIPO DE PLATAFORMA GENERAR
-                if (numFila > 0 && i > 0 && numObstaclesRestants == 0 && Random.Range(0f,1f) < trapDensity)
+                //numObstaclesRestants > 0 --> se coloca obstaculo
+                //numObstaclesRestants == 0 --> no se coloca obstaculo ni se generan mas (para que no se genere otro obstaculo justo al acabar el anterior o en la primera casilla (i==0))
+                //numObstaclesRestants < 0 --> probabilidad de que se genere nuevo obstaculo
+                if (numFila > 0 && numObstaclesRestants < 0 && Random.Range(0f,1f) < trapDensity)
                 {
-                    numObstaclesRestants = Random.Range(1, trapMaxLength);
-                    obstacle = Random.Range(0, 1); 
+                    obstacle = randomElementWithProbabilities(probTrap);
+                    numObstaclesRestants = Random.Range(1, trapMaxLength[obstacle]);
+                    Debug.Log("Obtaculo: " + obstacle + " Cantidad: " + numObstaclesRestants);
                 }
 
-                if ((Trampas)obstacle == Trampas.PINXO && i < numeroPlataformasSeguidas - 1) { // Pinxo
-                    platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.identity, transform); //TODO: a�adir script a plataforma
-                    platform.GetComponent<Platform>().setHeight(0.75f);
+                if (i == numeroPlataformasSeguidas - 1 || numObstaclesRestants <= 0)
+                {
+                    obstacle = -1;
                 }
-                else if ((Trampas)obstacle != Trampas.HUECO || i == numeroPlataformasSeguidas - 1) // no es Hueco
-                    platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.identity, transform); 
+
+                // Generacion de terreno
+                if ((Trampas)obstacle != Trampas.HUECO) { 
+                    platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.identity, transform); //TODO: a�adir script a plataforma
+
+                    if ((Trampas)obstacle == Trampas.PINXO)
+                        platform.GetComponent<Platform>().setHeight(0.75f);
+                }
 
                 lastPlatform = lastPlatform + new Vector3(1 - direction, 0, direction);
                 numPlatform++;
 
-
+                // Generacion de estructura
                 if (i == numeroPlataformasSeguidas - 1)
                 {
                     Instantiate(cornerPrefab, lastPlatform + Vector3.up, Quaternion.identity, platform.transform);
                     numObstaclesRestants = 0;
                 }
-                else if (numObstaclesRestants > 0 && obstacle == 0)
+                else if (numObstaclesRestants > 0 && (Trampas)obstacle == Trampas.PINXO)
                 {
                     Instantiate(pinxoPrefab, lastPlatform, Quaternion.identity, platform.transform);
-                    if (--numObstaclesRestants == 0) obstacle = -1;
+                    if (numObstaclesRestants == 0) obstacle = -1;
                 }
+
+                --numObstaclesRestants;
             }
             direction = 1 - direction;
             ++numFila;
@@ -106,11 +119,16 @@ public class LevelGenerator : MonoBehaviour
 
     private int calculateNumPlataformesSeguides()
     {
+        return randomElementWithProbabilities(probPlatformLength) + 2;
+    }
+
+    private int randomElementWithProbabilities(float[] probs)
+    {
         float probability = Random.value; // "101" valores (se cuenta el 0), no es del todo exacto, pero no importa
-        for (int i = 0; i < probPlatformLength.Length; ++i)
+        for (int i = 0; i < probs.Length; ++i)
         {
-            if (probability <= probPlatformLength[i]) return i + 2;
-            probability -= probPlatformLength[i];
+            if (probability <= probs[i]) return i;
+            probability -= probs[i];
         }
         return -1;
     }
