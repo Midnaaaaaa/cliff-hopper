@@ -18,7 +18,7 @@ public class LevelGenerator : MonoBehaviour
 
     public GameObject playerPrefab;
     public GameObject platformPrefab;
-    public GameObject platform075Prefab;
+    //public GameObject platform075Prefab;
     public GameObject cornerPrefab;
     public GameObject guidePrefab;
     public GameObject pinxoPrefab;
@@ -50,7 +50,7 @@ public class LevelGenerator : MonoBehaviour
          *  
          * 
          * */
-
+        int numFila = 0;
         while(totalNumPlatforms > numPlatform)
         {
             int numeroPlataformasSeguidas = Random.Range(minPlatformsUntilTurn, maxPlatformsUntilTurn);
@@ -61,14 +61,17 @@ public class LevelGenerator : MonoBehaviour
             for (int i = 0; i < numeroPlataformasSeguidas; i++)
             {
                 //TODO: RANDOM NUM PARA SABER QUE TIPO DE PLATAFORMA GENERAR
-                if (i > 0 && numObstaclesRestants == 0 && Random.Range(0f,1f) < trapDensity)
+                if (numFila > 0 && i > 0 && numObstaclesRestants == 0 && Random.Range(0f,1f) < trapDensity)
                 {
                     numObstaclesRestants = Random.Range(1, trapMaxLength);
                     obstacle = Random.Range(0, 1);
                 }
 
-                if (obstacle == 0 && i < numeroPlataformasSeguidas - 1) // Pinxo
-                    platform = Instantiate(platform075Prefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.identity, transform); //TODO: añadir script a plataforma
+                if (obstacle == 0 && i < numeroPlataformasSeguidas - 1)
+                {// Pinxo
+                    platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.identity, transform); //TODO: añadir script a plataforma
+                    platform.GetComponent<Platform>().setHeight(0.75f);
+                }
                 else if (obstacle != 1 || i == numeroPlataformasSeguidas - 1) // no es Hueco
                     platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.identity, transform); //TODO: añadir script a plataforma
 
@@ -88,6 +91,7 @@ public class LevelGenerator : MonoBehaviour
                 }
             }
             direction = 1 - direction;
+            ++numFila;
         }
     }
 

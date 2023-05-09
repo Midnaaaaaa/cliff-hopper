@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
 
     private bool inCorner = false;
 
+    private float correctionVel = 0.1f;
+
     void Start()
     {
         jumps = maxJumps;
@@ -49,6 +51,35 @@ public class Player : MonoBehaviour
             transform.position += new Vector3(0, velY, 0) * Time.fixedDeltaTime;
         }
         transform.position += new Vector3(1 - direction, 0, direction) * velHorizontal * Time.fixedDeltaTime;
+
+        if (direction == 0) // direccion +X
+        {
+            int target = Mathf.RoundToInt(transform.position.z);
+            if (transform.position.z < target)
+            {
+                float newZPos = Mathf.Min(transform.position.z + correctionVel, target);
+                transform.position = new Vector3(transform.position.x, transform.position.y, newZPos);
+            }
+            else if (transform.position.x > target)
+            {
+                float newZPos = Mathf.Max(transform.position.z - correctionVel, target);
+                transform.position = new Vector3(transform.position.x, transform.position.y, newZPos);
+            }
+        }
+        else // direccion +Z
+        {
+            int target = Mathf.RoundToInt(transform.position.x);
+            if (transform.position.x < target)
+            {
+                float newXPos = Mathf.Min(transform.position.x + correctionVel, target);
+                transform.position = new Vector3(newXPos, transform.position.y, transform.position.z);
+            }
+            else if (transform.position.x > target)
+            {
+                float newXPos = Mathf.Max(transform.position.x - correctionVel, target);
+                transform.position = new Vector3(newXPos, transform.position.y, transform.position.z);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
