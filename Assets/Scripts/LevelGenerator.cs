@@ -18,11 +18,8 @@ public class LevelGenerator : MonoBehaviour
 
     private int direction = 1; //1 derecha 0 izquierda
     private Vector3 lastPlatform;
-    private float prob2Plat = 0.05f;
-    private float prob3Plat = 0.25f;
-    private float prob4Plat = 0.45f;
-    private float prob5Plat = 0.70f;
-    private float prob6Plat = 1f;
+
+    private float[] probPlatformLength = { 0.05f, 0.20f, 0.20f, 0.3f, 0.25f }; // Tiene que sumar 1
 
 
     public float velHorizontal;
@@ -109,13 +106,13 @@ public class LevelGenerator : MonoBehaviour
 
     private int calculateNumPlataformesSeguides()
     {
-        float probability = Random.Range(0f, 1f);
-
-        if (probability < prob2Plat) return 2;
-        else if (probability < prob3Plat && probability >= prob2Plat) return 3;
-        else if (probability < prob4Plat && probability >= prob3Plat) return 4;
-        else if (probability < prob5Plat && probability >= prob4Plat) return 5;
-        else return 6;
+        float probability = Random.value; // "101" valores (se cuenta el 0), no es del todo exacto, pero no importa
+        for (int i = 0; i < probPlatformLength.Length; ++i)
+        {
+            if (probability <= probPlatformLength[i]) return i + 2;
+            probability -= probPlatformLength[i];
+        }
+        return -1;
     }
 
 
