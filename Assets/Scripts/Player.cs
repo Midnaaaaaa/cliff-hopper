@@ -52,6 +52,33 @@ public class Player : MonoBehaviour
         }
         transform.position += new Vector3(1 - direction, 0, direction) * velHorizontal * Time.fixedDeltaTime;
 
+
+        // Bit shift the index of the layer (8) to get a bit mask
+        int layerMask = 1 << 2;
+
+        // This would cast rays only against colliders in layer 8.
+        // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
+        layerMask = ~layerMask;
+
+        RaycastHit hit;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, transform.localScale.y, layerMask))
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.red);
+            Debug.Log("Did Hit");
+            GetComponent<MeshRenderer>().material.color = Color.red;
+            if (bJumping)
+                Suelo();
+
+        }
+        else
+        {
+            Debug.Log("Did not Hit");
+            GetComponent<MeshRenderer>().material.color = Color.green;
+            if (!bJumping)
+                Caer();
+        }
+
         if (direction == 0) // direccion +X
         {
             int target = Mathf.RoundToInt(transform.position.z);
@@ -84,12 +111,10 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Platform")
-        {
-            bJumping = false;
-            jumps = maxJumps;
-            velY = 0;
-        }
+        //if (other.tag == "Platform")
+        //{
+        //    Suelo();
+        //}
 
         if (other.tag == "Corner")
         {
@@ -115,6 +140,19 @@ public class Player : MonoBehaviour
     {
         velY = jumpVel;
         jumps--;
+        bJumping = true;
+    }
+
+    private void Suelo()
+    {
+        bJumping = false;
+        jumps = maxJumps;
+        velY = 0;
+    }
+
+    private void Caer()
+    {
+        inCorner = false;
         bJumping = true;
     }
 
