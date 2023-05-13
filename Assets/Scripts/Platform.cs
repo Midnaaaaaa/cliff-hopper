@@ -20,6 +20,6 @@ public class Platform : MonoBehaviour
     public void setHeight(float h)
     {
         terrainTransf.localScale = new Vector3(terrainTransf.localScale.x, terrainTransf.localScale.x * h, terrainTransf.localScale.z);
-        terrainTransf.Translate(0, -(1 - h) / 2f, 0);
+        terrainTransf.Translate(0, -(1 - h)/2, 0);
     }
 }

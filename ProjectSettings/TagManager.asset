@@ -8,6 +8,9 @@ TagManager:
   - Corner
   - Guide
   - Trap
+  - Pinxo
+  - Spike
+  - Terrain
   layers:
   - Default
   - TransparentFX
