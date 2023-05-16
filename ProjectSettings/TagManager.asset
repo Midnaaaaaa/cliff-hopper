@@ -11,6 +11,7 @@ TagManager:
   - Pinxo
   - Spike
   - Terrain
+  - Rampa
   layers:
   - Default
   - TransparentFX

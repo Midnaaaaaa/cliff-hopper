@@ -21,12 +21,14 @@ public class LevelGenerator : MonoBehaviour
 
     private float[] probPlatformLength = { 0.05f, 0.20f, 0.20f, 0.3f, 0.25f }; // Tiene que sumar 1
     private float[] probTrap = { 0.6f, 0.4f };
+    public float probRampa = 0.15f;
 
 
     public float velHorizontal;
 
     public GameObject playerPrefab;
     public GameObject platformPrefab;
+    public GameObject rampaPrefab;
     //public GameObject platform075Prefab;
     public GameObject cornerPrefab;
     public GameObject guidePrefab;
@@ -88,8 +90,18 @@ public class LevelGenerator : MonoBehaviour
                 }
 
                 // Generacion de terreno
-                if ((Trampas)obstacle != Trampas.HUECO) { 
-                    platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.identity, transform); //TODO: a�adir script a plataforma
+                if ((Trampas)obstacle != Trampas.HUECO) {
+
+                    if (Random.value < probRampa && obstacle == -1 && i < numeroPlataformasSeguidas - 1)
+                    {
+                        platform = Instantiate(rampaPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * direction, 0), transform);
+                        lastPlatform += Vector3.down;
+                    }
+                    else
+                    { 
+                        platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.identity, transform); //TODO: a�adir script a plataforma
+                    }
+
 
                     if ((Trampas)obstacle == Trampas.PINXO)
                         platform.GetComponent<Platform>().setHeight(0.75f);

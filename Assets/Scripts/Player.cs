@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, transform.localScale.y, layerMask))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.red);
-            Debug.Log("Did Hit");
+            //Debug.Log("Did Hit");
             GetComponent<MeshRenderer>().material.color = Color.red;
             if (bJumping)
                 Suelo();
@@ -73,10 +73,23 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Debug.Log("Did not Hit");
+            //Debug.Log("Did not Hit");
             GetComponent<MeshRenderer>().material.color = Color.green;
             if (!bJumping)
                 Caer();
+        }
+
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, transform.localScale.y + 0.1f, layerMask))
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.green);
+
+
+            if (hit.collider.tag == "Rampa")
+            {
+                GetComponent<MeshRenderer>().material.color = Color.blue;
+                transform.position += Vector3.down * (hit.distance - transform.localScale.y);
+            }
         }
 
         if (direction == 0) // direccion +X
