@@ -65,9 +65,17 @@ public class Player : MonoBehaviour
 
         RaycastHit hit;
 
+        // Hay que mirar antes este
+        // RAYO 2: MIRAR SI ESTAS BAJANDO ESCALERA
+        if (!bJumping && Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, layerMask) && hit.collider.tag == "Rampa")
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.green);
+            GetComponent<MeshRenderer>().material.color = Color.blue;
+            transform.position += Vector3.down * (hit.distance - transform.localScale.y);
+        }
         // RAYO 1: MIRAR SI ESTAS TOCANDO SUELO
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, transform.localScale.y, layerMask))
+        else if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, transform.localScale.y, layerMask))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.red);
             //Debug.Log("Did Hit");
@@ -84,18 +92,6 @@ public class Player : MonoBehaviour
                 Caer();
         }
 
-        // RAYO 2: MIRAR SI ESTAS BAJANDO ESCALERA
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, transform.localScale.y + 0.1f, layerMask))
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.green);
-
-
-            if (hit.collider.tag == "Rampa")
-            {
-                GetComponent<MeshRenderer>().material.color = Color.blue;
-                transform.position += Vector3.down * (hit.distance - transform.localScale.y);
-            }
-        }
 
         //// RAYO 3: MIRAR SI CHOCAS (TRUCAZO CHAVAL) DE FRENTE
         //Debug.DrawRay(transform.position, transform.forward * 0.5f, Color.cyan);

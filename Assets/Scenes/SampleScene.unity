@@ -157,6 +157,7 @@ MonoBehaviour:
   maxPlatformsUntilTurn: 6
   totalNumPlatforms: 50
   probRampa: 0.5
+  alturaRampa: 0.5
   velHorizontal: 2
   playerPrefab: {fileID: 5666608992400065888, guid: b5788f803d5dbcc47a8e214181e8b927, type: 3}
   platformPrefab: {fileID: 6993447974356482865, guid: 4b0fa3798f8ee324fa933ae88df4b59a, type: 3}

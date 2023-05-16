@@ -21,7 +21,10 @@ public class LevelGenerator : MonoBehaviour
 
     private float[] probPlatformLength = { 0.05f, 0.20f, 0.20f, 0.3f, 0.25f }; // Tiene que sumar 1
     private float[] probTrap = { 0.6f, 0.4f };
+
+
     public float probRampa = 0.15f;
+    public float alturaRampa = 1f;
 
 
     public float velHorizontal;
@@ -95,7 +98,8 @@ public class LevelGenerator : MonoBehaviour
                     if (Random.value < probRampa && obstacle == -1 && i < numeroPlataformasSeguidas - 1)
                     {
                         platform = Instantiate(rampaPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * direction, 0), transform);
-                        lastPlatform += Vector3.down;
+                        platform.GetComponent<Platform>().SetHeight(alturaRampa);
+                        lastPlatform += Vector3.down * alturaRampa;
                     }
                     else
                     { 
@@ -104,10 +108,10 @@ public class LevelGenerator : MonoBehaviour
 
 
                     if ((Trampas)obstacle == Trampas.PINXO)
-                        platform.GetComponent<Platform>().setHeight(0.75f);
+                        platform.GetComponent<Platform>().SetHeight(0.75f);
                 }
 
-                lastPlatform = lastPlatform + new Vector3(1 - direction, 0, direction);
+                lastPlatform += new Vector3(1 - direction, 0, direction);
                 numPlatform++;
 
                 // Generacion de estructura

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-    Transform terrainTransf;
+    protected Transform terrainTransf;
     // Start is called before the first frame update
     void Awake()
     {
@@ -17,7 +17,7 @@ public class Platform : MonoBehaviour
         
     }
 
-    public void setHeight(float h)
+    public virtual void SetHeight(float h)
     {
         terrainTransf.localScale = new Vector3(terrainTransf.localScale.x, terrainTransf.localScale.x * h, terrainTransf.localScale.z);
         terrainTransf.Translate(0, -(1 - h)/2, 0);
