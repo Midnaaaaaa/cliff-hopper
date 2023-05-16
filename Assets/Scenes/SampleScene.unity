@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -156,15 +156,15 @@ MonoBehaviour:
   minPlatformsUntilTurn: 2
   maxPlatformsUntilTurn: 6
   totalNumPlatforms: 50
-  probRampa: 1
-  velHorizontal: 0.2
+  probRampa: 0.5
+  velHorizontal: 2
   playerPrefab: {fileID: 5666608992400065888, guid: b5788f803d5dbcc47a8e214181e8b927, type: 3}
   platformPrefab: {fileID: 6993447974356482865, guid: 4b0fa3798f8ee324fa933ae88df4b59a, type: 3}
   rampaPrefab: {fileID: 3377661672347340731, guid: 4bd42cb71a97e6e46b35c65b7fe7a8cc, type: 3}
   cornerPrefab: {fileID: 1960998830750327700, guid: 163d8f56f1115d644b0481f870ffd3b0, type: 3}
   guidePrefab: {fileID: 6118598055070213501, guid: 236251adcf4534a49b3faed0f18d6c20, type: 3}
   pinxoPrefab: {fileID: 4803096593891383195, guid: dff288b3df5ceb54c8f19c61e7000c35, type: 3}
-  trapDensity: 0.2
+  trapDensity: 0
   trapMaxLength: 0300000002000000
 --- !u!4 &589546586
 Transform:

@@ -22,9 +22,12 @@ public class Player : MonoBehaviour
 
     private float correctionVel = 0.1f;
 
+    Rigidbody rg;
+
     void Start()
     {
         jumps = maxJumps;
+        rg = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -33,7 +36,7 @@ public class Player : MonoBehaviour
         {
             if (inCorner)
             {
-                direction = 1 - direction;
+                Girar();
                 inCorner = false;
             }
             else if (jumps > 0)
@@ -61,6 +64,8 @@ public class Player : MonoBehaviour
         layerMask = ~layerMask;
 
         RaycastHit hit;
+
+        // RAYO 1: MIRAR SI ESTAS TOCANDO SUELO
         // Does the ray intersect any objects excluding the player layer
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, transform.localScale.y, layerMask))
         {
@@ -79,7 +84,7 @@ public class Player : MonoBehaviour
                 Caer();
         }
 
-        // Does the ray intersect any objects excluding the player layer
+        // RAYO 2: MIRAR SI ESTAS BAJANDO ESCALERA
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, transform.localScale.y + 0.1f, layerMask))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.green);
@@ -92,6 +97,17 @@ public class Player : MonoBehaviour
             }
         }
 
+        //// RAYO 3: MIRAR SI CHOCAS (TRUCAZO CHAVAL) DE FRENTE
+        //Debug.DrawRay(transform.position, transform.forward * 0.5f, Color.cyan);
+        //if (Physics.Raycast(transform.position, transform.forward, out hit, 0.5f, layerMask))
+        //{
+        //    if (hit.collider.tag == "Rampa")
+        //    {
+        //        GetComponent<MeshRenderer>().material.color = Color.blue;
+        //        transform.position += Vector3.down * (hit.distance - transform.localScale.y);
+        //    }
+        //}
+
         if (direction == 0) // direccion +X
         {
             int target = Mathf.RoundToInt(transform.position.z);
@@ -100,7 +116,7 @@ public class Player : MonoBehaviour
                 float newZPos = Mathf.Min(transform.position.z + correctionVel, target);
                 transform.position = new Vector3(transform.position.x, transform.position.y, newZPos);
             }
-            else if (transform.position.x > target)
+            else if (transform.position.z > target)
             {
                 float newZPos = Mathf.Max(transform.position.z - correctionVel, target);
                 transform.position = new Vector3(transform.position.x, transform.position.y, newZPos);
@@ -152,6 +168,7 @@ public class Player : MonoBehaviour
     private void Salto()
     {
         velY = jumpVel;
+        //rg.velocity = new Vector3(0, jumpVel, 0);
         jumps--;
         bJumping = true;
     }
@@ -173,6 +190,11 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Muelto");
         Salto();
+        Girar();
+    }
+    private void Girar()
+    {
         direction = 1 - direction;
+        transform.localEulerAngles = new Vector3(0, 90*(1-direction), 0);
     }
 }

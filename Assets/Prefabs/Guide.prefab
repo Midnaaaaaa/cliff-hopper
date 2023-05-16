@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -4825962280204168714}
   - component: {fileID: -2857650610334625377}
   - component: {fileID: 8215042688925891341}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Guide
   m_TagString: Guide
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
