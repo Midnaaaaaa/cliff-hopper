@@ -33,7 +33,7 @@ public class CameraController : MonoBehaviour
         UpdateImportantCorners();
         UpdateCameraParams();
         offset = targetOffset;
-        setZoom(6);
+        setZoom(targetZoom);
     }
 
     // Update is called once per frame

@@ -123,6 +123,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &28884203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 28884205}
+  - component: {fileID: 28884204}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &28884204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28884203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e04203e78a3ab64e8df6b1e7010ed6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &28884205
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28884203}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.6885605, y: 17, z: 9.111439}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &589546584
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,12 +201,13 @@ MonoBehaviour:
   maxPlatformsUntilTurn: 6
   totalNumPlatforms: 100
   probMoneda: 0.2
-  probRampa: 0
+  probRampa: 0.3
   alturaRampa: 0.5
   velHorizontal: 4
   playerPrefab: {fileID: 5666608992400065888, guid: b5788f803d5dbcc47a8e214181e8b927, type: 3}
   platformPrefab: {fileID: 6993447974356482865, guid: 4b0fa3798f8ee324fa933ae88df4b59a, type: 3}
   rampaPrefab: {fileID: 3377661672347340731, guid: 4bd42cb71a97e6e46b35c65b7fe7a8cc, type: 3}
+  monedaPrefab: {fileID: 5982693881870049396, guid: fba5f185fa18b9f49a6b8dffa09a2dfd, type: 3}
   cornerPrefab: {fileID: 1960998830750327700, guid: 163d8f56f1115d644b0481f870ffd3b0, type: 3}
   guidePrefab: {fileID: 6118598055070213501, guid: 236251adcf4534a49b3faed0f18d6c20, type: 3}
   pinxoPrefab: {fileID: 4803096593891383195, guid: dff288b3df5ceb54c8f19c61e7000c35, type: 3}

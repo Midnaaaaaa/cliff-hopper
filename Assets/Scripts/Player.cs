@@ -66,12 +66,13 @@ public class Player : MonoBehaviour
 
         RaycastHit hit;
 
-        // Hay que mirar antes este
+        // Hay que mirar antes este porque si estas encima de escalera con bJumping=false se hace snap, y no estas cayendo aun que estes flotando un poco
         // RAYO 2: MIRAR SI ESTAS BAJANDO ESCALERA
         if (!bJumping && Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, layerMask) && hit.collider.tag == "Rampa")
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.green);
             GetComponent<MeshRenderer>().material.color = Color.blue;
+            // transform.localScale.y porque el collider mide 2 veces eso
             transform.position += Vector3.down * (hit.distance - transform.localScale.y);
         }
         // RAYO 1: MIRAR SI ESTAS TOCANDO SUELO
@@ -81,6 +82,8 @@ public class Player : MonoBehaviour
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.red);
             //Debug.Log("Did Hit");
             GetComponent<MeshRenderer>().material.color = Color.red;
+            // transform.localScale.y porque el collider mide 2 veces eso
+            transform.position += Vector3.down * (hit.distance - transform.localScale.y);
             if (bJumping)
                 Suelo();
 
