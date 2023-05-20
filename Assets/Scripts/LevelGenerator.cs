@@ -11,6 +11,8 @@ public class LevelGenerator : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    public static LevelGenerator Instance { get; private set; }
+
     public Vector3 spawnPoint;
     public int minPlatformsUntilTurn;
     public int maxPlatformsUntilTurn;
@@ -44,6 +46,19 @@ public class LevelGenerator : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+            generarLevel();
+        }
+    }
+
+    private void generarLevel()
+    {
         int numPlatform = 0;
         GameObject player = Instantiate(playerPrefab, spawnPoint + Vector3.up, Quaternion.identity);
         player.GetComponent<Player>().velHorizontal = velHorizontal;
@@ -66,7 +81,7 @@ public class LevelGenerator : MonoBehaviour
          * 
          * */
         int numFila = 0;
-        while(totalNumPlatforms > numPlatform)
+        while (totalNumPlatforms > numPlatform)
         {
 
             int numeroPlataformasSeguidas = calculateNumPlataformesSeguides();//Random.Range(minPlatformsUntilTurn, maxPlatformsUntilTurn);
@@ -80,7 +95,7 @@ public class LevelGenerator : MonoBehaviour
                 //numObstaclesRestants > 0 --> se coloca obstaculo
                 //numObstaclesRestants == 0 --> no se coloca obstaculo ni se generan mas (para que no se genere otro obstaculo justo al acabar el anterior o en la primera casilla (i==0))
                 //numObstaclesRestants < 0 --> probabilidad de que se genere nuevo obstaculo
-                if (numFila > 0 && numObstaclesRestants < 0 && Random.Range(0f,1f) < trapDensity)
+                if (numFila > 0 && numObstaclesRestants < 0 && Random.Range(0f, 1f) < trapDensity)
                 {
                     obstacle = randomElementWithProbabilities(probTrap);
                     numObstaclesRestants = Random.Range(1, trapMaxLength[obstacle]);
@@ -93,7 +108,8 @@ public class LevelGenerator : MonoBehaviour
                 }
 
                 // Generacion de terreno
-                if ((Trampas)obstacle != Trampas.HUECO) {
+                if ((Trampas)obstacle != Trampas.HUECO)
+                {
 
                     if (Random.value < probRampa && obstacle == -1 && i < numeroPlataformasSeguidas - 1)
                     {
@@ -102,7 +118,7 @@ public class LevelGenerator : MonoBehaviour
                         lastPlatform += Vector3.down * alturaRampa;
                     }
                     else
-                    { 
+                    {
                         platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.identity, transform); //TODO: a�adir script a plataforma
                     }
 
