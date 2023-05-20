@@ -37,11 +37,12 @@ public class LevelGenerator : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject platformPrefab;
     public GameObject rampaPrefab;
+    public GameObject monedaPrefab;
     //public GameObject platform075Prefab;
     public GameObject cornerPrefab;
     public GameObject guidePrefab;
     public GameObject pinxoPrefab;
-    
+
 
     public float trapDensity = 0.5f;
     public int[] trapMaxLength = { 3, 2 };
@@ -82,8 +83,8 @@ public class LevelGenerator : MonoBehaviour
         /**
          *  - Mas prob a filas mas largas
          *  - Prob separadas para cada obstaculo
-         *  
-         * 
+         *
+         *
          * */
         int numFila = 0;
         while (totalNumPlatforms > numPlatform)
@@ -126,11 +127,14 @@ public class LevelGenerator : MonoBehaviour
                     {
                         platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.identity, transform); //TODO: a�adir script a plataforma
                     }
-
-
                     if ((Trampas)obstacle == Trampas.PINXO)
                         platform.GetComponent<Platform>().SetHeight(0.75f);
                 }
+
+
+                // Generacion de monedas
+
+                generateMoneda(lastPlatform + new Vector3(1-direction, 2*(platformPrefab.transform.localScale.y),direction));
 
 
                 lastPlatform += new Vector3(1 - direction, 0, direction);
@@ -158,6 +162,16 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+
+    private void generateMoneda(Vector3 posMoneda)
+    {
+        float randNum = Random.value;
+        if(randNum <= probMoneda)
+        {
+            Instantiate(monedaPrefab, posMoneda, Quaternion.identity, transform); //TODO: a�adir script a plataforma
+        }
+    }
+
     private int calculateNumPlataformesSeguides()
     {
         return randomElementWithProbabilities(probPlatformLength) + 2;
@@ -182,6 +196,6 @@ public class LevelGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
