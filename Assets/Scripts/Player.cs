@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(CoordManager.toCHCoords(transform.position));
         if (Input.GetButtonDown("Jump"))
         {
             if (inCorner)
@@ -48,12 +49,12 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (bJumping)
-        {
-            velY += gravity * Time.fixedDeltaTime;
-            transform.position += new Vector3(0, velY, 0) * Time.fixedDeltaTime;
-        }
-        transform.position += new Vector3(1 - direction, 0, direction) * velHorizontal * Time.fixedDeltaTime;
+        //if (bJumping)
+        //{
+        //    velY += gravity * Time.fixedDeltaTime;
+        //    transform.position += new Vector3(0, velY, 0) * Time.fixedDeltaTime;
+        //}
+        //transform.position += new Vector3(1 - direction, 0, direction) * velHorizontal * Time.fixedDeltaTime;
 
 
         // Bit shift the index of the layer (8) to get a bit mask
