@@ -29,11 +29,15 @@ public class CameraController : MonoBehaviour
 
         cornersList = LevelGenerator.Instance.getCornersPos();
         importantCorners = new Queue<Vector2>();
-        setZoom(8);
+
+        UpdateImportantCorners();
+        UpdateCameraParams();
+        offset = targetOffset;
+        setZoom(6);
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
         float xz = (playerTransform.position.x + playerTransform.position.z) / 2 + 10;
         transform.position = new Vector3(xz, playerTransform.position.y + 6, xz) + offset;
