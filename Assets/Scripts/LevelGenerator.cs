@@ -93,7 +93,7 @@ public class LevelGenerator : MonoBehaviour
             int numeroPlataformasSeguidas = calculateNumPlataformesSeguides();//Random.Range(minPlatformsUntilTurn, maxPlatformsUntilTurn);
 
             int numObstaclesRestants = 0; //En la primera iteracion no genera trampa!
-            int obstacle = -1;
+            int trampa = -1;
 
             for (int i = 0; i < numeroPlataformasSeguidas; i++)
             {
@@ -103,21 +103,21 @@ public class LevelGenerator : MonoBehaviour
                 //numObstaclesRestants < 0 --> probabilidad de que se genere nuevo obstaculo
                 if (numFila > 0 && numObstaclesRestants < 0 && Random.Range(0f, 1f) < trapDensity)
                 {
-                    obstacle = randomElementWithProbabilities(probTrap);
-                    numObstaclesRestants = Random.Range(1, trapMaxLength[obstacle]);
-                    Debug.Log("Obtaculo: " + obstacle + " Cantidad: " + numObstaclesRestants);
+                    trampa = randomElementWithProbabilities(probTrap);
+                    numObstaclesRestants = Random.Range(1, trapMaxLength[trampa]);
+                    Debug.Log("Obtaculo: " + trampa + " Cantidad: " + numObstaclesRestants);
                 }
 
                 if (i == numeroPlataformasSeguidas - 1 || numObstaclesRestants <= 0)
                 {
-                    obstacle = -1;
+                    trampa = -1;
                 }
 
                 // Generacion de terreno
-                if ((Trampas)obstacle != Trampas.HUECO)
+                if ((Trampas)trampa != Trampas.HUECO)
                 {
 
-                    if (Random.value < probRampa && obstacle == -1 && i < numeroPlataformasSeguidas - 1)
+                    if (Random.value < probRampa && trampa == -1 && i < numeroPlataformasSeguidas - 1)
                     {
                         platform = Instantiate(rampaPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * direction, 0), transform);
                         platform.GetComponent<Platform>().SetHeight(alturaRampa);
@@ -126,19 +126,20 @@ public class LevelGenerator : MonoBehaviour
                     else
                     {
                         platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.identity, transform); //TODO: a�adir script a plataforma
+
                     }
-                    if ((Trampas)obstacle == Trampas.PINXO)
+                    if ((Trampas)trampa == Trampas.PINXO)
                         platform.GetComponent<Platform>().SetHeight(0.75f);
                 }
 
 
-                // Generacion de monedas
-
-                generateMoneda(lastPlatform + new Vector3(1-direction, 2*(platformPrefab.transform.localScale.y),direction));
 
 
                 lastPlatform += new Vector3(1 - direction, 0, direction);
                 numPlatform++;
+
+                //Generacio de moneda
+                generateMoneda(new Vector3(lastPlatform.x, trampa == -1 ? lastPlatform.y + 1 : lastPlatform.y + 2, lastPlatform.z));
 
                 // Generacion de estructura
                 if (i == numeroPlataformasSeguidas - 1)
@@ -149,10 +150,10 @@ public class LevelGenerator : MonoBehaviour
                     // guardar posicion plataforma en sistema de coordenadas de CH
                     cornersPos.Add(CoordManager.toCHCoords(platform.transform.position));
                 }
-                else if (numObstaclesRestants > 0 && (Trampas)obstacle == Trampas.PINXO)
+                else if (numObstaclesRestants > 0 && (Trampas)trampa == Trampas.PINXO)
                 {
                     Instantiate(pinxoPrefab, lastPlatform, Quaternion.identity, platform.transform);
-                    if (numObstaclesRestants == 0) obstacle = -1;
+                    if (numObstaclesRestants == 0) trampa = -1;
                 }
 
                 --numObstaclesRestants;
@@ -168,7 +169,7 @@ public class LevelGenerator : MonoBehaviour
         float randNum = Random.value;
         if(randNum <= probMoneda)
         {
-            Instantiate(monedaPrefab, posMoneda, Quaternion.identity, transform); //TODO: a�adir script a plataforma
+            Instantiate(monedaPrefab, posMoneda, Quaternion.identity, transform); 
         }
     }
 
