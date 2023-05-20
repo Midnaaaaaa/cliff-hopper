@@ -22,6 +22,7 @@ public class LevelGenerator : MonoBehaviour
     private float[] probPlatformLength = { 0.05f, 0.20f, 0.20f, 0.3f, 0.25f }; // Tiene que sumar 1
     private float[] probTrap = { 0.6f, 0.4f };
 
+    public float probMoneda = 0.2f;
 
     public float probRampa = 0.15f;
     public float alturaRampa = 1f;
@@ -110,6 +111,8 @@ public class LevelGenerator : MonoBehaviour
                     if ((Trampas)obstacle == Trampas.PINXO)
                         platform.GetComponent<Platform>().SetHeight(0.75f);
                 }
+
+
 
                 lastPlatform += new Vector3(1 - direction, 0, direction);
                 numPlatform++;
