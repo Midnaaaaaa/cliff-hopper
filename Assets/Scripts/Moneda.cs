@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Moneda : MonoBehaviour
 {
+
+    public float velocidadAngular = 360f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -12,7 +15,7 @@ public class Moneda : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Rotate(Vector3.up, velocidadAngular * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
