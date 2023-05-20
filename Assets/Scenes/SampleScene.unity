@@ -155,10 +155,11 @@ MonoBehaviour:
   spawnPoint: {x: 0, y: 10, z: -4}
   minPlatformsUntilTurn: 2
   maxPlatformsUntilTurn: 6
-  totalNumPlatforms: 50
+  totalNumPlatforms: 100
+  probMoneda: 0.2
   probRampa: 0
   alturaRampa: 0.5
-  velHorizontal: 2
+  velHorizontal: 4
   playerPrefab: {fileID: 5666608992400065888, guid: b5788f803d5dbcc47a8e214181e8b927, type: 3}
   platformPrefab: {fileID: 6993447974356482865, guid: 4b0fa3798f8ee324fa933ae88df4b59a, type: 3}
   rampaPrefab: {fileID: 3377661672347340731, guid: 4bd42cb71a97e6e46b35c65b7fe7a8cc, type: 3}

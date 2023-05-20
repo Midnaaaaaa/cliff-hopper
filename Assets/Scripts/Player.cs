@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(CoordManager.toCHCoords(transform.position));
+        //Debug.Log(CoordManager.toCHCoords(transform.position));
         if (Input.GetButtonDown("Jump"))
         {
             if (inCorner)

@@ -13,6 +13,8 @@ public class LevelGenerator : MonoBehaviour
 
     public static LevelGenerator Instance { get; private set; }
 
+    private List<Vector2> cornersPos;
+
     public Vector3 spawnPoint;
     public int minPlatformsUntilTurn;
     public int maxPlatformsUntilTurn;
@@ -74,6 +76,8 @@ public class LevelGenerator : MonoBehaviour
         lastPlatform = spawnPoint;
         numPlatform++;
 
+        cornersPos = new List<Vector2>();
+        cornersPos.Add(CoordManager.toCHCoords(platform.transform.position));
 
         /**
          *  - Mas prob a filas mas largas
@@ -129,7 +133,6 @@ public class LevelGenerator : MonoBehaviour
                 }
 
 
-
                 lastPlatform += new Vector3(1 - direction, 0, direction);
                 numPlatform++;
 
@@ -138,6 +141,9 @@ public class LevelGenerator : MonoBehaviour
                 {
                     Instantiate(cornerPrefab, lastPlatform + Vector3.up, Quaternion.identity, platform.transform);
                     numObstaclesRestants = 0;
+
+                    // guardar posicion plataforma en sistema de coordenadas de CH
+                    cornersPos.Add(CoordManager.toCHCoords(platform.transform.position));
                 }
                 else if (numObstaclesRestants > 0 && (Trampas)obstacle == Trampas.PINXO)
                 {
@@ -168,6 +174,10 @@ public class LevelGenerator : MonoBehaviour
         return -1;
     }
 
+    public List<Vector2> getCornersPos()
+    {
+        return cornersPos;
+    }
 
     // Update is called once per frame
     void Update()
