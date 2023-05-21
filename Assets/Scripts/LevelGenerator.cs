@@ -14,6 +14,7 @@ public class LevelGenerator : MonoBehaviour
     public static LevelGenerator Instance { get; private set; }
 
     private List<Vector2> cornersPos;
+    private List<Vector3> boulaRoute;
 
     public Vector3 spawnPoint;
     public int minPlatformsUntilTurn;
@@ -35,6 +36,7 @@ public class LevelGenerator : MonoBehaviour
     public float velHorizontal;
 
     public GameObject playerPrefab;
+    public GameObject boulaPrefab;
     public GameObject platformPrefab;
     public GameObject rampaPrefab;
     public GameObject monedaPrefab;
@@ -68,7 +70,10 @@ public class LevelGenerator : MonoBehaviour
         player.GetComponent<Player>().velHorizontal = velHorizontal;
 
         GameObject guide = Instantiate(guidePrefab, spawnPoint + Vector3.up, Quaternion.identity);
-        guide.GetComponent<Boula>().velHorizontal = velHorizontal;
+        guide.GetComponent<Guide>().velHorizontal = velHorizontal;
+
+        GameObject boula = Instantiate(boulaPrefab, spawnPoint + Vector3.up, Quaternion.identity);
+        boula.GetComponent<Boula>().SetSpeed(velHorizontal);
 
         //Plataforma inicial
         GameObject platform = Instantiate(platformPrefab); //TODO: añadir script a plataforma
@@ -79,6 +84,9 @@ public class LevelGenerator : MonoBehaviour
 
         cornersPos = new List<Vector2>();
         cornersPos.Add(CoordManager.toCHCoords(platform.transform.position));
+
+        boulaRoute = new List<Vector3>();
+        boulaRoute.Add(platform.transform.position + Vector3.up);
 
         /**
          *  - Mas prob a filas mas largas
@@ -123,9 +131,10 @@ public class LevelGenerator : MonoBehaviour
                         platform.GetComponent<Platform>().SetHeight(alturaRampa);
                         lastPlatform += Vector3.down * alturaRampa;
                     }
-                    else
+                    else //No es ni rampa ni hueco --> puede pasar la roca
                     {
                         platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.identity, transform); //TODO: a�adir script a plataforma
+                        boulaRoute.Add(platform.transform.position + Vector3.up);
 
                     }
                     if ((Trampas)trampa == Trampas.PINXO)
@@ -192,6 +201,11 @@ public class LevelGenerator : MonoBehaviour
     public List<Vector2> getCornersPos()
     {
         return cornersPos;
+    }
+
+    public List<Vector3> getBoulaRoute()
+    {
+        return boulaRoute;
     }
 
     // Update is called once per frame

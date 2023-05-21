@@ -45,8 +45,8 @@ public class CameraController : MonoBehaviour
         UpdateImportantCorners();
         UpdateCameraParams();
 
-        Debug.Log("Nº Important corners: " + importantCorners.Count);
-        Debug.Log("Corner Index: " + cornerIndex);
+        //Debug.Log("Nº Important corners: " + importantCorners.Count);
+        //Debug.Log("Corner Index: " + cornerIndex);
 
         setZoom(Mathf.SmoothDamp(currentZoom, targetZoom, ref zoomVel, 1f));
         offset = Vector3.SmoothDamp(offset, targetOffset, ref offsetVel, 1f);

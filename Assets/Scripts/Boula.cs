@@ -4,94 +4,88 @@ using UnityEngine;
 
 public class Boula : MonoBehaviour
 {
-    private int direction = 1;
+    private List<Vector3> route;
+    private int index;
 
-    [System.NonSerialized]
-    public float velHorizontal;
+    private float rotationSpeed = 90 * 0.5f;
 
-    private float correctionVel = 0.1f;
-
-    private bool wantsToTurn = false;
+    private bool isRotating = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        route = LevelGenerator.Instance.getBoulaRoute();
+
+        //Solo se ejecuta 1 vez, ponerlo en el start?
+        if (!isRotating)
+        {
+            isRotating = true;
+            SetRotationParams();
+        }
     }
 
+
+    private Vector3 direction;
+    private Vector3 rotationCenter;
+    private Vector3 axis;
+
+    private float remainingAngle = 90;
     // Update is called once per frame
     void Update()
     {
-        
+        //Vector3 rotation = normalizeRotation(transform.localEulerAngles);
+        //if (direction.x > 0 && (rotation.z > initialAngle + 90 || rotation.z < initialAngle))
+        //{
+        //    float endAngle = (initialAngle + 90) % 360;
+        //    float resto = rotation.z - endAngle;
+        //    transform.localEulerAngles = new Vector3(rotation.x, rotation.y, endAngle);
+        //    SetRotationParams();
+        //    transform.RotateAround(rotationCenter, axis, resto);
+        //}
+        if (remainingAngle <= 0)
+        {
+            transform.RotateAround(rotationCenter, axis, remainingAngle);
+            SetRotationParams();
+            transform.RotateAround(rotationCenter, axis, -remainingAngle);
+            remainingAngle = 90 + remainingAngle;
+        }
+        transform.RotateAround(rotationCenter, axis, rotationSpeed * Time.deltaTime);
+        remainingAngle -= rotationSpeed * Time.deltaTime;
+
+        Debug.DrawLine(rotationCenter + axis*3, rotationCenter - axis*3);
     }
-    void FixedUpdate()
+
+    private void SetRotationParams()
     {
-        transform.position += new Vector3(1 - direction, 0, direction) * velHorizontal * Time.fixedDeltaTime;
+        direction = Vector3.Scale(route[index + 1] - route[index], new Vector3(1, 0, 1)); //Eliminar componente Y
+        //direction = new Vector3(1, 0, 0);
+        index++;
 
-        RaycastHit hit;
-        // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
-        {
-            if (hit.collider.tag == "Rampa"/* && hit.distance*/)
-            {
-                //Debug.Log("Rayo vallecano: " + hit.distance);
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.green);
-                transform.position += Vector3.down * (hit.distance - transform.localScale.y/2);
-            }
-            else
-            {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.red);
-            }
-        }
+        //Vector3 rotationCenter = transform.position + Vector3.Scale(direction + Vector3.down, GetComponent<Renderer>().bounds.size) / 2;
+        rotationCenter = transform.position + (direction + Vector3.down) * 0.5f;
+        axis = Vector3.Cross(Vector3.up, direction);
 
-        int targetX = Mathf.RoundToInt(transform.position.x);
-        int targetZ = Mathf.RoundToInt(transform.position.z);
-        if (direction == 0) // direccion +X
-        {
-            if (transform.position.z < targetZ)
-            {
-                float newZPos = Mathf.Min(transform.position.z + correctionVel, targetZ);
-                transform.position = new Vector3(transform.position.x, transform.position.y, newZPos);
-            }
-            else if (transform.position.z > targetZ)
-            {
-                float newZPos = Mathf.Max(transform.position.z - correctionVel, targetZ);
-                transform.position = new Vector3(transform.position.x, transform.position.y, newZPos);
-            }
-
-            if (wantsToTurn && transform.position.x > targetX)
-            {
-                direction = 1 - direction;
-                wantsToTurn = false;
-            }
-
-        }
-        else // direccion +Z
-        {
-            if (transform.position.x < targetX)
-            {
-                float newXPos = Mathf.Min(transform.position.x + correctionVel, targetX);
-                transform.position = new Vector3(newXPos, transform.position.y, transform.position.z);
-            }
-            else if (transform.position.x > targetX)
-            {
-                float newXPos = Mathf.Max(transform.position.x - correctionVel, targetX);
-                transform.position = new Vector3(newXPos, transform.position.y, transform.position.z);
-            }
-
-            if (wantsToTurn && transform.position.z > targetZ)
-            {
-                direction = 1 - direction;
-                wantsToTurn = false;
-            }
-        }
+        Debug.Log("Rotation center: " + rotationCenter);
+        Debug.Log("Axis: " + axis);
     }
+    //private Vector3 normalizeRotation(Vector3 rotation)
+    //{
+    //    if (rotation.y > 0)
+    //    {
+    //        rotation.x = rotation.y - rotation.x;
+    //        rotation.y = 0;
+    //        rotation.z = rotation.y - rotation.z;
+    //    }
 
-    private void OnTriggerEnter(Collider other)
+    //    if (rotation.x < 0) rotation.x += 360;
+    //    if (rotation.y < 0) rotation.y += 360;
+    //    if (rotation.z < 0) rotation.z += 360;
+
+    //    return rotation;
+    //}
+
+    public void SetSpeed(float speed)
     {
-        if (other.tag == "Corner")
-        {
-            wantsToTurn = true;
-        }
-    }
+        rotationSpeed = 90 * speed;
+    } 
 }
