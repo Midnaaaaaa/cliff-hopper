@@ -95,7 +95,7 @@ public class LevelGenerator : MonoBehaviour
          *
          * */
         int numFila = 0;
-        while (totalNumPlatforms > numPlatform)
+        while (numPlatform < totalNumPlatforms)
         {
 
             int numeroPlataformasSeguidas = calculateNumPlataformesSeguides();//Random.Range(minPlatformsUntilTurn, maxPlatformsUntilTurn);
@@ -112,7 +112,7 @@ public class LevelGenerator : MonoBehaviour
                 if (numFila > 0 && numObstaclesRestants < 0 && Random.Range(0f, 1f) < trapDensity)
                 {
                     trampa = randomElementWithProbabilities(probTrap);
-                    numObstaclesRestants = Random.Range(1, trapMaxLength[trampa]);
+                    numObstaclesRestants = Random.Range(1, trapMaxLength[trampa] + 1);
                     Debug.Log("Obtaculo: " + trampa + " Cantidad: " + numObstaclesRestants);
                 }
 
@@ -121,6 +121,7 @@ public class LevelGenerator : MonoBehaviour
                     trampa = -1;
                 }
 
+                float alturaBola = 0.5f;
                 // Generacion de terreno
                 if ((Trampas)trampa != Trampas.HUECO)
                 {
@@ -130,12 +131,12 @@ public class LevelGenerator : MonoBehaviour
                         platform = Instantiate(rampaPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * direction, 0), transform);
                         platform.GetComponent<Platform>().SetHeight(alturaRampa);
                         lastPlatform += Vector3.down * alturaRampa;
+                        alturaBola = alturaRampa + 0.5f;
                     }
                     else //No es ni rampa ni hueco --> puede pasar la roca
                     {
                         platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.identity, transform); //TODO: a�adir script a plataforma
-                        boulaRoute.Add(platform.transform.position + Vector3.up);
-
+                        alturaBola = 0;
                     }
                     if ((Trampas)trampa == Trampas.PINXO)
                         platform.GetComponent<Platform>().SetHeight(0.75f);
@@ -143,9 +144,10 @@ public class LevelGenerator : MonoBehaviour
 
 
 
-
                 lastPlatform += new Vector3(1 - direction, 0, direction);
                 numPlatform++;
+
+                boulaRoute.Add(lastPlatform + Vector3.up + Vector3.up * alturaBola);
 
                 //Generacio de moneda
                 generateMoneda(new Vector3(lastPlatform.x, trampa == -1 ? lastPlatform.y + 1 : lastPlatform.y + 2, lastPlatform.z));

@@ -201,9 +201,9 @@ MonoBehaviour:
   maxPlatformsUntilTurn: 6
   totalNumPlatforms: 100
   probMoneda: 0.1
-  probRampa: 0
+  probRampa: 0.2
   alturaRampa: 0.25
-  velHorizontal: 2
+  velHorizontal: 4
   playerPrefab: {fileID: 5666608992400065888, guid: b5788f803d5dbcc47a8e214181e8b927, type: 3}
   boulaPrefab: {fileID: 6529815399662407123, guid: cc24033f813aeb94f9ecaccc2b79f79f, type: 3}
   platformPrefab: {fileID: 6993447974356482865, guid: 4b0fa3798f8ee324fa933ae88df4b59a, type: 3}
@@ -212,7 +212,7 @@ MonoBehaviour:
   cornerPrefab: {fileID: 1960998830750327700, guid: 163d8f56f1115d644b0481f870ffd3b0, type: 3}
   guidePrefab: {fileID: 6118598055070213501, guid: 236251adcf4534a49b3faed0f18d6c20, type: 3}
   pinxoPrefab: {fileID: 4803096593891383195, guid: dff288b3df5ceb54c8f19c61e7000c35, type: 3}
-  trapDensity: 0
+  trapDensity: 0.5
   trapMaxLength: 0300000002000000
 --- !u!4 &589546586
 Transform:
