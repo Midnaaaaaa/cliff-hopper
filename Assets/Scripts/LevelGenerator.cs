@@ -78,10 +78,13 @@ public class LevelGenerator : MonoBehaviour
         GameObject boula = Instantiate(boulaPrefab, spawnPoint + Vector3.up, Quaternion.identity);
         boula.GetComponent<Boula>().SetSpeed(velHorizontal);
 
+
+        Bioma bioma = Bioma.GRASS;
         //Plataforma inicial
         Platform platform = Instantiate(platformPrefab).GetComponent<Platform>(); //TODO: añadir script a plataforma
         platform.transform.parent = transform;
         platform.transform.position = spawnPoint;
+        platform.Bioma = bioma;
         lastPlatform = spawnPoint;
         numPlatform++;
 
@@ -99,7 +102,6 @@ public class LevelGenerator : MonoBehaviour
          * */
         int numFila = 0;
         int numeroFilasBioma = Random.Range(minFilasInBiome, maxFilasInBiome + 1);
-        Bioma bioma = Bioma.GRASS;
         while (numPlatform < totalNumPlatforms)
         {
 
@@ -184,6 +186,7 @@ public class LevelGenerator : MonoBehaviour
             }
             direction = 1 - direction;
             ++numFila;
+            --numeroFilasBioma;
         }
     }
 

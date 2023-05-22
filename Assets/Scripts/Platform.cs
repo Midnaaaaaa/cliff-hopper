@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum Bioma
 {
-    GRASS, UNO, DOS, TRES
+    GRASS, DESERT, ICE, FIRE
 }
 
 public class Platform : MonoBehaviour
