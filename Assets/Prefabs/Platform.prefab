@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2893366135272801090}
   - component: {fileID: 3737749034947945143}
   m_Layer: 0
-  m_Name: Terrain1
+  m_Name: NOSKIN
   m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,8 +31,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1016254535723221729}
-  m_RootOrder: 0
+  m_Father: {fileID: 3295939262832328215}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1299144067863881981
 MeshFilter:
@@ -126,7 +126,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8451878392421184039}
   - {fileID: 3295939262832328215}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -173,8 +172,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5318963062860187372}
+  - {fileID: 8451878392421184039}
   m_Father: {fileID: 1016254535723221729}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5988698254667340296
 BoxCollider:
