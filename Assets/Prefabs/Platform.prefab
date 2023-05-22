@@ -196,10 +196,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3295939262832328215}
     m_Modifications:
-    - target: {fileID: 2303790651986548971, guid: 315e3037d6061204cad190d8fb3728b6, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: 93d136b8b1833924c9b563d5d4f71bdf, type: 3}
     - target: {fileID: 2303790651989448907, guid: 315e3037d6061204cad190d8fb3728b6, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -246,48 +242,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2303790651989673195, guid: 315e3037d6061204cad190d8fb3728b6, type: 3}
       propertyPath: m_Name
-      value: Grass
-      objectReference: {fileID: 0}
-    - target: {fileID: 2303790651989673195, guid: 315e3037d6061204cad190d8fb3728b6, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2303790651989673195, guid: 315e3037d6061204cad190d8fb3728b6, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
+      value: GRASS
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 315e3037d6061204cad190d8fb3728b6, type: 3}
---- !u!1 &5318963062860094156 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2303790651989673195, guid: 315e3037d6061204cad190d8fb3728b6, type: 3}
-  m_PrefabInstance: {fileID: 6208341679041601063}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &8647655357124962123
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5318963062860094156}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.39999998, y: 0.39999998, z: 0.39999998}
-  m_Center: {x: 0, y: 0.19999999, z: 0}
---- !u!114 &3366796273483175904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5318963062860094156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d08b0209aba3a0644a653ba2ace7ecf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &5318963062860187372 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2303790651989448907, guid: 315e3037d6061204cad190d8fb3728b6, type: 3}

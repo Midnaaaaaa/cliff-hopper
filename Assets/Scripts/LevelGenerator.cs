@@ -18,14 +18,17 @@ public class LevelGenerator : MonoBehaviour
 
     public Vector3 spawnPoint;
     public int minPlatformsUntilTurn;
-    public int maxPlatformsUntilTurn;
+    //public int maxPlatformsUntilTurn;
     public int totalNumPlatforms; //Controlar el tama�o del nivel
+
+    public int minFilasInBiome;
+    public int maxFilasInBiome;
 
     private int direction = 1; //1 derecha 0 izquierda
     private Vector3 lastPlatform;
 
-    private float[] probPlatformLength = { 0.05f, 0.20f, 0.20f, 0.3f, 0.25f }; // Tiene que sumar 1
-    private float[] probTrap = { 0.6f, 0.4f };
+    public float[] probPlatformLength = { 0.05f, 0.20f, 0.20f, 0.3f, 0.25f }; // Tiene que sumar 1
+    public float[] probTrap = { 0.6f, 0.4f };
 
     public float probMoneda = 0.2f;
 
@@ -76,7 +79,7 @@ public class LevelGenerator : MonoBehaviour
         boula.GetComponent<Boula>().SetSpeed(velHorizontal);
 
         //Plataforma inicial
-        GameObject platform = Instantiate(platformPrefab); //TODO: añadir script a plataforma
+        Platform platform = Instantiate(platformPrefab).GetComponent<Platform>(); //TODO: añadir script a plataforma
         platform.transform.parent = transform;
         platform.transform.position = spawnPoint;
         lastPlatform = spawnPoint;
@@ -95,9 +98,16 @@ public class LevelGenerator : MonoBehaviour
          *
          * */
         int numFila = 0;
+        int numeroFilasBioma = Random.Range(minFilasInBiome, maxFilasInBiome + 1);
+        Bioma bioma = Bioma.GRASS;
         while (numPlatform < totalNumPlatforms)
         {
 
+            if (numeroFilasBioma <= 0)
+            {
+                bioma = (Bioma)Random.Range(0, 3 + 1);
+                numeroFilasBioma = Random.Range(minFilasInBiome, maxFilasInBiome + 1);
+            }
             int numeroPlataformasSeguidas = calculateNumPlataformesSeguides();//Random.Range(minPlatformsUntilTurn, maxPlatformsUntilTurn);
 
             int numObstaclesRestants = 0; //En la primera iteracion no genera trampa!
@@ -128,18 +138,21 @@ public class LevelGenerator : MonoBehaviour
 
                     if (Random.value < probRampa && trampa == -1 && i < numeroPlataformasSeguidas - 1)
                     {
-                        platform = Instantiate(rampaPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * direction, 0), transform);
-                        platform.GetComponent<Platform>().SetHeight(alturaRampa);
+                        platform = Instantiate(rampaPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * direction, 0), transform).GetComponent<Platform>();
+                        platform.SetHeight(alturaRampa);
                         lastPlatform += Vector3.down * alturaRampa;
                         alturaBola = alturaRampa + 0.5f;
                     }
                     else //No es ni rampa ni hueco --> puede pasar la roca
                     {
-                        platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.identity, transform); //TODO: a�adir script a plataforma
+                        platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.identity, transform).GetComponent<Platform>(); //TODO: a�adir script a plataforma
                         alturaBola = 0;
                     }
                     if ((Trampas)trampa == Trampas.PINXO)
-                        platform.GetComponent<Platform>().SetHeight(0.75f);
+                        platform.SetHeight(0.75f);
+
+                    //set bioma
+                    platform.Bioma = bioma;
                 }
 
 
@@ -186,7 +199,7 @@ public class LevelGenerator : MonoBehaviour
 
     private int calculateNumPlataformesSeguides()
     {
-        return randomElementWithProbabilities(probPlatformLength) + 2;
+        return randomElementWithProbabilities(probPlatformLength) + minFilasInBiome;
     }
 
     private int randomElementWithProbabilities(float[] probs)

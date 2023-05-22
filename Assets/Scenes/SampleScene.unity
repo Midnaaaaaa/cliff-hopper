@@ -198,8 +198,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {x: 0, y: 10, z: -4}
   minPlatformsUntilTurn: 2
-  maxPlatformsUntilTurn: 6
   totalNumPlatforms: 100
+  minFilasInBiome: 3
+  maxFilasInBiome: 5
+  probPlatformLength:
+  - 0.05
+  - 0.2
+  - 0.2
+  - 0.3
+  - 0.25
+  probTrap:
+  - 0.6
+  - 0.4
   probMoneda: 0.1
   probRampa: 0.2
   alturaRampa: 0.25

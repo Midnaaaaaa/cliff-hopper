@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
     public int MonedasCogidas { get; set; }
+    //public int Bioma { get; set; }
 
     void Awake()
     {
