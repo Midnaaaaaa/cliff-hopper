@@ -68,8 +68,8 @@ public class Boula : MonoBehaviour
         rotationCenter = transform.position + (direction + Vector3.down) * 0.5f + (Vector3.up + direction) * radio;
         axis = Vector3.Cross(Vector3.up, direction);
 
-        Debug.Log("Rotation center: " + rotationCenter);
-        Debug.Log("Axis: " + axis);
+        //Debug.Log("Rotation center: " + rotationCenter);
+        //Debug.Log("Axis: " + axis);
     }
     //private Vector3 normalizeRotation(Vector3 rotation)
     //{

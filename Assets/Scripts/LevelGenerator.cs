@@ -39,7 +39,6 @@ public class LevelGenerator : MonoBehaviour
     public float velHorizontal;
 
     public GameObject playerPrefab;
-    public GameObject boulaPrefab;
     public GameObject platformPrefab;
     public GameObject rampaPrefab;
     public GameObject monedaPrefab;
@@ -75,8 +74,6 @@ public class LevelGenerator : MonoBehaviour
         GameObject guide = Instantiate(guidePrefab, spawnPoint + Vector3.up, Quaternion.identity);
         guide.GetComponent<Guide>().velHorizontal = velHorizontal;
 
-        GameObject boula = Instantiate(boulaPrefab, spawnPoint + Vector3.up, Quaternion.identity);
-        boula.GetComponent<Boula>().SetSpeed(velHorizontal);
 
 
         Bioma bioma = Bioma.GRASS;
@@ -111,6 +108,8 @@ public class LevelGenerator : MonoBehaviour
                 numeroFilasBioma = Random.Range(minFilasInBiome, maxFilasInBiome + 1);
             }
             int numeroPlataformasSeguidas = calculateNumPlataformesSeguides();//Random.Range(minPlatformsUntilTurn, maxPlatformsUntilTurn);
+
+            Debug.Log(numeroPlataformasSeguidas);
 
             int numObstaclesRestants = 0; //En la primera iteracion no genera trampa!
             int trampa = -1;
@@ -202,7 +201,7 @@ public class LevelGenerator : MonoBehaviour
 
     private int calculateNumPlataformesSeguides()
     {
-        return randomElementWithProbabilities(probPlatformLength) + minFilasInBiome;
+        return randomElementWithProbabilities(probPlatformLength) + minPlatformsUntilTurn;
     }
 
     private int randomElementWithProbabilities(float[] probs)

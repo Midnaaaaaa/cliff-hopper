@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589245, b: 0.2978263, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276813, g: 0.21589185, b: 0.29782563, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e04203e78a3ab64e8df6b1e7010ed6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boulaPrefab: {fileID: 5414936288160125165, guid: 3d4be4543caf9e242b5e0bec572e87b7, type: 3}
 --- !u!4 &28884205
 Transform:
   m_ObjectHideFlags: 0
@@ -199,8 +200,8 @@ MonoBehaviour:
   spawnPoint: {x: 0, y: 10, z: -4}
   minPlatformsUntilTurn: 2
   totalNumPlatforms: 100
-  minFilasInBiome: 3
-  maxFilasInBiome: 5
+  minFilasInBiome: 10
+  maxFilasInBiome: 20
   probPlatformLength:
   - 0.05
   - 0.2
