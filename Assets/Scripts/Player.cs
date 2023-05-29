@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
 
     Rigidbody rg;
 
+    private Platform lastCorner;
+
     void Start()
     {
         jumps = maxJumps;
@@ -162,6 +164,7 @@ public class Player : MonoBehaviour
         {
             inCorner = false;
             bJumping = true;
+            lastCorner = other.GetComponent<Platform>();
         }
     }
 

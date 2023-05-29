@@ -11,6 +11,7 @@ public class Platform : MonoBehaviour
 {
     protected Transform terrainTransf;
 
+    private GameObject model;
     private Bioma _bioma;
     public Bioma Bioma { 
         get {
@@ -21,6 +22,34 @@ public class Platform : MonoBehaviour
             foreach (Transform child in terrainTransf)
             {
                 if (child.name != value.ToString())
+                {
+                    child.gameObject.SetActive(false);
+                }
+                else
+                {
+                    child.gameObject.SetActive(true);
+                    model = child.gameObject;
+                }
+            }
+        }
+    }
+
+    private Trampas _tampa;
+    public Trampas Trampa
+    {
+        get
+        {
+            return _tampa;
+        }
+        set
+        {
+            foreach (Transform child in model.transform)
+            {
+                if (child.name == value.ToString() || child.name == "default")
+                {
+                    child.gameObject.SetActive(true);
+                }
+                else
                 {
                     child.gameObject.SetActive(false);
                 }

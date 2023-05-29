@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum Trampas
+public enum Trampas
 {
-    PINXO, HUECO
+    NORMAL = -1, PINXO, HUECO, LENTO, CORNER
 }
 
 public class LevelGenerator : MonoBehaviour
@@ -76,9 +76,9 @@ public class LevelGenerator : MonoBehaviour
 
 
 
-        Bioma bioma = Bioma.GRASS;
+        Bioma bioma = Bioma.DESERT;
         //Plataforma inicial
-        Platform platform = Instantiate(platformPrefab).GetComponent<Platform>(); //TODO: añadir script a plataforma
+        Platform platform = Instantiate(platformPrefab).GetComponent<Platform>();
         platform.transform.parent = transform;
         platform.transform.position = spawnPoint;
         platform.Bioma = bioma;
@@ -154,6 +154,28 @@ public class LevelGenerator : MonoBehaviour
 
                     //set bioma
                     platform.Bioma = bioma;
+
+
+                    // Generacion de estructura
+                    if (i == numeroPlataformasSeguidas - 1)
+                    {
+                        Instantiate(cornerPrefab, platform.transform.position + Vector3.up, Quaternion.identity, platform.transform);
+                        platform.Trampa = Trampas.CORNER;
+                        numObstaclesRestants = 0;
+
+                        // guardar posicion plataforma en sistema de coordenadas de CH
+                        cornersPos.Add(CoordManager.toCHCoords(platform.transform.position));
+                    }
+                    else if (numObstaclesRestants > 0 && (Trampas)trampa == Trampas.PINXO)
+                    {
+                        Instantiate(pinxoPrefab, platform.transform.position, Quaternion.identity, platform.transform);
+                        if (numObstaclesRestants == 0) trampa = -1;
+                        platform.Trampa = Trampas.NORMAL;
+                    }
+                    else
+                    {
+                        platform.Trampa = (Trampas)trampa;
+                    }
                 }
 
 
@@ -166,20 +188,7 @@ public class LevelGenerator : MonoBehaviour
                 //Generacio de moneda
                 generateMoneda(new Vector3(lastPlatform.x, trampa == -1 ? lastPlatform.y + 1 : lastPlatform.y + 2, lastPlatform.z));
 
-                // Generacion de estructura
-                if (i == numeroPlataformasSeguidas - 1)
-                {
-                    Instantiate(cornerPrefab, lastPlatform + Vector3.up, Quaternion.identity, platform.transform);
-                    numObstaclesRestants = 0;
-
-                    // guardar posicion plataforma en sistema de coordenadas de CH
-                    cornersPos.Add(CoordManager.toCHCoords(platform.transform.position));
-                }
-                else if (numObstaclesRestants > 0 && (Trampas)trampa == Trampas.PINXO)
-                {
-                    Instantiate(pinxoPrefab, lastPlatform, Quaternion.identity, platform.transform);
-                    if (numObstaclesRestants == 0) trampa = -1;
-                }
+                
 
                 --numObstaclesRestants;
             }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3442844794178555311}
   - component: {fileID: 2473406504494377299}
   - component: {fileID: 1886682199633519403}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Moneda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!1001 &5934700660098070523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67,6 +67,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3442844794178555311}
     m_Modifications:
+    - target: {fileID: 1645469186890945418, guid: b40efd7877124784ba7b04fbe13874ea, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6923152811482903017, guid: b40efd7877124784ba7b04fbe13874ea, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -130,6 +134,10 @@ PrefabInstance:
     - target: {fileID: 7734978959005133651, guid: b40efd7877124784ba7b04fbe13874ea, type: 3}
       propertyPath: m_Name
       value: Moneda 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7734978959005133651, guid: b40efd7877124784ba7b04fbe13874ea, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b40efd7877124784ba7b04fbe13874ea, type: 3}

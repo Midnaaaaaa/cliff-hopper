@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour
 
     private Camera c;
 
-    private float padding = 1;
+    public float padding = 1;
 
     Queue<Vector2> importantCorners;
     List<Vector2> cornersList;
