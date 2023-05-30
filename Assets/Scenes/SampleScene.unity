@@ -209,8 +209,9 @@ MonoBehaviour:
   - 0.3
   - 0.25
   probTrap:
-  - 0.6
-  - 0.4
+  - 0.1
+  - 0.1
+  - 0.8
   probMoneda: 0.1
   probRampa: 0.2
   alturaRampa: 0.25
@@ -223,7 +224,7 @@ MonoBehaviour:
   guidePrefab: {fileID: 6118598055070213501, guid: 236251adcf4534a49b3faed0f18d6c20, type: 3}
   pinxoPrefab: {fileID: 4803096593891383195, guid: dff288b3df5ceb54c8f19c61e7000c35, type: 3}
   trapDensity: 0.5
-  trapMaxLength: 0300000002000000
+  trapMaxLength: 030000000200000003000000
 --- !u!4 &589546586
 Transform:
   m_ObjectHideFlags: 0
@@ -387,6 +388,10 @@ PrefabInstance:
     - target: {fileID: 6462415487727319786, guid: fae3f8b044bf2ea4e8b3adb5bbf3ea6c, type: 3}
       propertyPath: m_Name
       value: lava_mejor
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462415487727319786, guid: fae3f8b044bf2ea4e8b3adb5bbf3ea6c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fae3f8b044bf2ea4e8b3adb5bbf3ea6c, type: 3}

@@ -176,6 +176,7 @@ public class Player : MonoBehaviour
         //rg.velocity = new Vector3(0, jumpVel, 0);
         jumps--;
         bJumping = true;
+        inCorner = false;
     }
 
     private void Suelo()

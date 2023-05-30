@@ -28,7 +28,7 @@ public class LevelGenerator : MonoBehaviour
     private Vector3 lastPlatform;
 
     public float[] probPlatformLength = { 0.05f, 0.20f, 0.20f, 0.3f, 0.25f }; // Tiene que sumar 1
-    public float[] probTrap = { 0.6f, 0.4f };
+    public float[] probTrap = { 0.4f, 0.4f, 0.2f };
 
     public float probMoneda = 0.2f;
 
@@ -82,6 +82,7 @@ public class LevelGenerator : MonoBehaviour
         platform.transform.parent = transform;
         platform.transform.position = spawnPoint;
         platform.Bioma = bioma;
+        platform.Trampa = Trampas.NORMAL;
         lastPlatform = spawnPoint;
         numPlatform++;
 
@@ -111,8 +112,10 @@ public class LevelGenerator : MonoBehaviour
 
             Debug.Log(numeroPlataformasSeguidas);
 
-            int numObstaclesRestants = 0; //En la primera iteracion no genera trampa!
+            int numObstaclesRestants = 0; //En la primera iteracion no genera trampa! (pasará a -1 y ya a la siguiente puede que se genere trampa)
             int trampa = -1;
+
+            int numBloquesASaltar = 0;
 
             for (int i = 0; i < numeroPlataformasSeguidas; i++)
             {
@@ -124,6 +127,7 @@ public class LevelGenerator : MonoBehaviour
                 {
                     trampa = randomElementWithProbabilities(probTrap);
                     numObstaclesRestants = Random.Range(1, trapMaxLength[trampa] + 1);
+                    numBloquesASaltar = numObstaclesRestants;
                     Debug.Log("Obtaculo: " + trampa + " Cantidad: " + numObstaclesRestants);
                 }
 
@@ -142,7 +146,7 @@ public class LevelGenerator : MonoBehaviour
                         platform = Instantiate(rampaPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * direction, 0), transform).GetComponent<Platform>();
                         platform.SetHeight(alturaRampa);
                         lastPlatform += Vector3.down * alturaRampa;
-                        alturaBola = alturaRampa + 0.5f;
+                        alturaBola = alturaRampa + 0.4f;
                     }
                     else //No es ni rampa ni hueco --> puede pasar la roca
                     {
@@ -176,6 +180,10 @@ public class LevelGenerator : MonoBehaviour
                     {
                         platform.Trampa = (Trampas)trampa;
                     }
+                }
+                else // Hueco
+                {
+                    alturaBola = 0.4f + (numBloquesASaltar - 1) * 0.25f;
                 }
 
 

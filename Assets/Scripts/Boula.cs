@@ -42,6 +42,8 @@ public class Boula : MonoBehaviour
         //    SetRotationParams();
         //    transform.RotateAround(rotationCenter, axis, resto);
         //}
+        transform.RotateAround(rotationCenter, axis, rotationSpeed * Time.deltaTime);
+        remainingAngle -= rotationSpeed * Time.deltaTime;
         if (remainingAngle <= 0)
         {
             transform.RotateAround(rotationCenter, axis, remainingAngle);
@@ -49,8 +51,6 @@ public class Boula : MonoBehaviour
             transform.RotateAround(rotationCenter, axis, -remainingAngle);
             remainingAngle = 90 + remainingAngle;
         }
-        transform.RotateAround(rotationCenter, axis, rotationSpeed * Time.deltaTime);
-        remainingAngle -= rotationSpeed * Time.deltaTime;
 
         Debug.DrawLine(rotationCenter + axis*3, rotationCenter - axis*3);
     }
