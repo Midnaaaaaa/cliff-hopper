@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boulaPrefab: {fileID: 5414936288160125165, guid: 3d4be4543caf9e242b5e0bec572e87b7, type: 3}
+  _velHorizontal: 4
 --- !u!4 &28884205
 Transform:
   m_ObjectHideFlags: 0
@@ -215,7 +216,6 @@ MonoBehaviour:
   probMoneda: 0.1
   probRampa: 0.2
   alturaRampa: 0.25
-  velHorizontal: 4
   playerPrefab: {fileID: 5666608992400065888, guid: b5788f803d5dbcc47a8e214181e8b927, type: 3}
   platformPrefab: {fileID: 6993447974356482865, guid: 4b0fa3798f8ee324fa933ae88df4b59a, type: 3}
   rampaPrefab: {fileID: 3377661672347340731, guid: 4bd42cb71a97e6e46b35c65b7fe7a8cc, type: 3}

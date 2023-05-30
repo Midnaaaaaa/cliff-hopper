@@ -36,7 +36,7 @@ public class LevelGenerator : MonoBehaviour
     public float alturaRampa = 1f;
 
 
-    public float velHorizontal;
+    private float velHorizontal;
 
     public GameObject playerPrefab;
     public GameObject platformPrefab;
@@ -61,6 +61,7 @@ public class LevelGenerator : MonoBehaviour
         else
         {
             Instance = this;
+            velHorizontal = GameManager.Instance.VelHorizontal;
             generarLevel();
         }
     }
@@ -68,11 +69,13 @@ public class LevelGenerator : MonoBehaviour
     private void generarLevel()
     {
         int numPlatform = 0;
-        GameObject player = Instantiate(playerPrefab, spawnPoint + Vector3.up, Quaternion.identity);
-        player.GetComponent<Player>().velHorizontal = velHorizontal;
+        Player player = Instantiate(playerPrefab, spawnPoint + Vector3.up, Quaternion.identity).GetComponent<Player>();
+        player.velHorizontal = velHorizontal;
 
-        GameObject guide = Instantiate(guidePrefab, spawnPoint + Vector3.up, Quaternion.identity);
-        guide.GetComponent<Guide>().velHorizontal = velHorizontal;
+        Guide guide = Instantiate(guidePrefab, spawnPoint + Vector3.up, Quaternion.identity).GetComponent<Guide>();
+        guide.velHorizontal = velHorizontal;
+
+        GameManager.Instance.setPlayerAndGuide(player, guide);
 
 
 

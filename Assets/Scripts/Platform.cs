@@ -52,6 +52,10 @@ public class Platform : MonoBehaviour
                     if (value.ToString() == "CORNER") {
                         transform.Find("CCol").gameObject.SetActive(true);
                     }
+                    else if (value.ToString() == "LENTO")
+                    {
+                        transform.Find("LCol").gameObject.SetActive(true);
+                    }
                 }
                 else
                 {

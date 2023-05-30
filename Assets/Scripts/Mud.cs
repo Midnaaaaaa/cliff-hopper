@@ -18,13 +18,18 @@ public class Mud : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Player p = other.GetComponent<Player>();
-        p.velHorizontal = 0.5f;
+        if (other.tag == "Player")
+        {
+            GameManager.Instance.VelHorizontal = 1;
+
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Player p = other.GetComponent<Player>();
-        p.velHorizontal = LevelGenerator.Instance.velHorizontal;
+        if (other.tag == "Player")
+        {
+            GameManager.Instance.VelHorizontal = GameManager.Instance.VelHorizontal;
+        }
     }
 }
