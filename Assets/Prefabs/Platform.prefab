@@ -613,6 +613,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8957444063980031545, guid: 0aed8f1805e6976498fe1e57a8efaa22, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957444063980031545, guid: 0aed8f1805e6976498fe1e57a8efaa22, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957444063980031545, guid: 0aed8f1805e6976498fe1e57a8efaa22, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957444063980031545, guid: 0aed8f1805e6976498fe1e57a8efaa22, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957444063980031545, guid: 0aed8f1805e6976498fe1e57a8efaa22, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9184211232726148571, guid: 0aed8f1805e6976498fe1e57a8efaa22, type: 3}
       propertyPath: m_Name
       value: GRASS
@@ -628,20 +648,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8376431253904899937, guid: 0aed8f1805e6976498fe1e57a8efaa22, type: 3}
   m_PrefabInstance: {fileID: 8625569451398276447}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8452474901572761693 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 214225085532740866, guid: 0aed8f1805e6976498fe1e57a8efaa22, type: 3}
-  m_PrefabInstance: {fileID: 8625569451398276447}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6937283163417740216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8452474901572761693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d08b0209aba3a0644a653ba2ace7ecf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
