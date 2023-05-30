@@ -11,7 +11,7 @@ public class Platform : MonoBehaviour
 {
     protected Transform terrainTransf;
 
-    private GameObject model;
+    private GameObject basemodel, topmodel;
     private Bioma _bioma;
     public Bioma Bioma { 
         get {
@@ -28,7 +28,7 @@ public class Platform : MonoBehaviour
                 else
                 {
                     child.gameObject.SetActive(true);
-                    model = child.gameObject;
+                    basemodel = child.gameObject;
                 }
             }
         }
@@ -43,11 +43,15 @@ public class Platform : MonoBehaviour
         }
         set
         {
-            foreach (Transform child in model.transform)
+            foreach (Transform child in basemodel.transform)
             {
                 if (child.name == value.ToString() || child.name == "default")
                 {
+                    topmodel = child.gameObject;
                     child.gameObject.SetActive(true);
+                    if (value.ToString() == "CORNER") {
+                        transform.Find("CCol").gameObject.SetActive(true);
+                    }
                 }
                 else
                 {
@@ -73,5 +77,11 @@ public class Platform : MonoBehaviour
     {
         terrainTransf.localScale = new Vector3(terrainTransf.localScale.x, terrainTransf.localScale.x * h, terrainTransf.localScale.z);
         terrainTransf.Translate(0, -(1 - h)/2, 0);
+    }
+
+    public void setGlow(bool b)
+    {
+        if (b) topmodel.transform.Find("top").GetComponent<Renderer>().material.EnableKeyword("_EMISSION"); 
+        else topmodel.transform.Find("top").GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
     }
 }

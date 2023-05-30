@@ -150,6 +150,8 @@ public class Player : MonoBehaviour
         if (other.tag == "Corner")
         {
             inCorner = true;
+            //Debug.Log(other.gameObject.transform.parent.name);
+            lastCorner = other.gameObject.transform.parent.GetComponent<Platform>();
         }
 
         if (other.tag == "Trap")
@@ -199,5 +201,6 @@ public class Player : MonoBehaviour
     {
         direction = 1 - direction;
         transform.localEulerAngles = new Vector3(0, 90*(1-direction), 0);
+        lastCorner.setGlow(true);
     }
 }
