@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum Trampas
 {
-    NORMAL = -1, PINXO, HUECO, LENTO, CORNER
+    NORMAL = -1, PINXO, HUECO, LENTO, BIOMA, CORNER
 }
 
 public class LevelGenerator : MonoBehaviour
@@ -29,6 +29,7 @@ public class LevelGenerator : MonoBehaviour
 
     public float[] probPlatformLength = { 0.05f, 0.20f, 0.20f, 0.3f, 0.25f }; // Tiene que sumar 1
     public float[] probTrap = { 0.4f, 0.4f, 0.2f };
+    public float probTrapBioma = 0.8f;
 
     public float probMoneda = 0.2f;
 
@@ -47,6 +48,8 @@ public class LevelGenerator : MonoBehaviour
     public GameObject guidePrefab;
     public GameObject pinxoPrefab;
 
+    public GameObject aroPrefab;
+
 
     public float trapDensity = 0.5f;
     public int[] trapMaxLength = { 3, 2 };
@@ -62,11 +65,25 @@ public class LevelGenerator : MonoBehaviour
         {
             Instance = this;
             velHorizontal = GameManager.Instance.VelHorizontal;
-            generarLevel();
+            GenerarLevel();
         }
     }
 
-    private void generarLevel()
+    private void GenerarTrampaBioma(Bioma b, Vector3 inicioFila, int numBloquesFila, int direction)
+    {
+        switch (b)
+        {
+            case Bioma.FIRE: // Bola de fuego
+                Instantiate(aroPrefab, inicioFila + new Vector3(1 - direction, 0, direction) * (numBloquesFila+1) + Vector3.up, Quaternion.Euler(0, -180 + 90 * (1-direction), 0)).GetComponent<Aro>().MaxDistActivation = numBloquesFila + 1;
+                break;
+            case Bioma.DESERT: // Desprendimiento? / Terremoto?
+                break;
+            case Bioma.ICE: // Cuchillas voladores / Avalancha?
+                break;
+        }
+    }
+
+    private void GenerarLevel()
     {
         int numPlatform = 0;
         Player player = Instantiate(playerPrefab, spawnPoint + Vector3.up, Quaternion.identity).GetComponent<Player>();
@@ -79,7 +96,7 @@ public class LevelGenerator : MonoBehaviour
 
 
 
-        Bioma bioma = Bioma.DESERT;
+        Bioma bioma = Bioma.FIRE;
         //Plataforma inicial
         Platform platform = Instantiate(platformPrefab).GetComponent<Platform>();
         platform.transform.parent = transform;
@@ -120,6 +137,14 @@ public class LevelGenerator : MonoBehaviour
 
             int numBloquesASaltar = 0;
 
+
+            if (Random.value <= probTrapBioma) // Generar trampa especial de bioma, y no generar ninguna mas en la fila
+            {
+                trampa = (int)Trampas.BIOMA;
+                GenerarTrampaBioma(bioma, lastPlatform, numeroPlataformasSeguidas, direction);
+                numObstaclesRestants = 20;
+            }
+
             for (int i = 0; i < numeroPlataformasSeguidas; i++)
             {
                 //TODO: RANDOM NUM PARA SABER QUE TIPO DE PLATAFORMA GENERAR
@@ -144,7 +169,7 @@ public class LevelGenerator : MonoBehaviour
                 if ((Trampas)trampa != Trampas.HUECO)
                 {
 
-                    if (Random.value < probRampa && trampa == -1 && i < numeroPlataformasSeguidas - 1)
+                    if ((Trampas)trampa != Trampas.BIOMA && Random.value < probRampa && trampa == -1 && i < numeroPlataformasSeguidas - 1)
                     {
                         platform = Instantiate(rampaPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * direction, 0), transform).GetComponent<Platform>();
                         platform.SetHeight(alturaRampa);
@@ -177,6 +202,10 @@ public class LevelGenerator : MonoBehaviour
                     {
                         Instantiate(pinxoPrefab, platform.transform.position, Quaternion.identity, platform.transform);
                         if (numObstaclesRestants == 0) trampa = -1;
+                        platform.Trampa = Trampas.NORMAL;
+                    }
+                    else if ((Trampas)trampa == Trampas.BIOMA)
+                    {
                         platform.Trampa = Trampas.NORMAL;
                     }
                     else
