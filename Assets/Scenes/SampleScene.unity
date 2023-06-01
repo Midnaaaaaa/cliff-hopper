@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boulaPrefab: {fileID: 5414936288160125165, guid: 3d4be4543caf9e242b5e0bec572e87b7, type: 3}
   _velHorizontal: 4
+  fog: {fileID: 944687872}
 --- !u!4 &28884205
 Transform:
   m_ObjectHideFlags: 0
@@ -347,8 +348,8 @@ MonoBehaviour:
   spawnPoint: {x: 0, y: 10, z: -4}
   minPlatformsUntilTurn: 2
   totalNumPlatforms: 100
-  minFilasInBiome: 10
-  maxFilasInBiome: 30
+  minFilasInBiome: 3
+  maxFilasInBiome: 4
   probPlatformLength:
   - 0.05
   - 0.2
@@ -356,10 +357,10 @@ MonoBehaviour:
   - 0.3
   - 0.25
   probTrap:
-  - 0.1
-  - 0.1
-  - 0.8
-  probTrapBioma: 0.8
+  - 0.3
+  - 0.3
+  - 0.4
+  probTrapBioma: 0.1
   probMoneda: 0.1
   probRampa: 0.2
   alturaRampa: 0.25
@@ -371,6 +372,7 @@ MonoBehaviour:
   guidePrefab: {fileID: 6118598055070213501, guid: 236251adcf4534a49b3faed0f18d6c20, type: 3}
   pinxoPrefab: {fileID: 4803096593891383195, guid: dff288b3df5ceb54c8f19c61e7000c35, type: 3}
   aroPrefab: {fileID: 5341186923223239980, guid: 27e2b3ad60d1d6f4fa8e329e22fe81eb, type: 3}
+  pilarPrefab: {fileID: 805059623492667159, guid: 9f51c670161a8f2418387977b463a78b, type: 3}
   trapDensity: 0.5
   trapMaxLength: 030000000200000003000000
 --- !u!4 &589546586
@@ -677,6 +679,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &944687872 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8276093597491390664, guid: 5f57904e2867fdb4eae1e8166bd4b010, type: 3}
+  m_PrefabInstance: {fileID: 1488010536}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &944687877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944687872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6786ade75b78a5d46b486b67c00c80c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,5 +901,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fog
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3605925109092611059, guid: 5f57904e2867fdb4eae1e8166bd4b010, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5f57904e2867fdb4eae1e8166bd4b010, type: 3}

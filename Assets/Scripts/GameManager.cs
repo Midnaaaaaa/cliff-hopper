@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     private Player player;
     private Guide guide;
 
+    public GameObject fog;
+
     public float VelHorizontal
     {
         get
@@ -59,5 +61,10 @@ public class GameManager : MonoBehaviour
     {
         player = p;
         guide = g;
+    }
+
+    public void ChangeFogColor(Color c)
+    {
+        fog.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", c);
     }
 }

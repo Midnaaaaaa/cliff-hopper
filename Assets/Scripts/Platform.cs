@@ -34,15 +34,16 @@ public class Platform : MonoBehaviour
         }
     }
 
-    private Trampas _tampa;
+    private Trampas _trampa;
     public Trampas Trampa
     {
         get
         {
-            return _tampa;
+            return _trampa;
         }
         set
         {
+            _trampa = value;
             foreach (Transform child in basemodel.transform)
             {
                 if (child.name == value.ToString() || child.name == "default")

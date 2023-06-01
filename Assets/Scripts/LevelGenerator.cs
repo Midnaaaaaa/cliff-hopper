@@ -50,9 +50,13 @@ public class LevelGenerator : MonoBehaviour
 
     public GameObject aroPrefab;
 
+    public GameObject pilarPrefab;
+
 
     public float trapDensity = 0.5f;
     public int[] trapMaxLength = { 3, 2 };
+
+    private readonly Color[] coloresFogBioma = { new Color(109 / 255f, 123 / 255f, 99 / 255f), new Color(123 / 255f, 107 / 255f, 99 / 255f), new Color(153 / 255f, 171 / 255f, 180 / 255f), new Color(46 / 255f, 2 / 255f, 2 / 255f) };
 
 
     void Awake()
@@ -83,6 +87,11 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+    public void ChangeBioma(Bioma b)
+    {
+        GameManager.Instance.ChangeFogColor(coloresFogBioma[(int)b]);
+    }
+
     private void GenerarLevel()
     {
         int numPlatform = 0;
@@ -97,20 +106,7 @@ public class LevelGenerator : MonoBehaviour
 
 
         Bioma bioma = Bioma.FIRE;
-        //Plataforma inicial
-        Platform platform = Instantiate(platformPrefab).GetComponent<Platform>();
-        platform.transform.parent = transform;
-        platform.transform.position = spawnPoint;
-        platform.Bioma = bioma;
-        platform.Trampa = Trampas.NORMAL;
-        lastPlatform = spawnPoint;
-        numPlatform++;
-
-        cornersPos = new List<Vector2>();
-        cornersPos.Add(CoordManager.toCHCoords(platform.transform.position));
-
-        boulaRoute = new List<Vector3>();
-        boulaRoute.Add(platform.transform.position + Vector3.up);
+        ChangeBioma(bioma);
 
         /**
          *  - Mas prob a filas mas largas
@@ -132,6 +128,40 @@ public class LevelGenerator : MonoBehaviour
 
             Debug.Log(numeroPlataformasSeguidas);
 
+            Platform platform;
+            if (numPlatform == 0) // Plataforma inicial
+            {
+                //Plataforma inicial
+                platform = Instantiate(platformPrefab).GetComponent<Platform>();
+                platform.transform.parent = transform;
+                platform.transform.position = spawnPoint;
+                platform.Bioma = bioma;
+                platform.Trampa = Trampas.NORMAL;
+                lastPlatform = spawnPoint;
+
+                cornersPos = new List<Vector2>();
+                cornersPos.Add(CoordManager.toCHCoords(platform.transform.position));
+
+                boulaRoute = new List<Vector3>();
+            }
+            else // Corner
+            {
+                //Instantiate(cornerPrefab, platform.transform.position + Vector3.up, Quaternion.identity, platform.transform);
+                platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.identity, transform).GetComponent<Platform>();
+                platform.Bioma = bioma;
+                platform.Trampa = Trampas.CORNER;
+
+                Instantiate(pilarPrefab, platform.transform.position + Vector3.down * 2.5f, Quaternion.identity, platform.transform).GetComponent<Pilar>().Bioma = bioma;
+
+                // guardar posicion plataforma en sistema de coordenadas de CH
+                cornersPos.Add(CoordManager.toCHCoords(platform.transform.position));
+                lastPlatform += new Vector3(1 - direction, 0, direction);
+                direction = 1 - direction;
+
+            }
+            boulaRoute.Add(platform.transform.position + Vector3.up);
+            numPlatform++;
+
             int numObstaclesRestants = 0; //En la primera iteracion no genera trampa! (pasará a -1 y ya a la siguiente puede que se genere trampa)
             int trampa = -1;
 
@@ -145,7 +175,9 @@ public class LevelGenerator : MonoBehaviour
                 numObstaclesRestants = 20;
             }
 
-            for (int i = 0; i < numeroPlataformasSeguidas; i++)
+
+
+            for (int i = 1; i < numeroPlataformasSeguidas; i++)
             {
                 //TODO: RANDOM NUM PARA SABER QUE TIPO DE PLATAFORMA GENERAR
                 //numObstaclesRestants > 0 --> se coloca obstaculo
@@ -159,7 +191,7 @@ public class LevelGenerator : MonoBehaviour
                     Debug.Log("Obtaculo: " + trampa + " Cantidad: " + numObstaclesRestants);
                 }
 
-                if (i == numeroPlataformasSeguidas - 1 || numObstaclesRestants <= 0)
+                if (numObstaclesRestants <= 0)
                 {
                     trampa = -1;
                 }
@@ -189,16 +221,7 @@ public class LevelGenerator : MonoBehaviour
 
 
                     // Generacion de estructura
-                    if (i == numeroPlataformasSeguidas - 1)
-                    {
-                        Instantiate(cornerPrefab, platform.transform.position + Vector3.up, Quaternion.identity, platform.transform);
-                        platform.Trampa = Trampas.CORNER;
-                        numObstaclesRestants = 0;
-
-                        // guardar posicion plataforma en sistema de coordenadas de CH
-                        cornersPos.Add(CoordManager.toCHCoords(platform.transform.position));
-                    }
-                    else if (numObstaclesRestants > 0 && (Trampas)trampa == Trampas.PINXO)
+                    if (numObstaclesRestants > 0 && (Trampas)trampa == Trampas.PINXO)
                     {
                         Instantiate(pinxoPrefab, platform.transform.position, Quaternion.identity, platform.transform);
                         if (numObstaclesRestants == 0) trampa = -1;
@@ -232,7 +255,6 @@ public class LevelGenerator : MonoBehaviour
 
                 --numObstaclesRestants;
             }
-            direction = 1 - direction;
             ++numFila;
             --numeroFilasBioma;
         }
