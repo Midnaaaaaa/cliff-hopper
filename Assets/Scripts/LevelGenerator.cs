@@ -87,9 +87,9 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    public void ChangeBioma(Bioma b)
+    public void ChangeBioma(Bioma b, float transitionTime)
     {
-        GameManager.Instance.ChangeFogColor(coloresFogBioma[(int)b]);
+        GameManager.Instance.ChangeFogColor(coloresFogBioma[(int)b], transitionTime);
     }
 
     private void GenerarLevel()
@@ -106,7 +106,7 @@ public class LevelGenerator : MonoBehaviour
 
 
         Bioma bioma = Bioma.FIRE;
-        ChangeBioma(bioma);
+        ChangeBioma(bioma, 0);
 
         /**
          *  - Mas prob a filas mas largas

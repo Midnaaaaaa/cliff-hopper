@@ -63,8 +63,8 @@ public class GameManager : MonoBehaviour
         guide = g;
     }
 
-    public void ChangeFogColor(Color c)
+    public void ChangeFogColor(Color c, float transitionTime)
     {
-        fog.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", c);
+        fog.GetComponent<Fog>().ChangeFogColor(c, transitionTime);
     }
 }

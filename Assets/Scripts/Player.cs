@@ -203,6 +203,16 @@ public class Player : MonoBehaviour
         direction = 1 - direction;
         transform.localEulerAngles = new Vector3(0, 90*(1-direction), 0);
         lastCorner.setGlow(true);
-        LevelGenerator.Instance.ChangeBioma(lastCorner.Bioma);
+        LevelGenerator.Instance.ChangeBioma(lastCorner.Bioma, 1f);
+    }
+
+    public float getJumpVel()
+    {
+        return jumpVel;
+    }
+
+    public void setJumpVel(float jumpVel)
+    {
+        this.jumpVel = jumpVel;
     }
 }
