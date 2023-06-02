@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class GameManager : MonoBehaviour
     private Guide guide;
 
     public GameObject fog;
+
+    public int Coins { get; private set; } = 0; 
+
 
     public float VelHorizontal
     {
@@ -66,5 +70,9 @@ public class GameManager : MonoBehaviour
     public void ChangeFogColor(Color c, float transitionTime)
     {
         fog.GetComponent<Fog>().ChangeFogColor(c, transitionTime);
+    }
+
+    public void IncreaseCoins(){
+        ++Coins;
     }
 }

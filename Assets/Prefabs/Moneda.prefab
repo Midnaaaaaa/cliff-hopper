@@ -47,6 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidadAngular: 360
+  OnPickupCoin:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!135 &1886682199633519403
 SphereCollider:
   m_ObjectHideFlags: 0
