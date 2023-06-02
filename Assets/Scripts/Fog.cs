@@ -13,7 +13,7 @@ public class Fog : MonoBehaviour
     float transitionTime;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         guia = GameObject.FindGameObjectWithTag("Guide").transform;
 

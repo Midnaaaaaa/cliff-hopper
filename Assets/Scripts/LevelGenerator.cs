@@ -49,6 +49,7 @@ public class LevelGenerator : MonoBehaviour
     public GameObject pinxoPrefab;
 
     public GameObject aroPrefab;
+    public GameObject pinguinPrefab;
 
     public GameObject pilarPrefab;
 
@@ -69,8 +70,12 @@ public class LevelGenerator : MonoBehaviour
         {
             Instance = this;
             velHorizontal = GameManager.Instance.VelHorizontal;
-            GenerarLevel();
         }
+    }
+
+    private void Start()
+    {
+         GenerarLevel();
     }
 
     private void GenerarTrampaBioma(Bioma b, Vector3 inicioFila, int numBloquesFila, int direction)
@@ -82,7 +87,8 @@ public class LevelGenerator : MonoBehaviour
                 break;
             case Bioma.DESERT: // Desprendimiento? / Terremoto?
                 break;
-            case Bioma.ICE: // Cuchillas voladores / Avalancha?
+            case Bioma.ICE: // Pinguin 👍
+                Instantiate(pinguinPrefab, inicioFila + Vector3.up, Quaternion.Euler(0, -90 * (1 - direction), 0)).GetComponent<Pinguin>().Init(2, numBloquesFila, direction);
                 break;
         }
     }
@@ -105,7 +111,7 @@ public class LevelGenerator : MonoBehaviour
 
 
 
-        Bioma bioma = Bioma.FIRE;
+        Bioma bioma = Bioma.ICE;
         ChangeBioma(bioma, 0);
 
         /**

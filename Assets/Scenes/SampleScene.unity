@@ -155,7 +155,6 @@ MonoBehaviour:
   boulaPrefab: {fileID: 5414936288160125165, guid: 3d4be4543caf9e242b5e0bec572e87b7, type: 3}
   _velHorizontal: 4
   fog: {fileID: 944687872}
-  coins: {fileID: 1618241485}
 --- !u!4 &28884205
 Transform:
   m_ObjectHideFlags: 0
@@ -183,6 +182,7 @@ GameObject:
   - component: {fileID: 47541002}
   - component: {fileID: 47541001}
   - component: {fileID: 47541000}
+  - component: {fileID: 47541004}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -263,7 +263,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1914073252}
+  - {fileID: 1618241486}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -272,6 +272,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &47541004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47540999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd80195485d589e4c93feb55c14e74a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinText: {fileID: 1618241487}
 --- !u!1 &126820808
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,8 +362,8 @@ MonoBehaviour:
   spawnPoint: {x: 0, y: 10, z: -4}
   minPlatformsUntilTurn: 2
   totalNumPlatforms: 100
-  minFilasInBiome: 3
-  maxFilasInBiome: 4
+  minFilasInBiome: 10
+  maxFilasInBiome: 20
   probPlatformLength:
   - 0.05
   - 0.2
@@ -361,7 +374,7 @@ MonoBehaviour:
   - 0.3
   - 0.3
   - 0.4
-  probTrapBioma: 0.1
+  probTrapBioma: 0.9
   probMoneda: 0.1
   probRampa: 0.2
   alturaRampa: 0.25
@@ -373,6 +386,7 @@ MonoBehaviour:
   guidePrefab: {fileID: 6118598055070213501, guid: 236251adcf4534a49b3faed0f18d6c20, type: 3}
   pinxoPrefab: {fileID: 4803096593891383195, guid: dff288b3df5ceb54c8f19c61e7000c35, type: 3}
   aroPrefab: {fileID: 5341186923223239980, guid: 27e2b3ad60d1d6f4fa8e329e22fe81eb, type: 3}
+  pinguinPrefab: {fileID: 787686900251017819, guid: 8432805e7bf8645499eb71a3bd283dfa, type: 3}
   pilarPrefab: {fileID: 805059623492667159, guid: 9f51c670161a8f2418387977b463a78b, type: 3}
   trapDensity: 0.5
   trapMaxLength: 030000000200000003000000
@@ -932,15 +946,15 @@ RectTransform:
   m_GameObject: {fileID: 1618241485}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.86499995, y: 0.86499995, z: 0.86499995}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1914073252}
+  m_Father: {fileID: 47541003}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.300003, y: 253.60004}
+  m_AnchoredPosition: {x: 0.000015258789, y: 158.64099}
   m_SizeDelta: {x: 289.1, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1618241487
@@ -1040,49 +1054,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1618241485}
   m_CullTransparentMesh: 1
---- !u!1 &1914073251
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1914073252}
-  - component: {fileID: 1914073253}
-  m_Layer: 0
-  m_Name: MainMenu
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1914073252
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1914073251}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1245117, y: -60.723007, z: 0}
-  m_LocalScale: {x: 0.86499995, y: 0.86499995, z: 0.86499995}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1618241486}
-  m_Father: {fileID: 47541003}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1914073253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1914073251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f7164d19955be54eb7f8091f50880f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fader: {fileID: 0}
