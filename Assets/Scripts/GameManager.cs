@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject fog;
 
-    public int Coins { get; private set; } = 0; 
+    public int Coins { get; private set; } = 0;
+
+    public int Corners { get; private set; } = 0;
 
 
     public float VelHorizontal
@@ -74,5 +76,11 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseCoins(){
         ++Coins;
+    }
+
+
+    public void IncreaseCorners()
+    {
+        ++Corners;
     }
 }

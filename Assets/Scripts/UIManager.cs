@@ -6,6 +6,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI coinText;
+    [SerializeField] TextMeshProUGUI cornerText;
     public static UIManager Instance { get; private set; }
     void Awake()
     {
@@ -28,5 +29,10 @@ public class UIManager : MonoBehaviour
     public void UpdateCoinText()
     {
         coinText.text = GameManager.Instance.Coins.ToString();
+    }
+
+    public void UpdateCornerText()
+    {
+        cornerText.text = GameManager.Instance.Corners.ToString();
     }
 }
