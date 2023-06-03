@@ -161,6 +161,7 @@ public class LevelGenerator : MonoBehaviour
                 platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.identity, transform).GetComponent<Platform>();
                 platform.Bioma = bioma;
                 platform.Trampa = Trampas.CORNER;
+                platform.setGlow(false);
 
                 Instantiate(pilarPrefab, platform.transform.position + Vector3.down * 2.5f, Quaternion.identity, platform.transform).GetComponent<Pilar>().Bioma = bioma;
 
