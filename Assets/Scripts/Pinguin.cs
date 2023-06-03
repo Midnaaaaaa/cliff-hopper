@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pinguin : MonoBehaviour
+public class Pinguin : Aplastable
 {
     private int direction;
     private float pos = 0;
@@ -11,9 +11,6 @@ public class Pinguin : MonoBehaviour
     public int range = 5;
     public float vel;
     public float scale;
-
-    [System.NonSerialized]
-    public bool aplastado = false;
 
     private float lastVel;
     // Start is called before the first frame update
@@ -62,21 +59,11 @@ public class Pinguin : MonoBehaviour
         vel = lastVel;
     }
 
-    public void Aplastar(float scale)
+    public override void Aplastar(float scale)
     {
-        if (aplastado) return;
-        aplastado = true;
+        base.Aplastar(scale);
         vel = 0;
         lastVel = 0;
-
-        transform.localScale = new Vector3(transform.localScale.x * 2, scale, transform.localScale.z * 2);
-
-        //GetComponent<BoxCollider>().isTrigger = true;
-
-        //Debug.Log("Antes:" + transform.position.y);
-        transform.Translate(Vector3.down * (1 - scale) / 2);
-        //Debug.Log("Despues:" + transform.position.y);
-
     }
 
 

@@ -89,8 +89,8 @@ public class LevelGenerator : MonoBehaviour
                 Instantiate(aroPrefab, inicioFila + new Vector3(1 - direction, 0, direction) * (numBloquesFila+1) + Vector3.up, Quaternion.Euler(0, -180 + 90 * (1-direction), 0)).GetComponent<Aro>().MaxDistActivation = numBloquesFila + 1;
                 break;
             case Bioma.DESERT: // Cactus
-                float offset = Random.Range(1f, numBloquesFila - 1);
-                GameObject cactus = Instantiate(cactusPrefab, inicioFila + new Vector3(1 - direction, 0, direction) + Vector3.up, Quaternion.Euler(0, -180 + 90 * (direction), 0), transform);
+                float offset = Random.Range(3f, numBloquesFila - 3);
+                GameObject cactus = Instantiate(cactusPrefab, inicioFila + new Vector3(1 - direction, 0, direction) * offset + Vector3.up, Quaternion.Euler(0, -180 + 90 * (direction), 0), transform);
                 //cactus.transform.localScale = 1;
                 break;
             case Bioma.ICE: // Pinguin 👍

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Player : MonoBehaviour
+public class Player : Aplastable
 {
     // Start is called before the first frame update
 
@@ -13,8 +13,6 @@ public class Player : MonoBehaviour
 
     [System.NonSerialized]
     public float velHorizontal;
-    [System.NonSerialized]
-    public bool aplastado = false;
 
     public float gravity;
     public int maxJumps;
@@ -36,6 +34,8 @@ public class Player : MonoBehaviour
     public Animator animator;
 
     public UnityEvent OnCornerLit;
+
+    private bool muelto = false;
 
 
     void Start()
@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (aplastado) return;
+        if (muelto) return;
 
         if (bJumping)
         {
@@ -247,13 +247,10 @@ public class Player : MonoBehaviour
         this.jumpVel = jumpVel;
     }
 
-    public void Aplastar(float scale)
+    public override void Aplastar(float scale)
     {
-        if (aplastado) return;
-        aplastado = true;
+        base.Aplastar(scale);
         velHorizontal = 0;
-        transform.localScale = new Vector3(transform.localScale.x * 2, scale, transform.localScale.z * 2);
-        transform.Translate(Vector3.down * (1 - scale) / 2);
         animator.Play("Aplastao");
     }
 }

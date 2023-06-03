@@ -104,16 +104,11 @@ public class Boula : MonoBehaviour
 
     void Aplastar(Collider c)
     {
-        if (c.CompareTag("Player"))
+        if (c.CompareTag("Player") || c.CompareTag("Pinguin"))
         {
-            Player p = c.GetComponent<Player>();
-            p.Aplastar(0.05f);
+            Aplastable a = c.GetComponent<Aplastable>();
+            a.Aplastar(0.05f);
 
-        }
-        else if (c.CompareTag("Pinguin"))
-        {
-            Pinguin p = c.GetComponent<Pinguin>();
-            p.Aplastar(0.05f);
         }
     }
 }
