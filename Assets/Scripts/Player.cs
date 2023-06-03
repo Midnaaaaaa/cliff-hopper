@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     public float rotationTime;
     private int initialDirection;
 
+    public Animator animator;
 
     public UnityEvent OnCornerLit;
 
@@ -94,7 +95,7 @@ public class Player : MonoBehaviour
         if (!bJumping && Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, layerMask) && hit.collider.tag == "Rampa")
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.green);
-            GetComponent<MeshRenderer>().material.color = Color.blue;
+            //GetComponent<MeshRenderer>().material.color = Color.blue;
             // transform.localScale.y porque el collider mide 2 veces eso
             transform.position += Vector3.down * (hit.distance - transform.localScale.y);
         }
@@ -104,7 +105,7 @@ public class Player : MonoBehaviour
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.red);
             //Debug.Log("Did Hit");
-            GetComponent<MeshRenderer>().material.color = Color.red;
+            //GetComponent<MeshRenderer>().material.color = Color.red;
             // transform.localScale.y porque el collider mide 2 veces eso
             transform.position += Vector3.down * (hit.distance - transform.localScale.y);
             if (bJumping)
@@ -115,7 +116,7 @@ public class Player : MonoBehaviour
         {
             //Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, layerMask);
             //Debug.Log("Did not Hit");
-            GetComponent<MeshRenderer>().material.color = Color.green;
+            //GetComponent<MeshRenderer>().material.color = Color.green;
             if (!bJumping)
                 Caer();
         }
@@ -248,5 +249,6 @@ public class Player : MonoBehaviour
         velHorizontal = 0;
         transform.localScale = new Vector3(transform.localScale.x * 2, scale, transform.localScale.z * 2);
         transform.Translate(Vector3.down * (1 - scale) / 2);
+        animator.Play("Aplastao");
     }
 }
