@@ -30,6 +30,7 @@ public class Mud : MonoBehaviour
 
             normalVel = p.velHorizontal;
             p.velHorizontal = 1;
+            SoundManager.Instance.SelectAudio(3, 0.5f);
         }
     }
 
