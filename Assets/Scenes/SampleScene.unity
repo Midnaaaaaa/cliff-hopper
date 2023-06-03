@@ -584,8 +584,8 @@ MonoBehaviour:
   probTrap:
   - 0
   - 0
-  - 0
   - 1
+  - 0
   probTrapBioma: 0
   probMoneda: 0.1
   probRampa: 0.5

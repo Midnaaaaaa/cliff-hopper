@@ -7,6 +7,8 @@ public class Mud : MonoBehaviour
 
     float normalJumpVel, normalVel;
 
+    public AudioClip mudSFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +32,15 @@ public class Mud : MonoBehaviour
 
             normalVel = p.velHorizontal;
             p.velHorizontal = 1;
-            SoundManager.Instance.SelectAudio(3, 0.5f);
+            if (SoundManager.Instance.AudioIsPlaying())
+            {
+                if(SoundManager.Instance.AudioClip() != mudSFX)
+                {
+                    SoundManager.Instance.SelectAudio(3, 0.5f);
+                }
+            }
+            else SoundManager.Instance.SelectAudio(3, 0.5f);
+
         }
     }
 

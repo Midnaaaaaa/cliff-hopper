@@ -24,7 +24,10 @@ public class Aro : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
+        {
             fuego.gameObject.SetActive(true);
+            SoundManager.Instance.SelectAudio(5, 0.5f);
+        }
     }
 
 

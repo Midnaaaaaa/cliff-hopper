@@ -28,4 +28,14 @@ public class SoundManager : MonoBehaviour
     {
         controlAudio.PlayOneShot(audios[index], vol);
     }
+
+    public bool AudioIsPlaying()
+    {
+        return controlAudio.isPlaying;
+    }
+    
+    public AudioClip AudioClip()
+    {
+        return controlAudio.clip;
+    }
 }
