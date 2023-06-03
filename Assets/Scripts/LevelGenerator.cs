@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum Trampas
 {
-    NORMAL = -1, PINXO, HUECO, LENTO, BIOMA, CORNER
+    NORMAL = -1, PINXO, HUECO, LENTO, SIERRA, BIOMA, CORNER
 }
 
 public class LevelGenerator : MonoBehaviour
@@ -52,6 +52,9 @@ public class LevelGenerator : MonoBehaviour
     public GameObject pinguinPrefab;
 
     public GameObject pilarPrefab;
+
+    public GameObject guiaSierraHPrefab;
+    public GameObject guiaSierraRPrefab;
 
 
     public float trapDensity = 0.5f;
@@ -205,21 +208,27 @@ public class LevelGenerator : MonoBehaviour
                 // Generacion de terreno
                 if ((Trampas)trampa != Trampas.HUECO)
                 {
-
-                    if ((Trampas)trampa != Trampas.BIOMA && Random.value < probRampa && trampa == -1 && i < numeroPlataformasSeguidas - 1)
+                    bool rampa = false;
+                    if ((Trampas)trampa != Trampas.BIOMA && Random.value < probRampa && (trampa == -1 || (Trampas)trampa == Trampas.SIERRA) && i < numeroPlataformasSeguidas - 1)
                     {
                         platform = Instantiate(rampaPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * direction, 0), transform).GetComponent<Platform>();
                         platform.SetHeight(alturaRampa);
                         lastPlatform += Vector3.down * alturaRampa;
                         alturaBola = alturaRampa + 0.4f;
+                        rampa = true;
                     }
                     else //No es ni rampa ni hueco --> puede pasar la roca
                     {
-                        platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.identity, transform).GetComponent<Platform>(); //TODO: a�adir script a plataforma
+                        platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * (1-direction), 0), transform).GetComponent<Platform>(); //TODO: a�adir script a plataforma
                         alturaBola = 0;
                     }
                     if ((Trampas)trampa == Trampas.PINXO)
                         platform.SetHeight(0.75f);
+
+                    //if ((Trampas)trampa == Trampas.SIERRA)
+                    //{
+                    //    platform.Trampa = (Trampas)trampa;
+                    //}
 
                     //set bioma
                     platform.Bioma = bioma;

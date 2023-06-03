@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
         }
         // RAYO 1: MIRAR SI ESTAS TOCANDO SUELO
         // Does the ray intersect any objects excluding the player layer
-        else if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, transform.localScale.y, layerMask))
+        else if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, transform.localScale.y + 0.001f, layerMask))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.red);
             //Debug.Log("Did Hit");
@@ -103,6 +103,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            //Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, layerMask);
             //Debug.Log("Did not Hit");
             GetComponent<MeshRenderer>().material.color = Color.green;
             if (!bJumping)

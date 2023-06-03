@@ -44,6 +44,13 @@ public class Platform : MonoBehaviour
         set
         {
             _trampa = value;
+
+            if (value.ToString() == "SIERRA")
+            {
+                transform.Find("guiaSierra").gameObject.SetActive(true);
+                value = Trampas.NORMAL;
+            }
+
             foreach (Transform child in basemodel.transform)
             {
                 if (child.name == value.ToString() || child.name == "default")
@@ -88,5 +95,10 @@ public class Platform : MonoBehaviour
     {
         if (b) topmodel.transform.Find("top").GetComponent<Renderer>().material.EnableKeyword("_EMISSION"); 
         else topmodel.transform.Find("top").GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+    }
+
+    public void SetGuiaRotation(int direction)
+    {
+        //transform.Find("guiaSierra").Rotate()
     }
 }

@@ -582,12 +582,13 @@ MonoBehaviour:
   - 0.3
   - 0.25
   probTrap:
-  - 0.3
-  - 0.3
-  - 0.4
-  probTrapBioma: 0.9
+  - 0
+  - 0
+  - 0
+  - 1
+  probTrapBioma: 0
   probMoneda: 0.1
-  probRampa: 1
+  probRampa: 0.5
   alturaRampa: 0.25
   playerPrefab: {fileID: 5666608992400065888, guid: b5788f803d5dbcc47a8e214181e8b927, type: 3}
   platformPrefab: {fileID: 6993447974356482865, guid: 4b0fa3798f8ee324fa933ae88df4b59a, type: 3}
@@ -599,8 +600,10 @@ MonoBehaviour:
   aroPrefab: {fileID: 5341186923223239980, guid: 27e2b3ad60d1d6f4fa8e329e22fe81eb, type: 3}
   pinguinPrefab: {fileID: 787686900251017819, guid: 8432805e7bf8645499eb71a3bd283dfa, type: 3}
   pilarPrefab: {fileID: 805059623492667159, guid: 9f51c670161a8f2418387977b463a78b, type: 3}
+  guiaSierraHPrefab: {fileID: 0}
+  guiaSierraRPrefab: {fileID: 0}
   trapDensity: 0.5
-  trapMaxLength: 030000000200000003000000
+  trapMaxLength: 03000000020000000300000003000000
 --- !u!4 &589546586
 Transform:
   m_ObjectHideFlags: 0
