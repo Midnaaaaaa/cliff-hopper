@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
 
     public UnityEvent OnCornerLit;
 
+
     void Start()
     {
         jumps = maxJumps;
@@ -200,6 +201,9 @@ public class Player : MonoBehaviour
         jumps--;
         bJumping = true;
         inCorner = false;
+        float rand = Random.value;
+        if(rand <= 0.5) SoundManager.Instance.SelectAudio(0, 0.5f);
+        else SoundManager.Instance.SelectAudio(1, 0.5f);
     }
 
     private void Suelo()
