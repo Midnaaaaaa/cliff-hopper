@@ -233,6 +233,7 @@ public class Player : MonoBehaviour
         lastCorner.setGlow(true);
         LevelGenerator.Instance.ChangeBioma(lastCorner.Bioma, 1f);
         OnCornerLit?.Invoke();
+        SoundManager.Instance.SelectAudio(2, 0.5f);
 
     }
 
