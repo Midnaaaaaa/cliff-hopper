@@ -583,10 +583,10 @@ MonoBehaviour:
   - 0.25
   probTrap:
   - 0
+  - 0.5
   - 0
-  - 0
-  - 1
-  probTrapBioma: 0
+  - 0.5
+  probTrapBioma: 0.5
   probMoneda: 0.1
   probRampa: 0.5
   alturaRampa: 0.25
@@ -599,6 +599,7 @@ MonoBehaviour:
   pinxoPrefab: {fileID: 4803096593891383195, guid: dff288b3df5ceb54c8f19c61e7000c35, type: 3}
   aroPrefab: {fileID: 5341186923223239980, guid: 27e2b3ad60d1d6f4fa8e329e22fe81eb, type: 3}
   pinguinPrefab: {fileID: 787686900251017819, guid: 8432805e7bf8645499eb71a3bd283dfa, type: 3}
+  cactusPrefab: {fileID: 4397914003811318627, guid: dd6be3dd77d7a9144b1b62eb3f269006, type: 3}
   pilarPrefab: {fileID: 805059623492667159, guid: 9f51c670161a8f2418387977b463a78b, type: 3}
   sierraPrefab: {fileID: 7104344287121006754, guid: f2a6c5314751ad84e8335771923f0607, type: 3}
   trapDensity: 0.5

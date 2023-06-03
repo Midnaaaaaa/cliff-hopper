@@ -50,6 +50,7 @@ public class LevelGenerator : MonoBehaviour
 
     public GameObject aroPrefab;
     public GameObject pinguinPrefab;
+    public GameObject cactusPrefab;
 
     public GameObject pilarPrefab;
 
@@ -87,7 +88,10 @@ public class LevelGenerator : MonoBehaviour
             case Bioma.FIRE: // Bola de fuego
                 Instantiate(aroPrefab, inicioFila + new Vector3(1 - direction, 0, direction) * (numBloquesFila+1) + Vector3.up, Quaternion.Euler(0, -180 + 90 * (1-direction), 0)).GetComponent<Aro>().MaxDistActivation = numBloquesFila + 1;
                 break;
-            case Bioma.DESERT: // Desprendimiento? / Terremoto?
+            case Bioma.DESERT: // Cactus
+                float offset = Random.Range(1f, numBloquesFila - 1);
+                GameObject cactus = Instantiate(cactusPrefab, inicioFila + new Vector3(1 - direction, 0, direction) + Vector3.up, Quaternion.Euler(0, -180 + 90 * (direction), 0), transform);
+                //cactus.transform.localScale = 1;
                 break;
             case Bioma.ICE: // Pinguin 👍
                 Instantiate(pinguinPrefab, inicioFila + Vector3.up + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, 90 * (1 - direction), 0)).GetComponent<Pinguin>().Init(2, numBloquesFila - 2, direction);
@@ -110,7 +114,7 @@ public class LevelGenerator : MonoBehaviour
         guide.Init(player.gameObject);
 
 
-        Bioma bioma = Bioma.ICE;
+        Bioma bioma = Bioma.DESERT;
         ChangeBioma(bioma, 0);
 
         /**
@@ -195,6 +199,7 @@ public class LevelGenerator : MonoBehaviour
                 if (numFila > 0 && numObstaclesRestants < 0 && Random.Range(0f, 1f) < trapDensity)
                 {
                     trampa = randomElementWithProbabilities(probTrap);
+                    Debug.Log(trampa);
                     numObstaclesRestants = Random.Range(1, trapMaxLength[trampa] + 1);
                     numBloquesASaltar = numObstaclesRestants;
                     Debug.Log("Obtaculo: " + trampa + " Cantidad: " + numObstaclesRestants);
@@ -215,14 +220,12 @@ public class LevelGenerator : MonoBehaviour
                 // Generacion de terreno
                 if ((Trampas)trampa != Trampas.HUECO)
                 {
-                    bool rampa = false;
                     if ((Trampas)trampa != Trampas.BIOMA && Random.value < probRampa && (trampa == -1 || (Trampas)trampa == Trampas.SIERRA) && i < numeroPlataformasSeguidas - 1)
                     {
                         platform = Instantiate(rampaPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * direction, 0), transform).GetComponent<Platform>();
                         platform.SetHeight(alturaRampa);
                         lastPlatform += Vector3.down * alturaRampa;
                         alturaBola = alturaRampa + 0.4f;
-                        rampa = true;
                     }
                     else //No es ni rampa ni hueco --> puede pasar la roca
                     {
@@ -268,6 +271,8 @@ public class LevelGenerator : MonoBehaviour
                 else // Hueco
                 {
                     alturaBola = 0.4f + (numBloquesASaltar - 1) * 0.25f;
+                    lastPlatform += new Vector3(1 - direction, 0, direction);
+                    numPlatform++;
                 }
 
 
