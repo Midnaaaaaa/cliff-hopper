@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject fog;
 
-    public int Coins { get; private set; } = 0; 
+    public int Coins { get; private set; } = 0;
+
+    public int Corners { get; private set; } = 0;
 
     public static GameManager Instance { get; private set; }
     public int MonedasCogidas { get; set; }
@@ -59,5 +61,11 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseCoins(){
         ++Coins;
+    }
+
+
+    public void IncreaseCorners()
+    {
+        ++Corners;
     }
 }

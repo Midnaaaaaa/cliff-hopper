@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -26,10 +27,16 @@ public class Player : MonoBehaviour
 
     private Platform lastCorner;
 
+
+    public UnityEvent OnCornerLit;
+
     void Start()
     {
         jumps = maxJumps;
         rg = GetComponent<Rigidbody>();
+        OnCornerLit.AddListener(GameManager.Instance.IncreaseCorners);
+        OnCornerLit.AddListener(UIManager.Instance.UpdateCornerText);
+
     }
 
     void Update()
@@ -204,6 +211,8 @@ public class Player : MonoBehaviour
         transform.localEulerAngles = new Vector3(0, 90*(1-direction), 0);
         lastCorner.setGlow(true);
         LevelGenerator.Instance.ChangeBioma(lastCorner.Bioma, 1f);
+        OnCornerLit?.Invoke();
+
     }
 
     public float getJumpVel()
