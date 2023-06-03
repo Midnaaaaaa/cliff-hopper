@@ -161,6 +161,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: running_man
       objectReference: {fileID: 0}
+    - target: {fileID: 5315014830655465360, guid: 4fae4b28062dd7742beef88a9f63a77d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 0c5f8aa618d813d4ebef2af809c4d31b, type: 2}
     - target: {fileID: 5640759260935566496, guid: 4fae4b28062dd7742beef88a9f63a77d, type: 3}
       propertyPath: m_RootOrder
       value: 0
