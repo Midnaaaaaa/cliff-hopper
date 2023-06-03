@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8520218665707690900}
   - component: {fileID: -1382464679105799920}
-  m_Layer: 0
+  - component: {fileID: 7788420647069477689}
+  m_Layer: 2
   m_Name: Pinguin-0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +47,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 5
-  vel: 2
+  vel: 0.25
+  scale: 1
+--- !u!65 &7788420647069477689
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787686900251017819}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8923681223474741232
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +74,7 @@ GameObject:
   - component: {fileID: 1937088983558748153}
   - component: {fileID: 5409548491301540106}
   - component: {fileID: 2355619253195850813}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pinguin-0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +91,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8520218665707690900}
   m_RootOrder: 0

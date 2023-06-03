@@ -88,7 +88,7 @@ public class LevelGenerator : MonoBehaviour
             case Bioma.DESERT: // Desprendimiento? / Terremoto?
                 break;
             case Bioma.ICE: // Pinguin 👍
-                Instantiate(pinguinPrefab, inicioFila + Vector3.up, Quaternion.Euler(0, -90 * (1 - direction), 0)).GetComponent<Pinguin>().Init(2, numBloquesFila, direction);
+                Instantiate(pinguinPrefab, inicioFila + Vector3.up + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, 90 * (1 - direction), 0)).GetComponent<Pinguin>().Init(2, numBloquesFila - 2, direction);
                 break;
         }
     }
@@ -174,7 +174,7 @@ public class LevelGenerator : MonoBehaviour
             int numBloquesASaltar = 0;
 
 
-            if (Random.value <= probTrapBioma) // Generar trampa especial de bioma, y no generar ninguna mas en la fila
+            if (numFila > 0 && Random.value <= probTrapBioma) // Generar trampa especial de bioma, y no generar ninguna mas en la fila
             {
                 trampa = (int)Trampas.BIOMA;
                 GenerarTrampaBioma(bioma, lastPlatform, numeroPlataformasSeguidas, direction);

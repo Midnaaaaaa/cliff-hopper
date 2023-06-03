@@ -10,10 +10,17 @@ public class Pinguin : MonoBehaviour
 
     public int range = 5;
     public float vel;
+    public float scale;
+
+    private float lastVel;
     // Start is called before the first frame update
     void Start()
     {
+        transform.localScale *= scale;
+        transform.Translate(Vector3.down * (1-scale) / 2);
         posInicial = transform.position;
+
+        lastVel = vel;
     }
 
     // Update is called once per frame
@@ -33,8 +40,22 @@ public class Pinguin : MonoBehaviour
 
     public void Init(float vel, int range, int direction)
     {
-        this.vel = vel;
+        float var = vel * 0.25f;
+        this.vel = vel + Random.Range(-var, var);
         this.range = range;
         this.direction = direction;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (vel > 0) lastVel = vel;
+        vel = 0;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        vel = lastVel;
+    }
+
+
 }

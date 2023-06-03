@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class NormalizeV2 : MonoBehaviour
 {
-    public bool x, y, z;
+    [Header("Eje de normalizacion")]
+    [Tooltip("Selecciona 1 dimension para escalar")]
+    public bool x;
+    public bool y, z;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         MeshFilter mf = GetComponent<MeshFilter>();
         Vector3 meshSize = mf.mesh.bounds.size;
 
-        float scaleX = (x) ? 1 / meshSize.x : 1;
-        float scaleY = (y) ? 1 / meshSize.y : 1;
-        float scaleZ = (z) ? 1 / meshSize.z : 1;
+        float scale = 1;
+        if (x) scale = 1/meshSize.x;
+        else if (y) scale = 1/meshSize.y;
+        else if (z) scale = 1/meshSize.z;
 
-        transform.localScale = new Vector3(scaleX, scaleY, scaleZ);
-        transform.Translate(-mf.mesh.bounds.center * 1 / scaleY);
+        transform.localScale = new Vector3(scale, scale, scale);
+        transform.Translate(-mf.mesh.bounds.center * scale);
     }
 
     // Update is called once per frame

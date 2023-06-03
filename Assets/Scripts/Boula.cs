@@ -7,7 +7,7 @@ public class Boula : MonoBehaviour
     private List<Vector3> route;
     private int index;
 
-    private float rotationSpeed = 90 * 0.5f;
+    private float rotationSpeed = 90 * 0.45f;
 
     private bool isRotating = false;
 
