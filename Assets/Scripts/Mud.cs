@@ -5,7 +5,7 @@ using UnityEngine;
 public class Mud : MonoBehaviour
 {
 
-    float normalJumpVel;
+    float normalJumpVel, normalVel;
 
     // Start is called before the first frame update
     void Start()
@@ -23,9 +23,13 @@ public class Mud : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            normalJumpVel = other.GetComponent<Player>().getJumpVel();
-            GameManager.Instance.VelHorizontal = 1;
-            other.GetComponent<Player>().setJumpVel(normalJumpVel - 2);
+            Player p = other.GetComponent<Player>();
+
+            normalJumpVel = p.getJumpVel();
+            p.setJumpVel(normalJumpVel - 2);
+
+            normalVel = p.velHorizontal;
+            p.velHorizontal = 1;
         }
     }
 
@@ -33,8 +37,9 @@ public class Mud : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            GameManager.Instance.VelHorizontal = GameManager.Instance.VelHorizontal;
-            other.GetComponent<Player>().setJumpVel(normalJumpVel);
+            Player p = other.GetComponent<Player>();
+            p.velHorizontal = normalVel;
+            p.setJumpVel(normalJumpVel);
         }
     }
 }

@@ -13,20 +13,20 @@ public class Guide : MonoBehaviour
 
     private bool wantsToTurn = false;
 
-    // Start is called before the first frame update
-    void Start()
+    private GameObject player;
+
+    public void Init(GameObject player)
     {
-        
+        this.player = player;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     void FixedUpdate()
     {
-        transform.position += new Vector3(1 - direction, 0, direction) * velHorizontal * Time.fixedDeltaTime;
+        // Sincronizar posición x,z con la del player
+        transform.position = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+
+
+        //transform.position += new Vector3(1 - direction, 0, direction) * velHorizontal * Time.fixedDeltaTime;
 
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
@@ -44,54 +44,54 @@ public class Guide : MonoBehaviour
             }
         }
 
-        int targetX = Mathf.RoundToInt(transform.position.x);
-        int targetZ = Mathf.RoundToInt(transform.position.z);
-        if (direction == 0) // direccion +X
-        {
-            if (transform.position.z < targetZ)
-            {
-                float newZPos = Mathf.Min(transform.position.z + correctionVel, targetZ);
-                transform.position = new Vector3(transform.position.x, transform.position.y, newZPos);
-            }
-            else if (transform.position.z > targetZ)
-            {
-                float newZPos = Mathf.Max(transform.position.z - correctionVel, targetZ);
-                transform.position = new Vector3(transform.position.x, transform.position.y, newZPos);
-            }
+        //int targetX = Mathf.RoundToInt(transform.position.x);
+        //int targetZ = Mathf.RoundToInt(transform.position.z);
+        //if (direction == 0) // direccion +X
+        //{
+        //    if (transform.position.z < targetZ)
+        //    {
+        //        float newZPos = Mathf.Min(transform.position.z + correctionVel, targetZ);
+        //        transform.position = new Vector3(transform.position.x, transform.position.y, newZPos);
+        //    }
+        //    else if (transform.position.z > targetZ)
+        //    {
+        //        float newZPos = Mathf.Max(transform.position.z - correctionVel, targetZ);
+        //        transform.position = new Vector3(transform.position.x, transform.position.y, newZPos);
+        //    }
 
-            if (wantsToTurn && transform.position.x > targetX)
-            {
-                direction = 1 - direction;
-                wantsToTurn = false;
-            }
+        //    if (wantsToTurn && transform.position.x > targetX)
+        //    {
+        //        direction = 1 - direction;
+        //        wantsToTurn = false;
+        //    }
 
-        }
-        else // direccion +Z
-        {
-            if (transform.position.x < targetX)
-            {
-                float newXPos = Mathf.Min(transform.position.x + correctionVel, targetX);
-                transform.position = new Vector3(newXPos, transform.position.y, transform.position.z);
-            }
-            else if (transform.position.x > targetX)
-            {
-                float newXPos = Mathf.Max(transform.position.x - correctionVel, targetX);
-                transform.position = new Vector3(newXPos, transform.position.y, transform.position.z);
-            }
+        //}
+        //else // direccion +Z
+        //{
+        //    if (transform.position.x < targetX)
+        //    {
+        //        float newXPos = Mathf.Min(transform.position.x + correctionVel, targetX);
+        //        transform.position = new Vector3(newXPos, transform.position.y, transform.position.z);
+        //    }
+        //    else if (transform.position.x > targetX)
+        //    {
+        //        float newXPos = Mathf.Max(transform.position.x - correctionVel, targetX);
+        //        transform.position = new Vector3(newXPos, transform.position.y, transform.position.z);
+        //    }
 
-            if (wantsToTurn && transform.position.z > targetZ)
-            {
-                direction = 1 - direction;
-                wantsToTurn = false;
-            }
-        }
+        //    if (wantsToTurn && transform.position.z > targetZ)
+        //    {
+        //        direction = 1 - direction;
+        //        wantsToTurn = false;
+        //    }
+        //}
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Corner")
-        {
-            wantsToTurn = true;
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.tag == "Corner")
+    //    {
+    //        wantsToTurn = true;
+    //    }
+    //}
 }

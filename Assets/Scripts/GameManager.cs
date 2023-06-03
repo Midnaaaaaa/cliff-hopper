@@ -7,8 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject boulaPrefab;
 
-    [SerializeField]
-    private float _velHorizontal;
+    public float velHorizontal;
 
     private Player player;
     private Guide guide;
@@ -16,20 +15,6 @@ public class GameManager : MonoBehaviour
     public GameObject fog;
 
     public int Coins { get; private set; } = 0; 
-
-
-    public float VelHorizontal
-    {
-        get
-        {
-            return _velHorizontal;
-        }
-        set
-        {
-            player.velHorizontal = value;
-            guide.velHorizontal = value;
-        }
-    }
 
     public static GameManager Instance { get; private set; }
     public int MonedasCogidas { get; set; }
@@ -58,7 +43,7 @@ public class GameManager : MonoBehaviour
     {
         
         GameObject boula = Instantiate(boulaPrefab, LevelGenerator.Instance.spawnPoint + Vector3.up, Quaternion.identity);
-        boula.GetComponent<Boula>().SetSpeed(_velHorizontal);
+        boula.GetComponent<Boula>().SetSpeed(velHorizontal*0.95f);
     }
 
     public void setPlayerAndGuide(Player p, Guide g)

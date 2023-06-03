@@ -69,7 +69,7 @@ public class LevelGenerator : MonoBehaviour
         else
         {
             Instance = this;
-            velHorizontal = GameManager.Instance.VelHorizontal;
+            velHorizontal = GameManager.Instance.velHorizontal;
         }
     }
 
@@ -105,10 +105,7 @@ public class LevelGenerator : MonoBehaviour
         player.velHorizontal = velHorizontal;
 
         Guide guide = Instantiate(guidePrefab, spawnPoint + Vector3.up, Quaternion.identity).GetComponent<Guide>();
-        guide.velHorizontal = velHorizontal;
-
-        GameManager.Instance.setPlayerAndGuide(player, guide);
-
+        guide.Init(player.gameObject);
 
 
         Bioma bioma = Bioma.ICE;
@@ -145,8 +142,10 @@ public class LevelGenerator : MonoBehaviour
                 platform.Trampa = Trampas.NORMAL;
                 lastPlatform = spawnPoint;
 
-                cornersPos = new List<Vector2>();
-                cornersPos.Add(CoordManager.toCHCoords(platform.transform.position));
+                cornersPos = new List<Vector2>
+                {
+                    CoordManager.toCHCoords(platform.transform.position)
+                };
 
                 boulaRoute = new List<Vector3>();
             }
@@ -174,7 +173,7 @@ public class LevelGenerator : MonoBehaviour
             int numBloquesASaltar = 0;
 
 
-            if (numFila > 0 && Random.value <= probTrapBioma) // Generar trampa especial de bioma, y no generar ninguna mas en la fila
+            if (numFila > 0 && numeroPlataformasSeguidas > 3 && Random.value <= probTrapBioma) // Generar trampa especial de bioma, y no generar ninguna mas en la fila
             {
                 trampa = (int)Trampas.BIOMA;
                 GenerarTrampaBioma(bioma, lastPlatform, numeroPlataformasSeguidas, direction);

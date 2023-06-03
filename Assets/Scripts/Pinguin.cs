@@ -32,6 +32,7 @@ public class Pinguin : MonoBehaviour
             float resto = (pos < 0) ? pos : pos - range;
             pos = pos - 2 * resto;
             vel = -vel; //Invertir direccion
+            lastVel = -lastVel;
 
             transform.Rotate(new Vector3(0, 180, 0));
         }
@@ -48,7 +49,6 @@ public class Pinguin : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (vel > 0) lastVel = vel;
         vel = 0;
     }
 
