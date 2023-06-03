@@ -19,6 +19,7 @@ public class Pinguin : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        scale = scale + Random.Range(-0.2f, 0.2f);
         transform.localScale *= scale;
         transform.Translate(Vector3.down * (1-scale) / 2);
         posInicial = transform.position;

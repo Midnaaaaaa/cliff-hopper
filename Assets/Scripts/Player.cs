@@ -214,7 +214,7 @@ public class Player : MonoBehaviour
         bJumping = true;
     }
 
-    private void Muelto()
+    public void Muelto()
     {
         Debug.Log("Muelto");
         Salto();
