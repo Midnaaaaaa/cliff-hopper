@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
 
     [System.NonSerialized]
     public float velHorizontal;
+    [System.NonSerialized]
+    public bool aplastado = false;
 
     public float gravity;
     public int maxJumps;
@@ -58,6 +60,8 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (aplastado) return;
+
         if (bJumping)
         {
             velY += gravity * Time.fixedDeltaTime;
@@ -223,5 +227,15 @@ public class Player : MonoBehaviour
     public void setJumpVel(float jumpVel)
     {
         this.jumpVel = jumpVel;
+    }
+
+    public void Aplastar(float scale)
+    {
+        if (aplastado) return;
+        aplastado = true;
+        velHorizontal = 0;
+
+        transform.localScale = new Vector3(transform.localScale.x * 2, scale, transform.localScale.z * 2);
+        transform.Translate(Vector3.down * (1 - scale) / 2);
     }
 }

@@ -90,5 +90,30 @@ public class Boula : MonoBehaviour
     public void SetSpeed(float speed)
     {
         rotationSpeed = 90 * speed;
-    } 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Aplastar(other);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Aplastar(collision.collider);
+    }
+
+    void Aplastar(Collider c)
+    {
+        if (c.CompareTag("Player"))
+        {
+            Player p = c.GetComponent<Player>();
+            p.Aplastar(0.05f);
+
+        }
+        else if (c.CompareTag("Pinguin"))
+        {
+            Pinguin p = c.GetComponent<Pinguin>();
+            p.Aplastar(0.05f);
+        }
+    }
 }

@@ -12,6 +12,9 @@ public class Pinguin : MonoBehaviour
     public float vel;
     public float scale;
 
+    [System.NonSerialized]
+    public bool aplastado = false;
+
     private float lastVel;
     // Start is called before the first frame update
     void Start()
@@ -26,6 +29,7 @@ public class Pinguin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (aplastado) return;
         pos += vel * Time.deltaTime;
         if (pos > range || pos < 0)
         {
@@ -55,6 +59,23 @@ public class Pinguin : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         vel = lastVel;
+    }
+
+    public void Aplastar(float scale)
+    {
+        if (aplastado) return;
+        aplastado = true;
+        vel = 0;
+        lastVel = 0;
+
+        transform.localScale = new Vector3(transform.localScale.x * 2, scale, transform.localScale.z * 2);
+
+        //GetComponent<BoxCollider>().isTrigger = true;
+
+        //Debug.Log("Antes:" + transform.position.y);
+        transform.Translate(Vector3.down * (1 - scale) / 2);
+        //Debug.Log("Despues:" + transform.position.y);
+
     }
 
 

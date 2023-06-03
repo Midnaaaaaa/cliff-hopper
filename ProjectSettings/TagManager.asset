@@ -12,6 +12,7 @@ TagManager:
   - Spike
   - Terrain
   - Rampa
+  - Pinguin
   layers:
   - Default
   - TransparentFX

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7788420647069477689}
   m_Layer: 2
   m_Name: Pinguin-0
-  m_TagString: Untagged
+  m_TagString: Pinguin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 2355619253195850813}
   m_Layer: 2
   m_Name: Pinguin-0
-  m_TagString: Untagged
+  m_TagString: Pinguin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
