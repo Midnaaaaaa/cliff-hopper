@@ -53,8 +53,7 @@ public class LevelGenerator : MonoBehaviour
 
     public GameObject pilarPrefab;
 
-    public GameObject guiaSierraHPrefab;
-    public GameObject guiaSierraRPrefab;
+    public GameObject sierraPrefab;
 
 
     public float trapDensity = 0.5f;
@@ -184,9 +183,11 @@ public class LevelGenerator : MonoBehaviour
             }
 
 
-
+            Sierra lastSierra = null;
             for (int i = 1; i < numeroPlataformasSeguidas; i++)
             {
+
+
                 //TODO: RANDOM NUM PARA SABER QUE TIPO DE PLATAFORMA GENERAR
                 //numObstaclesRestants > 0 --> se coloca obstaculo
                 //numObstaclesRestants == 0 --> no se coloca obstaculo ni se generan mas (para que no se genere otro obstaculo justo al acabar el anterior o en la primera casilla (i==0))
@@ -197,6 +198,12 @@ public class LevelGenerator : MonoBehaviour
                     numObstaclesRestants = Random.Range(1, trapMaxLength[trampa] + 1);
                     numBloquesASaltar = numObstaclesRestants;
                     Debug.Log("Obtaculo: " + trampa + " Cantidad: " + numObstaclesRestants);
+
+                    if ((Trampas)trampa == Trampas.SIERRA)
+                    {
+                        lastSierra = Instantiate(sierraPrefab, lastPlatform + new Vector3(1 - direction, 1, direction) * 0.5f, Quaternion.Euler(0, -90 * (1-direction), 0), transform).GetComponent<Sierra>();
+                        lastSierra.AddPoint(lastSierra.transform.position);
+                    }
                 }
 
                 if (numObstaclesRestants <= 0)
@@ -233,6 +240,9 @@ public class LevelGenerator : MonoBehaviour
                     //set bioma
                     platform.Bioma = bioma;
 
+                    lastPlatform += new Vector3(1 - direction, 0, direction);
+                    numPlatform++;
+
 
                     // Generacion de estructura
                     if (numObstaclesRestants > 0 && (Trampas)trampa == Trampas.PINXO)
@@ -245,6 +255,11 @@ public class LevelGenerator : MonoBehaviour
                     {
                         platform.Trampa = Trampas.NORMAL;
                     }
+                    else if ((Trampas)trampa == Trampas.SIERRA)
+                    {
+                        lastSierra.AddPoint(lastPlatform + new Vector3(1 - direction, 1, direction) * 0.5f);
+                        platform.Trampa = (Trampas)trampa;
+                    }
                     else
                     {
                         platform.Trampa = (Trampas)trampa;
@@ -255,10 +270,6 @@ public class LevelGenerator : MonoBehaviour
                     alturaBola = 0.4f + (numBloquesASaltar - 1) * 0.25f;
                 }
 
-
-
-                lastPlatform += new Vector3(1 - direction, 0, direction);
-                numPlatform++;
 
                 boulaRoute.Add(lastPlatform + Vector3.up + Vector3.up * alturaBola);
 
