@@ -29,6 +29,10 @@ public class Player : MonoBehaviour
 
     private Platform lastCorner;
 
+    private float time;
+    public float rotationTime;
+    private int initialDirection;
+
 
     public UnityEvent OnCornerLit;
 
@@ -38,16 +42,21 @@ public class Player : MonoBehaviour
         rg = GetComponent<Rigidbody>();
         OnCornerLit.AddListener(GameManager.Instance.IncreaseCorners);
         OnCornerLit.AddListener(UIManager.Instance.UpdateCornerText);
+        time = 0f;
+        initialDirection = direction;
 
     }
 
     void Update()
     {
+        transform.localEulerAngles = new Vector3(0, Mathf.LerpAngle(90 * (1 - initialDirection), 90 * (1 - direction), time/rotationTime), 0);
+
         //Debug.Log(CoordManager.toCHCoords(transform.position));
         if (Input.GetButtonDown("Jump"))
         {
             if (inCorner)
             {
+
                 Girar();
                 inCorner = false;
             }
@@ -56,6 +65,7 @@ public class Player : MonoBehaviour
                 Salto();
             }
         }
+        time += Time.deltaTime;
     }
 
     void FixedUpdate()
@@ -212,8 +222,9 @@ public class Player : MonoBehaviour
     }
     private void Girar()
     {
+        initialDirection = direction;
         direction = 1 - direction;
-        transform.localEulerAngles = new Vector3(0, 90*(1-direction), 0);
+        time = 0f;
         lastCorner.setGlow(true);
         LevelGenerator.Instance.ChangeBioma(lastCorner.Bioma, 1f);
         OnCornerLit?.Invoke();
@@ -235,7 +246,6 @@ public class Player : MonoBehaviour
         if (aplastado) return;
         aplastado = true;
         velHorizontal = 0;
-
         transform.localScale = new Vector3(transform.localScale.x * 2, scale, transform.localScale.z * 2);
         transform.Translate(Vector3.down * (1 - scale) / 2);
     }
