@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 904338627973764029}
   - component: {fileID: 4711982049699887007}
   - component: {fileID: 7989360969506605221}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3617929244145269275}
   - component: {fileID: 5028487940302329693}
   - component: {fileID: 8327839455180681495}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Sierra
   m_TagString: Trap
   m_Icon: {fileID: 0}
