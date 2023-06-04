@@ -135,6 +135,9 @@ public class LevelGenerator : MonoBehaviour
             platform.Trampa = Trampas.NORMAL;
             lastPlatform += dir;
             boulaRoute.Add(platform.transform.position + Vector3.up);
+
+            Instantiate(pilarPrefab, platform.transform.position + Vector3.down * 2.5f, Quaternion.identity, platform.transform).GetComponent<Pilar>().Bioma = bioma;
+
         }
 
 

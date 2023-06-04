@@ -155,6 +155,7 @@ MonoBehaviour:
   boulaPrefab: {fileID: 5414936288160125165, guid: 3d4be4543caf9e242b5e0bec572e87b7, type: 3}
   velHorizontal: 4
   fog: {fileID: 944687872}
+  highscore: 0
 --- !u!4 &28884205
 Transform:
   m_ObjectHideFlags: 0
@@ -1559,7 +1560,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.0000267, y: -168.58}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 695.711, y: 124.155}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1471898367
