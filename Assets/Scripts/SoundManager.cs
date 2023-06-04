@@ -11,6 +11,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance { get; private set; }
 
 
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -27,5 +28,15 @@ public class SoundManager : MonoBehaviour
     public void SelectAudio(int index, float vol)
     {
         controlAudio.PlayOneShot(audios[index], vol);
+    }
+
+    public bool AudioIsPlaying()
+    {
+        return controlAudio.isPlaying;
+    }
+    
+    public AudioClip AudioClip()
+    {
+        return controlAudio.clip;
     }
 }

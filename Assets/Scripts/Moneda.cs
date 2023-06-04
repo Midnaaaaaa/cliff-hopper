@@ -34,6 +34,7 @@ public class Moneda : MonoBehaviour
             OnPickupCoin?.Invoke();
             OnPickupCoin.RemoveAllListeners();
             Destroy(gameObject);
+            SoundManager.Instance.SelectAudio(4, 0.5f);
             //GameManager.Instance.UpdateCoinUI();
         }
     }

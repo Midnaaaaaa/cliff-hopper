@@ -79,6 +79,7 @@ public class Platform : MonoBehaviour
         terrainTransf = transform.Find("Terrain");
     }
 
+
     // Update is called once per frame
     void Update()
     {
@@ -97,8 +98,5 @@ public class Platform : MonoBehaviour
         else topmodel.transform.Find("top").GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
     }
 
-    public void SetGuiaRotation(int direction)
-    {
-        //transform.Find("guiaSierra").Rotate()
-    }
+
 }
