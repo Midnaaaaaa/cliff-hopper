@@ -39,4 +39,8 @@ public class UIManager : MonoBehaviour
         }
         cornerText.text = GameManager.Instance.Corners.ToString();
     }
+
+    public void ActivarMenuMuerte(){
+        transform.GetChild(7).gameObject.SetActive(true);
+    }
 }

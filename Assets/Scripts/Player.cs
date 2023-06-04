@@ -43,6 +43,8 @@ public class Player : Aplastable
     private readonly float jumpCD = 0.1f;
     private float jumpRCD;
 
+    private int platPisadas = 0;
+
     void Start()
     {
         jumps = maxJumps;
@@ -70,6 +72,7 @@ public class Player : Aplastable
             if (inCorner)
             {
                 Girar();
+                ++platPisadas;
             }
             else if (jumps > 0)
             {
@@ -320,6 +323,7 @@ public class Player : Aplastable
         Salto();
         Girar();
         SoundManager.Instance.SelectAudio(6, 0.5f);
+        GameManager.Instance.setHighscore(platPisadas);
     }
     private void Girar()
     {
