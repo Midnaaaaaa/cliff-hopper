@@ -39,8 +39,8 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        float xz = (playerTransform.position.x + playerTransform.position.z) / 2 + 10;
-        transform.position = new Vector3(xz, playerTransform.position.y + 6, xz) + offset;
+        float xz = (playerTransform.position.x + playerTransform.position.z) / 2 + 15;
+        transform.position = new Vector3(xz, playerTransform.position.y + 10, xz) + offset;
 
         UpdateImportantCorners();
         UpdateCameraParams();

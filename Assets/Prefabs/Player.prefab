@@ -135,6 +135,7 @@ MonoBehaviour:
   OnCornerLit:
     m_PersistentCalls:
       m_Calls: []
+  god: 1
 --- !u!54 &1679537499600840942
 Rigidbody:
   m_ObjectHideFlags: 0

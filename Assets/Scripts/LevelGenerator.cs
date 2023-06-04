@@ -42,6 +42,7 @@ public class LevelGenerator : MonoBehaviour
 
     public GameObject playerPrefab;
     public GameObject platformPrefab;
+    public GameObject metaPrefab;
     public GameObject rampaPrefab;
     public GameObject monedaPrefab;
     //public GameObject platform075Prefab;
@@ -308,6 +309,8 @@ public class LevelGenerator : MonoBehaviour
         Platform platformf = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * (1 - direction), 0), transform).GetComponent<Platform>();
         platformf.Bioma = bioma;
         platformf.Trampa = Trampas.NORMAL;
+        Instantiate(pilarPrefab, platformf.transform.position + Vector3.down * 2.5f, Quaternion.identity, platformf.transform).GetComponent<Pilar>().Bioma = bioma;
+
         lastPlatform += new Vector3(1 - direction, 0, direction);
         boulaRoute.Add(lastPlatform + Vector3.up);
 
@@ -318,7 +321,7 @@ public class LevelGenerator : MonoBehaviour
 
         for (int i = 0; i < 5; ++i)
         {
-            platformf = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * (1 - direction), 0), transform).GetComponent<Platform>();
+            Instantiate(metaPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * (1 - direction), 0), transform);
             lastPlatform += new Vector3(1 - direction, 0, direction);
         }
 

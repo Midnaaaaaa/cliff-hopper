@@ -500,7 +500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {x: 0, y: 10, z: -4}
   minPlatformsUntilTurn: 2
-  totalNumPlatforms: 240
+  totalNumPlatforms: 50
   minFilasInBiome: 10
   maxFilasInBiome: 20
   probBiomaInicial:
@@ -525,6 +525,7 @@ MonoBehaviour:
   alturaRampa: 0.25
   playerPrefab: {fileID: 5666608992400065888, guid: b5788f803d5dbcc47a8e214181e8b927, type: 3}
   platformPrefab: {fileID: 6993447974356482865, guid: 4b0fa3798f8ee324fa933ae88df4b59a, type: 3}
+  metaPrefab: {fileID: 6425433852725518349, guid: 144ac2aaf93abd14585875b71779c754, type: 3}
   rampaPrefab: {fileID: 3377661672347340731, guid: 4bd42cb71a97e6e46b35c65b7fe7a8cc, type: 3}
   monedaPrefab: {fileID: 5982693881870049396, guid: fba5f185fa18b9f49a6b8dffa09a2dfd, type: 3}
   cornerPrefab: {fileID: 1960998830750327700, guid: 163d8f56f1115d644b0481f870ffd3b0, type: 3}

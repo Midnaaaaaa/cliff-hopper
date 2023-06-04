@@ -13,6 +13,7 @@ public class Player : Aplastable
 
     [System.NonSerialized]
     public float velHorizontal;
+    private float normalVel;
 
     public float gravity;
     public int maxJumps;
@@ -37,6 +38,8 @@ public class Player : Aplastable
 
     private bool muelto = false;
 
+    public bool god = false;
+
 
     void Start()
     {
@@ -46,6 +49,7 @@ public class Player : Aplastable
         OnCornerLit.AddListener(UIManager.Instance.UpdateCornerText);
         time = 0f;
         initialDirection = direction;
+        normalVel = velHorizontal;
 
     }
 
@@ -62,9 +66,7 @@ public class Player : Aplastable
         {
             if (inCorner)
             {
-
                 Girar();
-                inCorner = false;
             }
             else if (jumps > 0)
             {
@@ -75,7 +77,7 @@ public class Player : Aplastable
 
     void FixedUpdate()
     {
-
+        if (god) velHorizontal = normalVel;
         if (bJumping)
         {
             velY += gravity * Time.fixedDeltaTime;
@@ -125,6 +127,26 @@ public class Player : Aplastable
                 Caer();
         }
 
+        if (god)
+        {
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, layerMask))
+            {
+                if (hit.collider.CompareTag("Fog"))
+                {
+                    Salto();
+                }
+                else if (hit.collider.CompareTag("Platform"))
+                {
+                    Platform p = hit.collider.transform.parent.GetComponent<Platform>();
+                    if (p.Trampa == Trampas.CORNER && lastCorner != p)
+                    {
+                        inCorner = true;
+                        lastCorner = hit.collider.transform.parent.GetComponent<Platform>();
+                    }
+                }
+            }
+        }
+
 
         //// RAYO 3: MIRAR SI CHOCAS (TRUCAZO CHAVAL) DE FRENTE
         //Debug.DrawRay(transform.position, transform.forward * 0.5f, Color.cyan);
@@ -137,18 +159,25 @@ public class Player : Aplastable
         //    }
         //}
 
+        int targetX = Mathf.RoundToInt(transform.position.x);
+        int targetZ = Mathf.RoundToInt(transform.position.z);
         if (direction == 0) // direccion +X
         {
-            int target = Mathf.RoundToInt(transform.position.z);
-            if (transform.position.z < target)
+            if (transform.position.z < targetZ)
             {
-                float newZPos = Mathf.Min(transform.position.z + correctionVel, target);
+                float newZPos = Mathf.Min(transform.position.z + correctionVel, targetZ);
                 transform.position = new Vector3(transform.position.x, transform.position.y, newZPos);
             }
-            else if (transform.position.z > target)
+            else if (transform.position.z > targetZ)
             {
-                float newZPos = Mathf.Max(transform.position.z - correctionVel, target);
+                float newZPos = Mathf.Max(transform.position.z - correctionVel, targetZ);
                 transform.position = new Vector3(transform.position.x, transform.position.y, newZPos);
+            }
+
+            //Giro automatico
+            if (god && inCorner && transform.position.x > targetX)
+            {
+                Girar();
             }
         }
         else // direccion +Z
@@ -163,6 +192,12 @@ public class Player : Aplastable
             {
                 float newXPos = Mathf.Max(transform.position.x - correctionVel, target);
                 transform.position = new Vector3(newXPos, transform.position.y, transform.position.z);
+            }
+
+            //Giro automatico
+            if (god && inCorner && transform.position.z > targetZ)
+            {
+                Girar();
             }
         }
     }
@@ -235,6 +270,7 @@ public class Player : Aplastable
 
     public void Muelto()
     {
+        if (god) return;
         Debug.Log("Muelto");
         muelto = true;
         Salto();
@@ -246,6 +282,7 @@ public class Player : Aplastable
         initialDirection = direction;
         direction = 1 - direction;
         time = 0f;
+        inCorner = false;
         if (muelto) return;
         lastCorner.setGlow(true);
         LevelGenerator.Instance.ChangeBioma(lastCorner.Bioma, 1f);
