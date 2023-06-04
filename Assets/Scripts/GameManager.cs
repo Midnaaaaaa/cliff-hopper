@@ -79,10 +79,12 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0;
+        SoundManager.Instance.Pause();
     }
     public void ResumeGame()
     {
         Time.timeScale = 1;
+        SoundManager.Instance.Resume();
     }
 
     //public void TogglePauseGame()
