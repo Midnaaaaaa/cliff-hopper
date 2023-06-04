@@ -51,6 +51,8 @@ public class Player : Aplastable
 
     void Update()
     {
+        if (muelto) return;
+
         transform.localEulerAngles = new Vector3(0, Mathf.LerpAngle(90 * (1 - initialDirection), 90 * (1 - direction), time/rotationTime), 0);
 
         //Debug.Log(CoordManager.toCHCoords(transform.position));

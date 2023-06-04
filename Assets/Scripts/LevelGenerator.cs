@@ -289,6 +289,21 @@ public class LevelGenerator : MonoBehaviour
             ++numFila;
             --numeroFilasBioma;
         }
+
+        /**Generar final del nivel:
+         * - 1 hueco
+         * - Plataformas meta de cuadros hasta salir de la pantalla
+         */
+        lastPlatform += new Vector3(1 - direction, 0, direction);
+        cornersPos.Add(CoordManager.toCHCoords(lastPlatform + new Vector3(1 - direction, 0, direction) * 2));
+
+        for (int i = 0; i < 5; ++i)
+        {
+            Platform platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * (1 - direction), 0), transform).GetComponent<Platform>();
+            lastPlatform += new Vector3(1 - direction, 0, direction);
+        }
+
+
     }
 
 
