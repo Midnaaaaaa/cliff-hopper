@@ -324,6 +324,8 @@ public class LevelGenerator : MonoBehaviour
             Instantiate(metaPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * (1 - direction), 0), transform);
             lastPlatform += new Vector3(1 - direction, 0, direction);
         }
+        Instantiate(metaPrefab, lastPlatform + new Vector3(1 - direction, 1, direction), Quaternion.Euler(0, -90 * (1 - direction), 0), transform);
+
 
 
     }

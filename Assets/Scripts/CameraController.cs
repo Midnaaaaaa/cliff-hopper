@@ -18,7 +18,11 @@ public class CameraController : MonoBehaviour
 
     Queue<Vector2> importantCorners;
     List<Vector2> cornersList;
+
     private int cornerIndex = 0;
+
+    private bool final = false;
+    private Vector3 endPos;
 
     // Start is called before the first frame update
     void Start()
@@ -39,11 +43,24 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        float xz = (playerTransform.position.x + playerTransform.position.z) / 2 + 15;
-        transform.position = new Vector3(xz, playerTransform.position.y + 10, xz) + offset;
+        if (!final)
+        {
+            float xz = (playerTransform.position.x + playerTransform.position.z) / 2 + 15;
+            transform.position = new Vector3(xz, playerTransform.position.y + 10, xz) + offset;
 
-        UpdateImportantCorners();
-        UpdateCameraParams();
+            UpdateImportantCorners();
+            UpdateCameraParams();
+
+            if (cornerIndex >= cornersList.Count)
+            {
+                final = true;
+                endPos = new Vector3(xz, playerTransform.position.y + 10, xz);
+            }
+        }
+        else
+        {
+            transform.position = endPos + offset;
+        }
 
         //Debug.Log("Nº Important corners: " + importantCorners.Count);
         //Debug.Log("Corner Index: " + cornerIndex);
