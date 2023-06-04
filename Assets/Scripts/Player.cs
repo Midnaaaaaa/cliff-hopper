@@ -352,7 +352,7 @@ public class Player : Aplastable
     {
         base.Aplastar(scale);
         velHorizontal = 0;
-        muelto = true;
+        Muelto(false);
         animator.Play("Aplastao");
     }
 }
