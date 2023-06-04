@@ -38,7 +38,7 @@ public class Player : Aplastable
 
     private bool muelto = false;
 
-    public bool god = false;
+    private bool god = false;
 
     private readonly float jumpCD = 0.1f;
     private float jumpRCD;
@@ -76,6 +76,7 @@ public class Player : Aplastable
                 Salto();
             }
         }
+        if(Input.GetKeyDown(KeyCode.G)) god = !god;
     }
 
     void FixedUpdate()
