@@ -336,7 +336,7 @@ public class LevelGenerator : MonoBehaviour
         cornersPos.Add(CoordManager.toCHCoords(lastPlatform + new Vector3(1 - direction, 0, direction) * 2));
         boulaRoute.Add(lastPlatform + Vector3.up);
 
-        for (int i = 0; i < 5; ++i)
+        for (int i = 0; i < 10; ++i)
         {
             Instantiate(metaPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * (1 - direction), 0), transform);
             lastPlatform += new Vector3(1 - direction, 0, direction);
