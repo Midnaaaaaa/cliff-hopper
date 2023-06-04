@@ -23,7 +23,7 @@ public class SceneHandler : MonoBehaviour
         LeanTween.alpha(fader, 0, 0);
         LeanTween.alpha(fader, 1, 0.5f).setOnComplete(() =>
         {
-            Invoke("Play", 0.5f);
+            Invoke("Play", 0f);
         });
     }
 
@@ -33,7 +33,9 @@ public class SceneHandler : MonoBehaviour
         LeanTween.alpha(fader, 0, 0);
         LeanTween.alpha(fader, 1, 0.5f).setOnComplete(() =>
         {
-            Invoke("HTP", 0.5f);
+            Invoke("HTP", 0f);
+            fader.gameObject.SetActive(false);
+
         });
     }
 
@@ -43,7 +45,8 @@ public class SceneHandler : MonoBehaviour
         LeanTween.alpha(fader, 0, 0);
         LeanTween.alpha(fader, 1, 0.5f).setOnComplete(() =>
         {
-            Invoke("Menu", 0.5f);
+            Invoke("Menu", 0f);
+            fader.gameObject.SetActive(false);
         });
     }
 
@@ -54,7 +57,9 @@ public class SceneHandler : MonoBehaviour
         LeanTween.alpha(fader, 0, 0);
         LeanTween.alpha(fader, 1, 0.5f).setOnComplete(() =>
         {
-            Invoke("Credits", 0.5f);
+            Invoke("Credits", 0f);
+            fader.gameObject.SetActive(false);
+
         });
     }
 
@@ -66,18 +71,24 @@ public class SceneHandler : MonoBehaviour
 
     private void Credits()
     {
-        SceneManager.LoadScene(3);
+        this.transform.parent.Find("CREDITS").gameObject.SetActive(true);
+        this.transform.parent.Find("MainMenu").gameObject.SetActive(false);
     }
 
     private void Menu()
     {
-        SceneManager.LoadScene(0);
+        this.transform.parent.Find("MainMenu").gameObject.SetActive(true);
+        this.transform.parent.Find("HTP").gameObject.SetActive(false);
+        this.transform.parent.Find("CREDITS").gameObject.SetActive(false);
     }
 
 
     private void HTP()
     {
-        SceneManager.LoadScene(2);
+        this.transform.parent.Find("HTP").gameObject.SetActive(true);
+        this.transform.parent.Find("MainMenu").gameObject.SetActive(false);
+        //transform.Find("MainMenu").gameObject.SetActive(false);
+        //transform.Find("CREDITS").gameObject.SetActive(false);
     }
 
     private void Play()

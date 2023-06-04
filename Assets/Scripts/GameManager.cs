@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
     public int MonedasCogidas { get; set; }
+
+    bool victory = false;
     //public int Bioma { get; set; }
 
     // Start is called before the first frame update
@@ -67,5 +69,11 @@ public class GameManager : MonoBehaviour
     public void IncreaseCorners()
     {
         ++Corners;
+    }
+
+    public void Victory()
+    {
+        if(!victory) SoundManager.Instance.SelectAudio(8, 0.5f);
+        victory = true;
     }
 }
