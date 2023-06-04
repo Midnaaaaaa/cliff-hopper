@@ -503,6 +503,11 @@ MonoBehaviour:
   totalNumPlatforms: 240
   minFilasInBiome: 10
   maxFilasInBiome: 20
+  probBiomaInicial:
+  - 0.7
+  - 0.1
+  - 0.1
+  - 0.1
   probPlatformLength:
   - 0.05
   - 0.2
@@ -514,7 +519,7 @@ MonoBehaviour:
   - 0.25
   - 0.25
   - 0.25
-  probTrapBioma: 0.2
+  probTrapBioma: 0.4
   probMoneda: 0.1
   probRampa: 0.5
   alturaRampa: 0.25

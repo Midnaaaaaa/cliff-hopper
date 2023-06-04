@@ -10,7 +10,7 @@ public class Cactus : Aplastable
     // Start is called before the first frame update
     void Start()
     {
-        scale = scale + Random.Range(-0.2f, 0.2f);
+        scale = scale + Random.Range(-0.15f, 0.15f);
         transform.Translate(Vector3.down * (transform.localScale.y - scale) / 2);
         transform.localScale *= scale;
     }

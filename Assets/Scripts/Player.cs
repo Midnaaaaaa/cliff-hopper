@@ -51,9 +51,11 @@ public class Player : Aplastable
 
     void Update()
     {
-        if (muelto) return;
 
         transform.localEulerAngles = new Vector3(0, Mathf.LerpAngle(90 * (1 - initialDirection), 90 * (1 - direction), time/rotationTime), 0);
+        time += Time.deltaTime;
+
+        if (muelto) return;
 
         //Debug.Log(CoordManager.toCHCoords(transform.position));
         if (Input.GetButtonDown("Jump"))
@@ -69,12 +71,10 @@ public class Player : Aplastable
                 Salto();
             }
         }
-        time += Time.deltaTime;
     }
 
     void FixedUpdate()
     {
-        if (muelto) return;
 
         if (bJumping)
         {
@@ -83,6 +83,7 @@ public class Player : Aplastable
         }
         transform.position += new Vector3(1 - direction, 0, direction) * velHorizontal * Time.fixedDeltaTime;
 
+        if (muelto) return;
 
         // Bit shift the index of the layer (8) to get a bit mask
         int layerMask = 1 << 2;
@@ -168,6 +169,8 @@ public class Player : Aplastable
 
     private void OnTriggerEnter(Collider other)
     {
+        if (muelto) return;
+
         //if (other.tag == "Platform")
         //{
         //    Suelo();
@@ -188,6 +191,8 @@ public class Player : Aplastable
 
     private void OnTriggerExit(Collider other)
     {
+        if (muelto) return;
+
         if (other.tag == "Corner" && inCorner)
         {
             inCorner = false;
@@ -203,6 +208,12 @@ public class Player : Aplastable
         jumps--;
         bJumping = true;
         inCorner = false;
+
+        if (muelto)
+        {
+            jumps = 0;
+            return;
+        }
         float rand = Random.value;
         if(rand <= 0.5) SoundManager.Instance.SelectAudio(0, 0.5f);
         else SoundManager.Instance.SelectAudio(1, 0.5f);
@@ -211,8 +222,9 @@ public class Player : Aplastable
     private void Suelo()
     {
         bJumping = false;
-        jumps = maxJumps;
         velY = 0;
+
+        if (!muelto) jumps = maxJumps;
     }
 
     private void Caer()
@@ -224,6 +236,7 @@ public class Player : Aplastable
     public void Muelto()
     {
         Debug.Log("Muelto");
+        muelto = true;
         Salto();
         Girar();
         SoundManager.Instance.SelectAudio(6, 0.5f);
@@ -233,6 +246,7 @@ public class Player : Aplastable
         initialDirection = direction;
         direction = 1 - direction;
         time = 0f;
+        if (muelto) return;
         lastCorner.setGlow(true);
         LevelGenerator.Instance.ChangeBioma(lastCorner.Bioma, 1f);
         OnCornerLit?.Invoke();
@@ -254,7 +268,7 @@ public class Player : Aplastable
     {
         base.Aplastar(scale);
         velHorizontal = 0;
+        muelto = true;
         animator.Play("Aplastao");
-        SoundManager.Instance.SelectAudio(7, 0.5f);
     }
 }

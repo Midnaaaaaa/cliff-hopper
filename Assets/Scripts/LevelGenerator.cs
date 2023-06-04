@@ -23,6 +23,7 @@ public class LevelGenerator : MonoBehaviour
 
     public int minFilasInBiome;
     public int maxFilasInBiome;
+    public float[] probBiomaInicial;
 
     private int direction = 1; //1 derecha 0 izquierda
     private Vector3 lastPlatform;
@@ -89,12 +90,13 @@ public class LevelGenerator : MonoBehaviour
                 Instantiate(aroPrefab, inicioFila + new Vector3(1 - direction, 0, direction) * (numBloquesFila+1) + Vector3.up, Quaternion.Euler(0, -180 + 90 * (1-direction), 0)).GetComponent<Aro>().MaxDistActivation = numBloquesFila + 1;
                 break;
             case Bioma.DESERT: // Cactus
-                float offset = Random.Range(3f, numBloquesFila - 3);
+                float offset = Random.Range(2.5f, Mathf.Max(2.5f, numBloquesFila - 2));
+                Debug.Log("Offset: " + offset);
                 GameObject cactus = Instantiate(cactusPrefab, inicioFila + new Vector3(1 - direction, 0, direction) * offset + Vector3.up, Quaternion.Euler(0, -180 + 90 * (direction), 0), transform);
                 //cactus.transform.localScale = 1;
                 break;
             case Bioma.ICE: // Pinguin 👍
-                Instantiate(pinguinPrefab, inicioFila + Vector3.up + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, 90 * (1 - direction), 0)).GetComponent<Pinguin>().Init(2, numBloquesFila - 2, direction);
+                Instantiate(pinguinPrefab, inicioFila + Vector3.up + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, 90 * (1 - direction), 0)).GetComponent<Pinguin>().Init(2, numBloquesFila - 3, direction);
                 break;
         }
     }
@@ -114,7 +116,7 @@ public class LevelGenerator : MonoBehaviour
         guide.Init(player.gameObject);
 
 
-        Bioma bioma = Bioma.DESERT;
+        Bioma bioma = (Bioma)randomElementWithProbabilities(probBiomaInicial);
         ChangeBioma(bioma, 0);
 
         /**
@@ -130,10 +132,17 @@ public class LevelGenerator : MonoBehaviour
 
             if (numeroFilasBioma <= 0)
             {
-                bioma = (Bioma)Random.Range(0, 3 + 1);
+                Bioma nuevoBioma;
+                do
+                {
+                    nuevoBioma = (Bioma)Random.Range(0, 3 + 1);
+                }
+                while (bioma == nuevoBioma);
+                bioma = nuevoBioma;
+
                 numeroFilasBioma = Random.Range(minFilasInBiome, maxFilasInBiome + 1);
             }
-            int numeroPlataformasSeguidas = calculateNumPlataformesSeguides();//Random.Range(minPlatformsUntilTurn, maxPlatformsUntilTurn);
+            int numeroPlataformasSeguidas = (numFila > 0) ? calculateNumPlataformesSeguides() : 5;//Random.Range(minPlatformsUntilTurn, maxPlatformsUntilTurn);
 
             Debug.Log(numeroPlataformasSeguidas);
 
@@ -180,7 +189,7 @@ public class LevelGenerator : MonoBehaviour
             int numBloquesASaltar = 0;
 
 
-            if (numFila > 0 && numeroPlataformasSeguidas > 3 && Random.value <= probTrapBioma) // Generar trampa especial de bioma, y no generar ninguna mas en la fila
+            if (numFila > 0 && numeroPlataformasSeguidas > 3 && bioma != Bioma.GRASS && Random.value <= probTrapBioma) // Generar trampa especial de bioma, y no generar ninguna mas en la fila
             {
                 trampa = (int)Trampas.BIOMA;
                 GenerarTrampaBioma(bioma, lastPlatform, numeroPlataformasSeguidas, direction);
