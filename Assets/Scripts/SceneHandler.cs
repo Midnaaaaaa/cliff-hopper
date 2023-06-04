@@ -63,6 +63,16 @@ public class SceneHandler : MonoBehaviour
         });
     }
 
+    public void TransitionToMenuFromGame()
+    {
+        fader.gameObject.SetActive(true);
+        LeanTween.alpha(fader, 0, 0);
+        LeanTween.alpha(fader, 1, 0.5f).setOnComplete(() =>
+        {
+            Invoke("MenuFromGame", 0f);
+        });
+    }
+
 
     public void Exit()
     {
@@ -95,4 +105,9 @@ public class SceneHandler : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    private void MenuFromGame(){
+        SceneManager.LoadScene(0);
+    }
+
 }
