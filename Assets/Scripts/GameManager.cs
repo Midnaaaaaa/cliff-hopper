@@ -68,4 +68,20 @@ public class GameManager : MonoBehaviour
     {
         ++Corners;
     }
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+    }
+
+    //public void TogglePauseGame()
+    //{
+    //    if (Time.timeScale > 0)
+    //        Time.timeScale = 0;
+    //    else
+    //        Time.timeScale = 1;
+    //}
 }
