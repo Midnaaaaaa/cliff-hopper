@@ -511,8 +511,8 @@ MonoBehaviour:
   - 0.25
   probTrap:
   - 0
-  - 1
   - 0
+  - 1
   - 0
   probTrapBioma: 0
   probMoneda: 0.1
@@ -1524,6 +1524,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c2d43e3af2792b445b0f17e664fe650d, type: 3}
   - {fileID: 8300000, guid: f6036bbfd17dcf64591fa7819983d50d, type: 3}
   - {fileID: 8300000, guid: 6ab91f946b87d8947ae803c75ddda650, type: 3}
+  - {fileID: 8300000, guid: d77c6c4875269bc439d80d8cb5589dcf, type: 3}
+  - {fileID: 8300000, guid: 9794e09dd4c75684f95b8a3a51d5c2a7, type: 3}
 --- !u!4 &2138120332
 Transform:
   m_ObjectHideFlags: 0
