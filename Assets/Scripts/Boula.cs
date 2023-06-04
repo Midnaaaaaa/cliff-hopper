@@ -11,9 +11,12 @@ public class Boula : MonoBehaviour
 
     private bool isRotating = false;
 
+    private Rigidbody rg;
+
     // Start is called before the first frame update
     void Start()
     {
+        rg = GetComponent<Rigidbody>();
         route = LevelGenerator.Instance.getBoulaRoute();
 
         //Solo se ejecuta 1 vez, ponerlo en el start?
@@ -33,20 +36,22 @@ public class Boula : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Vector3 rotation = normalizeRotation(transform.localEulerAngles);
-        //if (direction.x > 0 && (rotation.z > initialAngle + 90 || rotation.z < initialAngle))
-        //{
-        //    float endAngle = (initialAngle + 90) % 360;
-        //    float resto = rotation.z - endAngle;
-        //    transform.localEulerAngles = new Vector3(rotation.x, rotation.y, endAngle);
-        //    SetRotationParams();
-        //    transform.RotateAround(rotationCenter, axis, resto);
-        //}
+        if (index >= route.Count) return;
+
+
         transform.RotateAround(rotationCenter, axis, rotationSpeed * Time.deltaTime);
         remainingAngle -= rotationSpeed * Time.deltaTime;
         if (remainingAngle <= 0)
         {
             transform.RotateAround(rotationCenter, axis, remainingAngle);
+
+            if (index + 1 >= route.Count)
+            {
+                index++;
+                rg.useGravity = true;
+                return;
+            }
+
             SetRotationParams();
             transform.RotateAround(rotationCenter, axis, -remainingAngle);
             remainingAngle = 90 + remainingAngle;

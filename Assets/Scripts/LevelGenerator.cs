@@ -291,15 +291,25 @@ public class LevelGenerator : MonoBehaviour
         }
 
         /**Generar final del nivel:
+         * - 1 bloque seguro
          * - 1 hueco
          * - Plataformas meta de cuadros hasta salir de la pantalla
          */
+
+        Platform platformf = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * (1 - direction), 0), transform).GetComponent<Platform>();
+        platformf.Bioma = bioma;
+        platformf.Trampa = Trampas.NORMAL;
+        lastPlatform += new Vector3(1 - direction, 0, direction);
+        boulaRoute.Add(lastPlatform + Vector3.up);
+
+
         lastPlatform += new Vector3(1 - direction, 0, direction);
         cornersPos.Add(CoordManager.toCHCoords(lastPlatform + new Vector3(1 - direction, 0, direction) * 2));
+        boulaRoute.Add(lastPlatform + Vector3.up);
 
         for (int i = 0; i < 5; ++i)
         {
-            Platform platform = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * (1 - direction), 0), transform).GetComponent<Platform>();
+            platformf = Instantiate(platformPrefab, lastPlatform + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, -90 * (1 - direction), 0), transform).GetComponent<Platform>();
             lastPlatform += new Vector3(1 - direction, 0, direction);
         }
 
