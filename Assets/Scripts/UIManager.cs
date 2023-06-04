@@ -33,6 +33,10 @@ public class UIManager : MonoBehaviour
 
     public void UpdateCornerText()
     {
+        if(GameManager.Instance.Corners == 10 || GameManager.Instance.Corners == 100 || GameManager.Instance.Corners == 1000)
+        {
+            //cornerText.rectTransform.anchoredPosition = (new Vector3(cornerText.rectTransform.anchoredPosition.x + 10f, cornerText.rectTransform.anchoredPosition.y, 0f));
+        }
         cornerText.text = GameManager.Instance.Corners.ToString();
     }
 }

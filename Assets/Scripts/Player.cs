@@ -226,6 +226,7 @@ public class Player : Aplastable
         Debug.Log("Muelto");
         Salto();
         Girar();
+        SoundManager.Instance.SelectAudio(6, 0.5f);
     }
     private void Girar()
     {
@@ -254,5 +255,6 @@ public class Player : Aplastable
         base.Aplastar(scale);
         velHorizontal = 0;
         animator.Play("Aplastao");
+        SoundManager.Instance.SelectAudio(7, 0.5f);
     }
 }
