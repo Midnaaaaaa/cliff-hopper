@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     public int MonedasCogidas { get; set; }
 
     bool victory = false;
+
+    public int highscore = 0;
+
     //public int Bioma { get; set; }
 
     // Start is called before the first frame update
@@ -73,7 +76,10 @@ public class GameManager : MonoBehaviour
 
     public void Victory()
     {
-        if(!victory) SoundManager.Instance.SelectAudio(8, 0.5f);
+        if(!victory) {
+            SoundManager.Instance.SelectAudio(8, 0.5f);
+            UIManager.Instance.ActivarMenuMuerte();
+        }
         victory = true;
     }
     public void PauseGame()
@@ -85,6 +91,14 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         SoundManager.Instance.Resume();
+    }
+
+    public void setHighscore(int hs){
+        if(hs > highscore){
+            highscore = hs;
+            
+        }
+
     }
 
     //public void TogglePauseGame()
