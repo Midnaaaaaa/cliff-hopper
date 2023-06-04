@@ -72,7 +72,6 @@ public class Player : Aplastable
             if (inCorner)
             {
                 Girar();
-                ++platPisadas;
             }
             else if (jumps > 0)
             {
@@ -347,6 +346,7 @@ public class Player : Aplastable
         time = 0f;
         inCorner = false;
         if (muelto) return;
+        ++platPisadas;
         lastCorner.setGlow(true);
         LevelGenerator.Instance.ChangeBioma(lastCorner.Bioma, 1f);
         OnCornerLit?.Invoke();

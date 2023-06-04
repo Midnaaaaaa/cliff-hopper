@@ -8,8 +8,8 @@ public class Meta : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            GameManager.Instance.Victory();
             other.GetComponent<Player>().UpdateHighScore();
+            GameManager.Instance.Victory();
         }
     }
 }
