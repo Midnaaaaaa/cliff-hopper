@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     public int highscore = 0;
 
-    //public int Bioma { get; set; }
+    //public int Bioma { get; set; }    
 
     // Start is called before the first frame update
     void Awake()
