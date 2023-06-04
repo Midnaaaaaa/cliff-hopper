@@ -371,4 +371,14 @@ public class LevelGenerator : MonoBehaviour
     {
 
     }
+
+    public void ResetLevel()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child);
+        }
+
+        GenerarLevel();
+    }
 }
