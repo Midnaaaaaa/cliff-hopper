@@ -248,9 +248,9 @@ public class Player : Aplastable
         //    EnterCorner(other.gameObject.transform.parent.GetComponent<Platform>());
         //}
 
-        if (other.CompareTag("Trap"))
+        if (other.CompareTag("Trap") || other.CompareTag("Fog"))
         {
-            Muelto();
+            Muelto(other.CompareTag("Trap"));
         }
     }
 
@@ -315,13 +315,16 @@ public class Player : Aplastable
         bJumping = true;
     }
 
-    public void Muelto()
+    public void Muelto(bool salto = true)
     {
         if (god) return;
         Debug.Log("Muelto");
         muelto = true;
-        Salto();
-        Girar();
+        if (salto)
+        {
+            Salto();
+            Girar();
+        }
         SoundManager.Instance.SelectAudio(6, 0.5f);
         GameManager.Instance.setHighscore(platPisadas);
     }
@@ -353,7 +356,7 @@ public class Player : Aplastable
     {
         base.Aplastar(scale);
         velHorizontal = 0;
-        muelto = true;
+        Muelto(false);
         animator.Play("Aplastao");
     }
 }

@@ -120,6 +120,24 @@ public class LevelGenerator : MonoBehaviour
         Bioma bioma = (Bioma)randomElementWithProbabilities(probBiomaInicial);
         ChangeBioma(bioma, 0);
 
+        int plataformasIniciales = 5;
+
+        boulaRoute = new List<Vector3>();
+
+
+        //Generar fila inicial
+        Vector3 dir = new(1 - direction, 0, direction);
+        lastPlatform = spawnPoint - dir;
+        for (int i = 0; i < plataformasIniciales; ++i)
+        {
+            Platform platform = Instantiate(platformPrefab, lastPlatform + dir, Quaternion.identity, transform).GetComponent<Platform>();
+            platform.Bioma = bioma;
+            platform.Trampa = Trampas.NORMAL;
+            lastPlatform += dir;
+            boulaRoute.Add(platform.transform.position + Vector3.up);
+        }
+
+
         /**
          *  - Mas prob a filas mas largas
          *  - Prob separadas para cada obstaculo
@@ -153,17 +171,16 @@ public class LevelGenerator : MonoBehaviour
                 //Plataforma inicial
                 platform = Instantiate(platformPrefab).GetComponent<Platform>();
                 platform.transform.parent = transform;
-                platform.transform.position = spawnPoint;
+                platform.transform.position = lastPlatform + new Vector3(1 - direction, 0, direction);
                 platform.Bioma = bioma;
                 platform.Trampa = Trampas.NORMAL;
-                lastPlatform = spawnPoint;
+                lastPlatform += new Vector3(1 - direction, 0, direction);
 
                 cornersPos = new List<Vector2>
                 {
                     CoordManager.toCHCoords(platform.transform.position)
                 };
 
-                boulaRoute = new List<Vector3>();
             }
             else // Corner
             {
