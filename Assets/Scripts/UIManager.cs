@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI coinText;
     [SerializeField] TextMeshProUGUI cornerText;
+    [SerializeField] TextMeshProUGUI highscoreText;
     public static UIManager Instance { get; private set; }
     void Awake()
     {
@@ -42,5 +43,9 @@ public class UIManager : MonoBehaviour
 
     public void ActivarMenuMuerte(){
         transform.GetChild(7).gameObject.SetActive(true);
+    }
+
+    public void UpdateHighScore(){
+        highscoreText.text = GameManager.Instance.highscore.ToString();
     }
 }

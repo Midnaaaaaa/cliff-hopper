@@ -327,6 +327,7 @@ public class Player : Aplastable
         }
         SoundManager.Instance.SelectAudio(6, 0.5f);
         GameManager.Instance.setHighscore(platPisadas);
+        UIManager.Instance.ActivarMenuMuerte();
     }
     private void Girar()
     {
