@@ -16,4 +16,15 @@ public class BolaDuFuegu : MonoBehaviour
     {
         transform.Translate(Vector3.forward * vel * Time.deltaTime);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            Player p = other.GetComponent<Player>();
+            p.Muelto();
+        }
+    }
+
+
 }
