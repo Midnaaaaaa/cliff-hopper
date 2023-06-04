@@ -13,6 +13,9 @@ TagManager:
   - Terrain
   - Rampa
   - Pinguin
+  - Fog
+  - Meta
+  - Fuego
   layers:
   - Default
   - TransparentFX

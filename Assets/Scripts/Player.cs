@@ -40,6 +40,8 @@ public class Player : Aplastable
 
     public bool god = false;
 
+    private readonly float jumpCD = 0.1f;
+    private float jumpRCD;
 
     void Start()
     {
@@ -51,6 +53,7 @@ public class Player : Aplastable
         initialDirection = direction;
         normalVel = velHorizontal;
 
+        jumpRCD = 0;
     }
 
     void Update()
@@ -77,6 +80,7 @@ public class Player : Aplastable
 
     void FixedUpdate()
     {
+        jumpRCD -= Time.fixedDeltaTime;
         if (god) velHorizontal = normalVel;
         if (bJumping)
         {
@@ -98,7 +102,7 @@ public class Player : Aplastable
 
         // Hay que mirar antes este porque si estas encima de escalera con bJumping=false se hace snap, y no estas cayendo aun que estes flotando un poco
         // RAYO 2: MIRAR SI ESTAS BAJANDO ESCALERA
-        if (!bJumping && Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, layerMask) && hit.collider.tag == "Rampa")
+        if (!bJumping && Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, layerMask) && hit.collider.CompareTag("Rampa"))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.green);
             //GetComponent<MeshRenderer>().material.color = Color.blue;
@@ -107,7 +111,7 @@ public class Player : Aplastable
         }
         // RAYO 1: MIRAR SI ESTAS TOCANDO SUELO
         // Does the ray intersect any objects excluding the player layer
-        else if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, transform.localScale.y + 0.001f, layerMask))
+        else if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, transform.localScale.y + 0.001f, layerMask) && (hit.collider.CompareTag("Platform") || hit.collider.CompareTag("Rampa") || hit.collider.CompareTag("Meta")))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.red);
             //Debug.Log("Did Hit");
@@ -129,22 +133,46 @@ public class Player : Aplastable
 
         if (god)
         {
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, layerMask))
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 1, layerMask))
             {
                 if (hit.collider.CompareTag("Fog"))
                 {
                     Salto();
                 }
-                else if (hit.collider.CompareTag("Platform"))
+            }
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, layerMask))
+            {
+                if (hit.collider.CompareTag("Platform"))
                 {
                     Platform p = hit.collider.transform.parent.GetComponent<Platform>();
+
+                    //Esto es para cuando estas en el aire
                     if (p.Trampa == Trampas.CORNER && lastCorner != p)
                     {
                         inCorner = true;
                         lastCorner = hit.collider.transform.parent.GetComponent<Platform>();
                     }
+                    else if (p.Trampa == Trampas.LENTO && hit.distance < transform.localScale.y + 0.05f)
+                    {
+                        Salto();
+                    }
+                }
+                else if (hit.collider.CompareTag("Trap") && hit.distance < transform.localScale.y + 0.05f)
+                {
+                    Salto();
                 }
             }
+
+            Debug.DrawRay(transform.position + Vector3.down * 0.4f, transform.forward * 1f, Color.red);
+            //Rayo desde parte baja hacia delante
+            if (Physics.Raycast(transform.position + Vector3.down * 0.4f, transform.forward, out hit, Mathf.Infinity, layerMask))
+            {
+                if ((hit.collider.CompareTag("Trap") || hit.collider.CompareTag("Pinguin")) && hit.distance < 1.5f || (hit.collider.CompareTag("Fuego") && hit.distance < 3f))
+                {
+                    Salto();
+                }
+            }
+
         }
 
 
@@ -211,14 +239,12 @@ public class Player : Aplastable
         //    Suelo();
         //}
 
-        if (other.tag == "Corner")
-        {
-            inCorner = true;
-            //Debug.Log(other.gameObject.transform.parent.name);
-            lastCorner = other.gameObject.transform.parent.GetComponent<Platform>();
-        }
+        //if (other.tag == "Corner")
+        //{
+        //    EnterCorner(other.gameObject.transform.parent.GetComponent<Platform>());
+        //}
 
-        if (other.tag == "Trap")
+        if (other.CompareTag("Trap"))
         {
             Muelto();
         }
@@ -226,23 +252,40 @@ public class Player : Aplastable
 
     private void OnTriggerExit(Collider other)
     {
-        if (muelto) return;
+        //if (muelto) return;
 
-        if (other.tag == "Corner" && inCorner)
+        //if (other.tag == "Corner" && inCorner)
+        //{
+        //    ExitCorner(other.GetComponent<Platform>());
+        //}
+    }
+
+    public void ExitCorner(Platform corner)
+    {
+        inCorner = false;
+        bJumping = true;
+        lastCorner = corner;
+    }
+    public void EnterCorner(Platform corner)
+    {
+        if (lastCorner != corner)
         {
-            inCorner = false;
-            bJumping = true;
-            lastCorner = other.GetComponent<Platform>();
+            inCorner = true;
+            lastCorner = corner;
         }
     }
 
     private void Salto()
     {
+        if (jumpRCD > 0) return;
+
         velY = jumpVel;
         //rg.velocity = new Vector3(0, jumpVel, 0);
         jumps--;
         bJumping = true;
-        inCorner = false;
+        //inCorner = false;
+
+        jumpRCD = jumpCD;
 
         if (muelto)
         {

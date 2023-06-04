@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     {
         
         GameObject boula = Instantiate(boulaPrefab, LevelGenerator.Instance.spawnPoint + Vector3.up, Quaternion.identity);
-        boula.GetComponent<Boula>().SetSpeed(velHorizontal*0.95f);
+        boula.GetComponent<Boula>().SetSpeed(velHorizontal*0.975f);
     }
 
     public void setPlayerAndGuide(Player p, Guide g)

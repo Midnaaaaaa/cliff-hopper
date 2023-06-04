@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8024577015307560958}
   - component: {fileID: 5880385866027373359}
   - component: {fileID: 1847110882839970130}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase2
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 3773722786964074858}
   - component: {fileID: 2768712444355795797}
   - component: {fileID: 4665111464092808820}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 2403269820999023283}
   - component: {fileID: 3726782988057156090}
   - component: {fileID: 3368314752655084205}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase2
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 1861497102716530356}
   - component: {fileID: 5459373984955284471}
   - component: {fileID: 7947945982296700529}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 7651563318926645132}
   - component: {fileID: 6811111838473336135}
   - component: {fileID: 5552977435695638999}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase2
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 8883219479478917288}
   - component: {fileID: 5928305710520186667}
   - component: {fileID: 2067524589241579278}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -543,7 +543,7 @@ GameObject:
   - component: {fileID: 5004685338858461152}
   - component: {fileID: 5574084562668161963}
   - component: {fileID: 7346935647798487234}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -692,7 +692,7 @@ GameObject:
   - component: {fileID: 733750012408612}
   - component: {fileID: 1126212188379671542}
   - component: {fileID: 2511045140816367596}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -775,7 +775,7 @@ GameObject:
   - component: {fileID: 6985226820030977134}
   - component: {fileID: 3552617872357139923}
   - component: {fileID: 292485248948105219}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -891,7 +891,7 @@ GameObject:
   - component: {fileID: 6979176381721281388}
   - component: {fileID: 6512878466212041769}
   - component: {fileID: 7719258993856180035}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -975,7 +975,7 @@ GameObject:
   - component: {fileID: 7264501989407513465}
   - component: {fileID: 20437104794468907}
   - component: {fileID: 2495671952836617301}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: referencia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1071,7 +1071,7 @@ GameObject:
   - component: {fileID: 8660788182914630398}
   - component: {fileID: 196979746248936053}
   - component: {fileID: 7618378724332573742}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -1154,7 +1154,7 @@ GameObject:
   - component: {fileID: 8099601200441247114}
   - component: {fileID: 3435486239918316365}
   - component: {fileID: 5600999776710999863}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -1237,7 +1237,7 @@ GameObject:
   - component: {fileID: 6966732567975185057}
   - component: {fileID: 1684633676136390666}
   - component: {fileID: 3787507629376512365}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -1353,7 +1353,7 @@ GameObject:
   - component: {fileID: 5672348789310787999}
   - component: {fileID: 4184303726028395509}
   - component: {fileID: 5308065509086468534}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -1436,7 +1436,7 @@ GameObject:
   - component: {fileID: 962154471157024224}
   - component: {fileID: 8044146088921755616}
   - component: {fileID: 6345945805458926513}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -1519,7 +1519,7 @@ GameObject:
   - component: {fileID: 1123635001123131852}
   - component: {fileID: 6868369798256601231}
   - component: {fileID: 5412293951483040178}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -1602,7 +1602,7 @@ GameObject:
   - component: {fileID: 8169791195222107753}
   - component: {fileID: 252037546584179450}
   - component: {fileID: 4958067296220299697}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -1685,7 +1685,7 @@ GameObject:
   - component: {fileID: 2083885554551336714}
   - component: {fileID: 1169489748168446783}
   - component: {fileID: 1670965627951217265}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase2
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -1768,7 +1768,7 @@ GameObject:
   - component: {fileID: 7531902365399038356}
   - component: {fileID: 3131174824574542958}
   - component: {fileID: 1276937903462008827}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase2
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -1851,7 +1851,7 @@ GameObject:
   - component: {fileID: 9020670685216867182}
   - component: {fileID: 3871006562570811306}
   - component: {fileID: 1076567467248215083}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -1934,7 +1934,7 @@ GameObject:
   - component: {fileID: 6878079938555053742}
   - component: {fileID: 5747082064836527588}
   - component: {fileID: 604032474153117185}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase2
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -2051,7 +2051,7 @@ GameObject:
   - component: {fileID: 5124991116770302958}
   - component: {fileID: 344386801101585954}
   - component: {fileID: 3051665907015508087}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -2134,7 +2134,7 @@ GameObject:
   - component: {fileID: 7660068988661267083}
   - component: {fileID: 4780392315715597137}
   - component: {fileID: 5992431966716242515}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase2
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -2251,7 +2251,7 @@ GameObject:
   - component: {fileID: 4957124297609954226}
   - component: {fileID: 1298980848214588602}
   - component: {fileID: 7420213614780860873}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -2367,7 +2367,7 @@ GameObject:
   - component: {fileID: 3493569410568933299}
   - component: {fileID: 7700597808330146487}
   - component: {fileID: 6236252153369501567}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase2
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -2450,7 +2450,7 @@ GameObject:
   - component: {fileID: 1441869098451779375}
   - component: {fileID: 5587933124614500997}
   - component: {fileID: 1813170673613292755}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -2533,7 +2533,7 @@ GameObject:
   - component: {fileID: 3362261958896627106}
   - component: {fileID: 6689431258410219483}
   - component: {fileID: 8474173961122896381}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -2649,7 +2649,7 @@ GameObject:
   - component: {fileID: 2311471219755813452}
   - component: {fileID: 7323281135382851075}
   - component: {fileID: 6308101260000319483}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -2765,7 +2765,7 @@ GameObject:
   - component: {fileID: 552523444014256561}
   - component: {fileID: 4828640710226681242}
   - component: {fileID: 6475844499940493008}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -2848,7 +2848,7 @@ GameObject:
   - component: {fileID: 4862205610902774083}
   - component: {fileID: 5691503555645030417}
   - component: {fileID: 3116740264829538707}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -2931,7 +2931,7 @@ GameObject:
   - component: {fileID: 7943941960544834428}
   - component: {fileID: 6508956290674145655}
   - component: {fileID: 3954459093970893195}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase2
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -3014,7 +3014,7 @@ GameObject:
   - component: {fileID: 6891112770022275430}
   - component: {fileID: 8049441079909448350}
   - component: {fileID: 9126742917420284969}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase2
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -3097,7 +3097,7 @@ GameObject:
   - component: {fileID: 5437448927777947941}
   - component: {fileID: 4344009058889328696}
   - component: {fileID: 6785191370746029267}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -3180,7 +3180,7 @@ GameObject:
   - component: {fileID: 9028410437878607573}
   - component: {fileID: 931227519112163483}
   - component: {fileID: 1047304797420247400}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase2
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -3263,7 +3263,7 @@ GameObject:
   - component: {fileID: 6387117811591832151}
   - component: {fileID: 8752091257629627007}
   - component: {fileID: 1223084415584968281}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -3380,7 +3380,7 @@ GameObject:
   - component: {fileID: 108395812467019040}
   - component: {fileID: 7510771101775424160}
   - component: {fileID: 9211259068678418438}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -3463,7 +3463,7 @@ GameObject:
   - component: {fileID: 2285228007575570809}
   - component: {fileID: 3875328776133263244}
   - component: {fileID: 8704560590870797020}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -3580,7 +3580,7 @@ GameObject:
   - component: {fileID: 8396016250519316633}
   - component: {fileID: 5042192188193939308}
   - component: {fileID: 5439176865673426908}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -3663,7 +3663,7 @@ GameObject:
   - component: {fileID: 6144391202277761212}
   - component: {fileID: 6234063237854361368}
   - component: {fileID: 4648453005792747277}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -3746,7 +3746,7 @@ GameObject:
   - component: {fileID: 3211917874733893056}
   - component: {fileID: 3116997707616138425}
   - component: {fileID: 4341279417014780706}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -3829,7 +3829,7 @@ GameObject:
   - component: {fileID: 7686818071554929640}
   - component: {fileID: 4872471718728301453}
   - component: {fileID: 8521569394686809572}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -3911,7 +3911,7 @@ GameObject:
   m_Component:
   - component: {fileID: 441817070033883617}
   - component: {fileID: 2207395281756813140}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Pinxos
   m_TagString: Trap
   m_Icon: {fileID: 0}
@@ -3975,7 +3975,7 @@ GameObject:
   - component: {fileID: 2201892499784642853}
   - component: {fileID: 7548954056768615452}
   - component: {fileID: 1731107628859482251}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -4058,7 +4058,7 @@ GameObject:
   - component: {fileID: 2050509751379989631}
   - component: {fileID: 3512042144313229867}
   - component: {fileID: 4993789133248474488}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -4208,7 +4208,7 @@ GameObject:
   - component: {fileID: 329799742954557722}
   - component: {fileID: 2821498954105621920}
   - component: {fileID: 1470610350285873476}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -4291,7 +4291,7 @@ GameObject:
   - component: {fileID: 8780906842345016963}
   - component: {fileID: 3625542870701521232}
   - component: {fileID: 3979340768393512106}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -4374,7 +4374,7 @@ GameObject:
   - component: {fileID: 2893944922773956920}
   - component: {fileID: 1317524008128940845}
   - component: {fileID: 3856250679312350574}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase2
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -4457,7 +4457,7 @@ GameObject:
   - component: {fileID: 1070160883004890367}
   - component: {fileID: 8456115259054567837}
   - component: {fileID: 5972044194901371274}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -4540,7 +4540,7 @@ GameObject:
   - component: {fileID: 1177120025452976885}
   - component: {fileID: 5221655267836200692}
   - component: {fileID: 5604059397612268843}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -4623,7 +4623,7 @@ GameObject:
   - component: {fileID: 4283135419256401224}
   - component: {fileID: 5061550137360128367}
   - component: {fileID: 7197989508279637451}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase2
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -4740,7 +4740,7 @@ GameObject:
   - component: {fileID: 1011929328804343431}
   - component: {fileID: 5300846645967351449}
   - component: {fileID: 3146697323307960815}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -4856,7 +4856,7 @@ GameObject:
   - component: {fileID: 3441708461248619427}
   - component: {fileID: 7022355370925776597}
   - component: {fileID: 5682761648915495135}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -5040,7 +5040,7 @@ GameObject:
   - component: {fileID: 8023579720380444521}
   - component: {fileID: 7768997483608286121}
   - component: {fileID: 235380085654924630}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -5123,7 +5123,7 @@ GameObject:
   - component: {fileID: 446151864164817981}
   - component: {fileID: 8145497385211350450}
   - component: {fileID: 1926446606209676901}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -5239,7 +5239,7 @@ GameObject:
   - component: {fileID: 4215205822107048523}
   - component: {fileID: 7915853502581791149}
   - component: {fileID: 5949243114764887567}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -5322,7 +5322,7 @@ GameObject:
   - component: {fileID: 7019613230220362649}
   - component: {fileID: 7126161452747185454}
   - component: {fileID: 7432409136493681101}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase2
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -5439,7 +5439,7 @@ GameObject:
   - component: {fileID: 3278598723042883332}
   - component: {fileID: 4286798307627354799}
   - component: {fileID: 9192811672442488931}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -5522,7 +5522,7 @@ GameObject:
   - component: {fileID: 2478632411626571981}
   - component: {fileID: 4075559192259376088}
   - component: {fileID: 8620934371493010427}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -5605,7 +5605,7 @@ GameObject:
   - component: {fileID: 6514273633805882863}
   - component: {fileID: 3108232623662331577}
   - component: {fileID: 351657860849825192}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -5688,7 +5688,7 @@ GameObject:
   - component: {fileID: 2157804792913925399}
   - component: {fileID: 5508615237930931279}
   - component: {fileID: 8129571049282426732}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -5771,7 +5771,7 @@ GameObject:
   - component: {fileID: 6934485056621734180}
   - component: {fileID: 6082875458419048218}
   - component: {fileID: 4743562632467037251}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -5854,7 +5854,7 @@ GameObject:
   - component: {fileID: 2627018565919232147}
   - component: {fileID: 7010049255866179953}
   - component: {fileID: 4992158314468645370}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -5937,7 +5937,7 @@ GameObject:
   - component: {fileID: 5653348963251485757}
   - component: {fileID: 3430513536505088216}
   - component: {fileID: 3442546127512599591}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -6020,7 +6020,7 @@ GameObject:
   - component: {fileID: 1755354697036075296}
   - component: {fileID: 435042183094601195}
   - component: {fileID: 8908817188615248717}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -6136,7 +6136,7 @@ GameObject:
   - component: {fileID: 8640827915496673742}
   - component: {fileID: 1794058225214702056}
   - component: {fileID: 8078740433813419891}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -6219,7 +6219,7 @@ GameObject:
   - component: {fileID: 6578501746443073936}
   - component: {fileID: 4185793750963313989}
   - component: {fileID: 4231275647174993462}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -6302,7 +6302,7 @@ GameObject:
   - component: {fileID: 5052271136365594488}
   - component: {fileID: 6015817861052825608}
   - component: {fileID: 2134354419297609925}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -6385,7 +6385,7 @@ GameObject:
   - component: {fileID: 1424736564397179350}
   - component: {fileID: 4368751660732144010}
   - component: {fileID: 2260697737972008849}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -6468,7 +6468,7 @@ GameObject:
   - component: {fileID: 8895367549353223237}
   - component: {fileID: 8310013105870037015}
   - component: {fileID: 6388471012112511381}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -6618,7 +6618,7 @@ GameObject:
   - component: {fileID: 7932326492275026004}
   - component: {fileID: 6038268447394628874}
   - component: {fileID: 7925854677115266230}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -6701,7 +6701,7 @@ GameObject:
   - component: {fileID: 1809561011146345243}
   - component: {fileID: 2554724407061965983}
   - component: {fileID: 8232803241110849837}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase2
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -6851,7 +6851,7 @@ GameObject:
   - component: {fileID: 5205739870460146758}
   - component: {fileID: 4791079424728437511}
   - component: {fileID: 9014803205186660193}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase2
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -7035,7 +7035,7 @@ GameObject:
   - component: {fileID: 2368397663682039007}
   - component: {fileID: 6936524674159569430}
   - component: {fileID: 5396846632614971932}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -7118,7 +7118,7 @@ GameObject:
   - component: {fileID: 8045991159259732145}
   - component: {fileID: 623087535975751357}
   - component: {fileID: 3031519490549138057}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -7201,7 +7201,7 @@ GameObject:
   - component: {fileID: 4482766058852004989}
   - component: {fileID: 1468183458075330312}
   - component: {fileID: 1933336907837007447}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -7318,7 +7318,7 @@ GameObject:
   - component: {fileID: 3762562412552703229}
   - component: {fileID: 1625135087557323999}
   - component: {fileID: 8875767041486824357}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -7401,7 +7401,7 @@ GameObject:
   - component: {fileID: 7405537364494144982}
   - component: {fileID: 775714266721965851}
   - component: {fileID: 5449546559549039102}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -7517,7 +7517,7 @@ GameObject:
   - component: {fileID: 5491909260937481045}
   - component: {fileID: 5408415100617038963}
   - component: {fileID: 8327849473683556925}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -7600,7 +7600,7 @@ GameObject:
   - component: {fileID: 3485742628590521552}
   - component: {fileID: 7646308156262958855}
   - component: {fileID: 6335166181146979250}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -7683,7 +7683,7 @@ GameObject:
   - component: {fileID: 9125407431261423118}
   - component: {fileID: 922590885961829497}
   - component: {fileID: 3399028363244112340}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoTop
   m_TagString: Pinxo
   m_Icon: {fileID: 0}
@@ -7847,7 +7847,7 @@ GameObject:
   - component: {fileID: 5801973614482284397}
   - component: {fileID: 5581226475412759567}
   - component: {fileID: 5984138402414911376}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PinxoBase
   m_TagString: Pinxo
   m_Icon: {fileID: 0}

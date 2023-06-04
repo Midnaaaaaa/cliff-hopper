@@ -287,6 +287,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b4139b0857617644aa511d92fed210cf, type: 3}
+      propertyPath: m_TagString
+      value: Fuego
+      objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: b4139b0857617644aa511d92fed210cf, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.75
@@ -335,6 +339,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b4139b0857617644aa511d92fed210cf, type: 3}
   m_PrefabInstance: {fileID: 8099662468503217946}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &7354515982051406894
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8982044387466779211}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.22
+  m_Center: {x: 0, y: -0.2, z: 0}
 --- !u!114 &113108186044046831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,4 +364,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4ef8f1dd653474ca6af0cda327858a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vel: 10
+  vel: 9
