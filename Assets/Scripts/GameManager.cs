@@ -76,4 +76,20 @@ public class GameManager : MonoBehaviour
         if(!victory) SoundManager.Instance.SelectAudio(8, 0.5f);
         victory = true;
     }
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+    }
+
+    //public void TogglePauseGame()
+    //{
+    //    if (Time.timeScale > 0)
+    //        Time.timeScale = 0;
+    //    else
+    //        Time.timeScale = 1;
+    //}
 }
