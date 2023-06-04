@@ -95,10 +95,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void setHighscore(int hs){
-        if(hs > highscore){
-            highscore = hs;
-            UIManager.Instance.UpdateHighScore();
+        if(hs > HighScore.Instance.Highscore)
+        {
+            HighScore.Instance.Highscore = hs;
         }
+        UIManager.Instance.UpdateHighScore();
 
     }
 

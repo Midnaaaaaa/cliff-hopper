@@ -46,6 +46,6 @@ public class UIManager : MonoBehaviour
     }
 
     public void UpdateHighScore(){
-        highscoreText.text = GameManager.Instance.highscore.ToString();
+        highscoreText.text = HighScore.Instance.Highscore.ToString();
     }
 }
