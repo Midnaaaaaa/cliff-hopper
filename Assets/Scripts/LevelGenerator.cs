@@ -88,7 +88,7 @@ public class LevelGenerator : MonoBehaviour
         switch (b)
         {
             case Bioma.FIRE: // Bola de fuego
-                Instantiate(aroPrefab, inicioFila + new Vector3(1 - direction, 0, direction) * (numBloquesFila+1) + Vector3.up, Quaternion.Euler(0, -180 + 90 * (1-direction), 0)).GetComponent<Aro>().MaxDistActivation = numBloquesFila + 1;
+                Instantiate(aroPrefab, inicioFila + new Vector3(1 - direction, 0, direction) * (numBloquesFila+1) + Vector3.up, Quaternion.Euler(0, -180 + 90 * (1-direction), 0), transform).GetComponent<Aro>().MaxDistActivation = numBloquesFila + 1;
                 break;
             case Bioma.DESERT: // Cactus
                 float offset = Random.Range(2.5f, Mathf.Max(2.5f, numBloquesFila - 2));
@@ -97,7 +97,7 @@ public class LevelGenerator : MonoBehaviour
                 //cactus.transform.localScale = 1;
                 break;
             case Bioma.ICE: // Pinguin 👍
-                Instantiate(pinguinPrefab, inicioFila + Vector3.up + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, 90 * (1 - direction), 0)).GetComponent<Pinguin>().Init(2, numBloquesFila - 3, direction);
+                Instantiate(pinguinPrefab, inicioFila + Vector3.up + new Vector3(1 - direction, 0, direction), Quaternion.Euler(0, 90 * (1 - direction), 0), transform).GetComponent<Pinguin>().Init(2, numBloquesFila - 3, direction);
                 break;
         }
     }
@@ -110,10 +110,10 @@ public class LevelGenerator : MonoBehaviour
     private void GenerarLevel()
     {
         int numPlatform = 0;
-        Player player = Instantiate(playerPrefab, spawnPoint + Vector3.up, Quaternion.identity).GetComponent<Player>();
+        Player player = Instantiate(playerPrefab, spawnPoint + Vector3.up, Quaternion.identity, transform).GetComponent<Player>();
         player.velHorizontal = velHorizontal;
 
-        Guide guide = Instantiate(guidePrefab, spawnPoint + Vector3.up, Quaternion.identity).GetComponent<Guide>();
+        Guide guide = Instantiate(guidePrefab, spawnPoint + Vector3.up, Quaternion.identity, transform).GetComponent<Guide>();
         guide.Init(player.gameObject);
 
 
@@ -396,7 +396,7 @@ public class LevelGenerator : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            Destroy(child);
+            Destroy(child.gameObject);
         }
 
         GenerarLevel();

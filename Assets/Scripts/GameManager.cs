@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -101,11 +102,8 @@ public class GameManager : MonoBehaviour
 
     }
 
-    //public void TogglePauseGame()
-    //{
-    //    if (Time.timeScale > 0)
-    //        Time.timeScale = 0;
-    //    else
-    //        Time.timeScale = 1;
-    //}
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(1);
+    }
 }

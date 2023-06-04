@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void ActivarMenuMuerte(){
-        transform.GetChild(7).gameObject.SetActive(true);
+        transform.Find("MenuMuerte").gameObject.SetActive(true);
     }
 
     public void UpdateHighScore(){
