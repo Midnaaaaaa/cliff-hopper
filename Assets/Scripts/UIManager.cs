@@ -43,6 +43,7 @@ public class UIManager : MonoBehaviour
 
     public void ActivarMenuMuerte(){
         transform.Find("MenuMuerte").gameObject.SetActive(true);
+        transform.Find("Pause").gameObject.SetActive(false);
     }
 
     public void UpdateHighScore(){
