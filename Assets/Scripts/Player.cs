@@ -79,7 +79,12 @@ public class Player : Aplastable
                 Salto();
             }
         }
-        if(Input.GetKeyDown(KeyCode.G)) god = !god;
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            god = !god;
+            if (god) GetComponent<MeshRenderer>().material.color = Color.yellow;
+            else GetComponent<MeshRenderer>().material.color = Color.white;
+        }
     }
 
     void FixedUpdate()
@@ -326,9 +331,15 @@ public class Player : Aplastable
             Girar();
         }
         SoundManager.Instance.SelectAudio(6, 0.5f);
-        GameManager.Instance.setHighscore(platPisadas);
+        UpdateHighScore();
         UIManager.Instance.ActivarMenuMuerte();
     }
+
+    public void UpdateHighScore()
+    {
+        GameManager.Instance.setHighscore(platPisadas);
+    }
+
     private void Girar()
     {
         initialDirection = direction;
